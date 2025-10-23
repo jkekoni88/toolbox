@@ -8,20 +8,93 @@ body {
 
 /* Landing layout */
 #landing {
-  max-width:1200px; 
-  margin:40px auto; 
-  padding:50px; 
-  background-color:#162135; 
+  max-width: 1400px; /* aiemman 1200px sijaan */
+  margin: 40px auto;
+  padding: 40px;
   border-radius: 15px;
+  border: 1px solid #1f2937;
+  background-image: linear-gradient(-0deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.75);
 }
+
 #landing h1 {
   font-size:28px; 
   margin-bottom:30px; 
   text-align:center; 
   color:#fff;
 }
+
+/* ===== Header-palkki: logo vasemmalla, navigaatio oikealla ===== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  margin-bottom: 40px;
+  border: 1px solid #1f2937;
+
+  /* Sama gradientti ja varjo kuin korteissa */
+  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  box-shadow: 0px -1px 5px rgba(0,0,0,0.75);
+}
+
+.site-logo {
+  width: 300px;
+  display: block;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+}
+
+/* Navigaatio headerissa */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;            /* ei ulkomarginaaleja headerissa */
+  justify-content: flex-end;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 13px;
+  border: 1px solid #1f2937;
+  
+  /* Sama gradientti ja varjo kuin korteissa */
+  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.75);
+
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.nav-btn:hover {
+  background-color: #1f2937;
+  transform: scale(1.03);
+}
+
+/* Otsikkopalkit (Generaattorit / Editorit) */
 .section-title {
-  margin: 20px auto 0px;
+  margin: 20px auto 0;
   padding: 20px;
   font-size: 13px;
   text-align: center;
@@ -29,47 +102,67 @@ body {
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: .08em;
-  background: #304a86;
-  border-radius: 15px;
+  border-radius: 13px;
   width: 700px;
+
+  /* Gradientti + varjo */
+  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
+/* Kortit – 4 vierekkäin leveällä ruudulla (CSS Grid) */
 .tool-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  justify-items: center;
   padding-top: 20px;
 }
 
-/* KORTTI: kiinteä korkeus + flex-sarake, jotta viimeinen lapsi voidaan
-   työntää alareunaan marginaalilla */
 .tool-card {
-  flex: 0 0 300px;
+  flex: 0 0 300px;         /* säilytetään kortin perusleveys */
   max-width: 300px;
   min-width: 300px;
-  height: 175px;                 /* kiinteä korkeus */
-  background: #304a86;
+  height: 260px;           /* kiinteä korttikorkeus */
+  border-radius: 13px;
+  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
+  box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
   border: 1px solid #1f2937;
-  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* nappi pysyy alareunassa */
   padding: 16px;
-
-  display: flex;                 /* <-- tärkeä */
-  flex-direction: column;        /* <-- tärkeä */
-  gap: 20px;
+  text-align: left;
 }
 
-.tool-card h2 { margin:0; font-size:18px; color:#fff; }
-.tool-card p  { margin:0; font-size:14px; color:#d1d5db; }
-
-/* Työnnä VIIMEINEN lapsi (napin wrapper-div) alareunaan */
-.tool-card > :last-child {
-  margin-top: auto;              /* <-- tämä siirtää napin wrapperin alas */
-  display: flex;                 /* jotta napin leveys pysyy luonnollisena */
-  align-items: flex-start;
+.tool-card img {
+  display: block;
+  max-height: 110px;
+  width: auto;
+  margin: 0 0 10px 0;      /* pieni väli alareunaan */
+  border-radius: 8px;
+  object-fit: contain;
+  align-self: flex-start;  /* vasempaan laitaan, sama linja kuin tekstit ja nappi */
 }
 
-/* Nappi (värit ennallaan) */
+.tool-card h2 { 
+  margin:0; 
+  font-size:18px; 
+  color:#fff; 
+}
+.tool-card p { 
+  margin:0 0 16px; 
+  font-size:14px; 
+  color:#d1d5db; 
+  flex-grow:1; 
+}
+
+/* Korttien sisäiset napit */
 .btn {
   display:inline-block; 
   background:#dc2626; 
@@ -80,6 +173,7 @@ body {
   font-size:14px; 
   text-decoration:none;
   font-weight:600;
+  align-self:flex-end;
 }
 .btn:hover { background:#b91c1c; }
 .btn.disabled { opacity:.5; pointer-events:none; }

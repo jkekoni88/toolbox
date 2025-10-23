@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luetuimmat Artikkelit</title>
+    <link
+      rel="preload"
+      href="fonts/QuattroNews-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="fonts/QuattroNews-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <style>
+      @font-face {
+        font-family: "QuattroNews";
+        font-weight: 400;
+        font-style: normal;
+        font-display: auto;
+        src: local("QuattroNews Regular"), local("QuattroNews-Regular"),
+          url("fonts/QuattroNews-Regular.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "QuattroNews";
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+        src: local("QuattroNews Bold"), local("QuattroNews-Bold"),
+          url("fonts/QuattroNews-Bold.woff2") format("woff2");
+      }
+
+      body {
+        font-family: "QuattroNews", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+        background-color: #333;
+        padding: 10px 0;
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border-radius: 5px;
+      }
+
+      .navbar a:hover {
+        background-color: #c70000;
+      }
+
+      .container {
+        width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        font-size: 2.5em;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Asettaa välin nappien väliin */
+        margin-top: 0px; /* Lisää välin otsikon ja nappien väliin */
+      }
+
+      #generate-button,
+      #update-button,
+      #fetch-sports-button,
+      #download-button {
+        display: inline-block;
+        margin: 10px 0px 20px 0px;
+        padding: 10px 20px;
+        background-color: #040d18;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2em;
+      }
+
+      #generate-button:hover,
+      #fetch-sports-button:hover,
+      #update-button:hover,
+      #download-button:hover {
+        background-color: #c70000;
+      }
+
+      #articles-container {
+        width: 400px;
+        height: 350px;
+        /*   border: solid; */
+        /*  border-width: 1px;*/
+        /*  padding: 10px; */
+      }
+
+      .bar {
+        width: 400px;
+        height: 1px;
+        background-color: #e6e6e6;
+        margin-top: 10px; /* Väli ennen palkkia */
+      }
+
+      .header-bar {
+        margin-bottom: 15px;
+        width: 400px;
+        height: 30px;
+        background-color: #ffffff;
+        text-align: left;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 30px;
+      }
+
+      #generated-image-container {
+        width: 400px;
+        height: 350px;
+        padding: 0px;
+        margin: 0px 0 0 0px;
+        /*  border: 1px solid #ccc; */
+        background: #fff;
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+
+      #generated-image-container canvas {
+        width: 400px;
+        height: 350px;
+      }
+
+      #footer-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #1a2732; /* Tummansininen taustaväri */
+        color: white; /* Valkoinen teksti */
+        font-family: "QuattroNews", sans-serif; /* Sama fontti */
+        font-size: 13px; /* Tekstin koko */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute; /* Asettuu containerin alareunaan */
+        bottom: 0;
+      }
+
+      #articles-container p {
+        position: relative; /* Tee elementistä suhteellinen ::before:lle */
+        padding-left: 40px; /* Jätä tilaa numeroille */
+        line-height: 1.2; /* Korjaa riviväli */
+        margin: 10px 0;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .generaattorit {
+        display: grid; /* Käyttää Grid Layoutia */
+        grid-template-columns: 1fr 1fr; /* Määrittää kaksi yhtä leveää saraketta */
+        gap: 20px; /* Väli sarakkeiden välillä */
+      }
+
+      .ohjetekstit {
+        width: 1000px;
+        justify-content: center;
+        text-align: left;
+        font-size: 15px;
+      }
+
+      #api-status {
+        color: white;
+        padding: 10px 10px 10px 10px;
+        border-radius: 2px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 70px;
+        display: inline-block;
+        text-align: center;
+      }
+
+      #articles-container p::before {
+        content: var(--index) ". "; /* Numerointi */
+        position: absolute; /* Aseta numero absoluuttisesti suhteessa p:hen */
+        padding-left: 10px;
+        padding-top: 2px;
+        left: 0; /* Numero alkaa vasemmasta reunasta */
+        top: 10; /* Numero tasaantuu tekstin yläreunaan */
+
+        width: 30px; /* Tilaa numerolle */
+        text-align: left; /* Numero tasataan oikeaan reunaan */
+        font-weight: bold;
+        font-size: 12px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="index.html">Uutisnosto</a>
+      <a href="luetuimmat.html">Luetuimmat</a>
+      <span id="api-status">Tarkistetaan API...</span>
+    </div>
+    <div class="container">
+      <h1>Luetuimmat generaattori</h1>
+      <div class="button-container">
+        <button id="generate-button">Generoi luetuimmat (Uutiset)</button>
+        <button id="fetch-sports-button">Generoi luetuimmat (Sport)</button>
+        <button id="update-button">Päivitä Teksti</button>
+        <button id="download-button" style="display: none">Lataa Kuva</button>
+      </div>
+      <div class="lahetyskoodi">
+        <p>Valitse lähetys</p>
+        <label> <input type="checkbox" id="option-1900" /> 1900 </label>
+        <label> <input type="checkbox" id="option-2200" /> 2200 </label>
+        <label> <input type="checkbox" id="option-sport1" /> sport1 </label>
+        <label> <input type="checkbox" id="option-sport2" /> sport2 </label>
+        <label> <input type="checkbox" id="option-husu" /> HuSu </label>
+      </div>
+      <div class="ohjetekstit">
+        <p contenteditable="true">
+          Kun painat generoi, otsikot tulevat API:n kautta. <br />
+          JOS muutat otsikoita, muista painaa "päivitä teksti - nappia" <br />
+          Vasemmasta palkista rivitä otsikot järkevästi, ei tekstiä liian
+          lähelle oikeaa reunaa <br />
+          Oikea kuva on se, minkä generaattori exporttaa. HOX! Jokainen otsikko
+          pitää olla 2 rivinen, eli paina tyhjä rivi entterillä jos otsikko on
+          yksirivinen.<br />
+          Tarkista että sininen alapalkki pysyy kuvassa!
+        </p>
+      </div>
+
+      <div class="generaattorit">
+        <div id="articles-container">
+          <!-- Artikkelit lisätään tänne -->
+        </div>
+        <div id="generated-image-container">
+          <canvas id="generated-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <script>
+      // API-checkerin tarkistus
+      async function checkApiStatus() {
+        try {
+          const response = await fetch(
+            "https://api.mtvuutiset.fi/graphql/caas/v1/topArticlesTicker?q=today&limit=1"
+          );
+          if (response.ok) {
+            // Jos API vastaa oikein, näytetään vihreä väri
+            document.getElementById("api-status").style.backgroundColor =
+              "green";
+            document.getElementById("api-status").textContent = "API toimii!";
+          } else {
+            // Jos API ei toimi oikein, näytetään punainen väri
+            document.getElementById("api-status").style.backgroundColor = "red";
+            document.getElementById("api-status").textContent = "API ei toimi!";
+          }
+        } catch (error) {
+          // Jos API ei ole saavutettavissa, näytetään punainen väri
+          document.getElementById("api-status").style.backgroundColor = "red";
+          document.getElementById("api-status").textContent =
+            "API ei ole saavutettavissa!";
+        }
+      }
+
+      // Tarkistetaan API:n tila heti sivun latautumisen jälkeen
+      checkApiStatus();
+    </script>
+    <script>
+      let topArticles = [];
+
+      async function fetchTopArticles() {
+        try {
+          console.log("Fetching top articles...");
+          const response = await fetch(
+            "https://api.mtvuutiset.fi/graphql/caas/v1/topArticlesTicker?q=today_uutiset&limit=10"
+          );
+          const data = await response.json();
+          console.log("Fetched data:", data);
+          topArticles = data.topArticles.items || [];
+          const articles = topArticles.slice(0, 4);
+          if (articles.length === 0) {
+            throw new Error("No articles found");
+          }
+
+          const container = document.getElementById("articles-container");
+          container.innerHTML = "";
+
+          // Luo otsikkopalkki
+          const headerElement = document.createElement("div");
+          headerElement.textContent = "LUETUIMMAT TÄNÄÄN";
+          headerElement.style.backgroundColor = "#1a2732";
+          headerElement.style.color = "#ffffff";
+          headerElement.style.fontSize = "18px";
+          headerElement.style.textAlign = "left";
+          headerElement.style.padding =
+            "7px 7px 7px 10px"; /*LUETUIMMAT TÄNÄÄN OTSIKON VÄLITYKSET */
+          headerElement.style.marginBottom = "10px"; /* väli ekaan otsikkoon */
+          headerElement.style.fontWeight = "bold";
+          container.appendChild(headerElement);
+
+          // Luo artikkelit ja välipalkit
+          articles.forEach((article, index) => {
+            const articleElement = document.createElement("p");
+            articleElement.textContent = article.title;
+            articleElement.setAttribute("contenteditable", "true");
+            articleElement.style.margin = "0";
+            articleElement.style.fontSize = "15px";
+            articleElement.style.fontWeight = "bold";
+            articleElement.style.padding =
+              "5px 10px 5px 35px"; /*OTSIKKOJEN PADDINGI */
+            articleElement.style.position = "relative";
+            articleElement.style.setProperty("--index", `"${index + 1}"`);
+
+            // Välipalkki
+            if (index < articles.length - 1) {
+              const separator = document.createElement("hr");
+              separator.style.border = "none";
+              separator.style.borderTop = "1px solid #ccc";
+              separator.style.margin = "8px 0";
+              container.appendChild(articleElement);
+              container.appendChild(separator);
+            } else {
+              container.appendChild(articleElement);
+            }
+          });
+
+          // Luo muokattava alapalkki (footer)
+          const footerElement = document.createElement("div");
+          footerElement.textContent =
+            "LUE LISÄÄ: mtvuutiset.fi tai lataa sovellus";
+          footerElement.setAttribute("contenteditable", "true");
+          footerElement.style.backgroundColor = "#1a2732";
+          footerElement.style.color = "#ffffff";
+          footerElement.style.fontSize = "13px";
+          footerElement.style.textAlign = "center";
+          footerElement.style.padding = "5px";
+          footerElement.style.marginTop = "10px";
+          footerElement.style.height = "20px";
+          footerElement.style.lineHeight = "20px";
+          footerElement.style.fontWeight = "bold";
+          container.appendChild(footerElement);
+
+          document.getElementById("update-button").style.display = "block";
+          generateImageFromArticles();
+        } catch (error) {
+          console.error("Virhe haettaessa artikkeleita:", error);
+        }
+      }
+
+      function generateImageFromArticles() {
+        const container = document.getElementById("articles-container");
+        html2canvas(container, {
+          width: 400,
+          height: 350,
+          scale: 4,
+          backgroundColor: "#ffffff",
+          x: 0,
+          y: 0,
+        }).then((canvas) => {
+          const imageContainer = document.getElementById(
+            "generated-image-container"
+          );
+          imageContainer.innerHTML = "";
+          imageContainer.appendChild(canvas);
+          document.getElementById("download-button").style.display = "block";
+        });
+      }
+      let textChanged = false;
+
+      document
+        .querySelectorAll("#articles-container p")
+        .forEach((articleElement) => {
+          articleElement.addEventListener("input", () => {
+            // Merkitse, että tekstiä on muutettu
+            textChanged = true;
+
+            // Lisää "changed" -luokka napille, jos tekstiä on muutettu
+            document.getElementById("update-button").classList.add("changed");
+          });
+        });
+
+      document
+        .getElementById("update-button")
+        .addEventListener("click", function () {
+          if (textChanged) {
+            // Päivitä teksti ja poista "changed" luokka napilta
+            generateImageFromArticles();
+            document
+              .getElementById("update-button")
+              .classList.remove("changed");
+            textChanged = false; // Nollaa tilanne
+          }
+        });
+
+      document
+        .getElementById("generate-button")
+        .addEventListener("click", function () {
+          fetchTopArticles();
+        });
+
+      document
+        .getElementById("update-button")
+        .addEventListener("click", function () {
+          generateImageFromArticles();
+        });
+
+      document
+        .getElementById("download-button")
+        .addEventListener("click", function () {
+          const date = new Date();
+          const formattedDate =
+            ("0" + date.getDate()).slice(-2) +
+            ("0" + (date.getMonth() + 1)).slice(-2);
+
+          // Hae checkbox-valinnat
+          let suffix = "";
+          if (document.getElementById("option-1900").checked) {
+            suffix = "1900";
+          } else if (document.getElementById("option-2200").checked) {
+            suffix = "2200";
+          } else if (document.getElementById("option-sport1").checked) {
+            suffix = "sport1";
+          } else if (document.getElementById("option-sport2").checked) {
+            suffix = "sport2";
+          } else if (document.getElementById("option-husu").checked) {
+            suffix = "husu";
+          }
+
+          // Luo tiedostonimi
+          const fileName = `${formattedDate}_${suffix}_luetuimmat.png`;
+
+          // Lataa kuva
+          const canvas = document.querySelector("canvas");
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL("image/png");
+          link.download = fileName;
+          link.click();
+        });
+
+      async function fetchSportsArticles() {
+        try {
+          console.log("Fetching sports articles...");
+          const response = await fetch(
+            "https://api.mtvuutiset.fi/graphql/caas/v1/topArticlesTicker?q=today&limit=40"
+          );
+          const data = await response.json();
+          console.log("Fetched data:", data);
+
+          // Suodata vain urheilu-kategorian uutiset
+          const sportsArticles = data.topArticles.items
+            .filter((article) => article.category === "urheilu")
+            .slice(0, 4);
+
+          if (sportsArticles.length === 0) {
+            throw new Error("Ei löytynyt urheilu-uutisia.");
+          }
+
+          const container = document.getElementById("articles-container");
+          container.innerHTML = ""; // Tyhjennä edellinen sisältö
+
+          // Luo otsikkopalkki
+          const headerElement = document.createElement("div");
+          headerElement.textContent = "LUETUIMMAT TÄNÄÄN";
+          headerElement.style.backgroundColor = "#1a2732";
+          headerElement.style.color = "#ffffff";
+          headerElement.style.fontSize = "18px";
+          headerElement.style.textAlign = "left";
+          headerElement.style.padding = "7px 7px 7px 10px"; // Otsikon välitykset
+          headerElement.style.marginBottom = "10px"; // Väli ensimmäiseen artikkeliin
+          headerElement.style.fontWeight = "bold";
+          container.appendChild(headerElement);
+
+          // Luo artikkelit ja välipalkit
+          sportsArticles.forEach((article, index) => {
+            const articleElement = document.createElement("p");
+            articleElement.textContent = article.title;
+            articleElement.setAttribute("contenteditable", "true");
+            articleElement.style.margin = "0";
+            articleElement.style.fontSize = "15px";
+            articleElement.style.fontWeight = "bold";
+            articleElement.style.padding = "5px 10px 5px 35px"; // Artikkeleiden padding
+            articleElement.style.position = "relative";
+            articleElement.style.setProperty("--index", `"${index + 1}"`);
+
+            // Välipalkki
+            if (index < sportsArticles.length - 1) {
+              const separator = document.createElement("hr");
+              separator.style.border = "none";
+              separator.style.borderTop = "1px solid #ccc";
+              separator.style.margin = "8px 0";
+              container.appendChild(articleElement);
+              container.appendChild(separator);
+            } else {
+              container.appendChild(articleElement);
+            }
+          });
+
+          // Luo muokattava alapalkki (footer)
+          const footerElement = document.createElement("div");
+          footerElement.textContent =
+            "LUE LISÄÄ: mtvuutiset.fi tai lataa sovellus";
+          footerElement.setAttribute("contenteditable", "true");
+          footerElement.style.backgroundColor = "#1a2732";
+          footerElement.style.color = "#ffffff";
+          footerElement.style.fontSize = "13px";
+          footerElement.style.textAlign = "center";
+          footerElement.style.padding = "5px";
+          footerElement.style.marginTop = "10px";
+          footerElement.style.height = "20px";
+          footerElement.style.lineHeight = "20px";
+          footerElement.style.fontWeight = "bold";
+          container.appendChild(footerElement);
+
+          // Generoi kuva
+          generateImageFromArticles();
+        } catch (error) {
+          console.error("Virhe haettaessa urheilu-uutisia:", error);
+        }
+      }
+
+      // Lisää tapahtumanappula urheilu-uutisten hakuun
+      document
+        .getElementById("fetch-sports-button")
+        .addEventListener("click", () => {
+          fetchSportsArticles();
+        });
+    </script>
+  </body>
+</html>
