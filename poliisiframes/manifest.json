@@ -1,0 +1,24 @@
+[
+  {
+    "id": "kehys_poliisi_pyytaa_havaintoja",
+    "name": "Poliisi pyytää havaintoja",
+    "file": "kehys_poliisi_pyytaa_havaintoja.png"
+
+  },
+  {
+ "id": "kehys_kadonnut",
+    "name": "Kadonnut",
+    "file": "kehys_kadonnut.png"
+
+  },
+  {
+    "id": "kehys_poliisi_pyytaa_vihjeita",
+    "name": "Poliisi pyytää vihjeitä",
+    "file": "kehys_poliisi_pyytaa_vihjeita.png"
+  },
+  {
+    "id": "kehys_soita_112",
+    "name": "Soita 112",
+    "file": "kehys_soita_112.png"
+  }
+]
