@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ToolBox – Yhteystiedot</title>
+  <style>
+    :root{
+      --bg:#111827; --bg2:#0f172a; --ink:#f9fafb; --muted:#cbd5e1; --muter:#94a3b8;
+      --brand:#0b1120; --red:#dc2626; --red2:#b91c1c; --border:#1f2937;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+    #brandbar{
+      position:sticky;top:0;z-index:3;background:var(--brand);color:#fff;
+      display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border)
+    }
+    #brandbar .brand{font-weight:700;letter-spacing:.3px}
+    #brandbar nav{display:flex;gap:10px;margin-left:10px}
+    #brandbar nav a{color:#d1d5db;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
+    #brandbar nav a.active{background:#b91c1c;color:#fff}
+    #brandbar nav a:hover{background:#dc2626;color:#fff}
+    #brandbar .spacer{flex:1}
+    #brandbar .back a{color:#fff;text-decoration:none;font-weight:600}
+    #brandbar .back a:hover{text-decoration:underline}
+
+    main{max-width:1100px;margin:24px auto;padding:0 16px;display:grid;gap:24px}
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;display:grid;gap:12px}
+    h1{font-size:28px;margin:0 0 6px}
+    h2{font-size:18px;margin:8px 0}
+    h3{font-size:15px;margin:8px 0;color:var(--muted)}
+    p,li{color:var(--muted)}
+    ul{margin:0;padding-left:18px}
+    code,kbd{background:#0b1220;border:1px solid var(--border);border-radius:6px;padding:.1em .35em}
+    .note{background:#0b1220;border:1px solid var(--border);border-radius:10px;padding:12px}
+    .btn{display:inline-block;background:var(--red);color:#fff;border:1px solid var(--red2);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+    .btn:hover{background:#ef4444}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .kv{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+    .kv .k{color:var(--muter)}
+    .kv .v{color:var(--ink)}
+    .links{display:flex;flex-wrap:wrap;gap:10px}
+
+    a,
+a:visited,
+a:hover,
+a:active {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+  <header id="brandbar">
+    <div class="brand">ToolBox Yhteystiedot</div>
+    <nav>
+      <a href="kehysgen.html">KehysGen</a>
+      <a href="grids.html">GridGen</a>
+      <a href="poliisigen.html">PoliisiGen</a>
+      <a href="kuvaeditor.html">KuvaGen</a>
+      <a href="docs.html">Dokumentaatio</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="back"><a href="index.html">← Takaisin etusivulle</a></div>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="yhteysotsikko">
+      <h1 id="yhteysotsikko">Löysitkö bugin / idea uudelle generaattorille / muuta? </h1>
+      <div class="v"></div>
+      <div class="kv" itemscope itemtype="https://schema.org/Person">
+        
+        <div class="k">Pistä viestiä</div>
+        <div class="v">juha.kekoni@mtv.fi tai teamssillä</div>
+
+        <div class="k">Puhelin</div>
+        <div class="v"><span itemprop="telephone">+358 40 833 7299</span></div>
+
+      </div>
+
+      <div class="links">
+       
+        <a class="btn" href="index.html">← Takaisin etusivulle</a>
+      </div>
+
+      
+    </section>
+  </main>
+</body>
+</html>
