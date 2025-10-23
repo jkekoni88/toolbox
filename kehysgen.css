@@ -1,0 +1,142 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+  color:#f9fafb;
+  background:#111827;
+}
+
+/* Yläpalkki */
+#brandbar{
+  position:sticky; top:0; z-index:3;
+  background:#0b1120; color:#fff;
+  display:flex; align-items:center; gap:12px;
+  padding:10px 14px; border-bottom:1px solid #1f2937;
+}
+#brandbar .brand{ font-weight:700; letter-spacing:.3px }
+#brandbar .nav{ display:flex; gap:10px; margin-left:10px }
+#brandbar .nav a{
+  color:#d1d5db; text-decoration:none; padding:6px 10px; border-radius:6px; font-size:13px;
+}
+#brandbar .nav a.active{ background:#b91c1c; color:#fff }
+#brandbar .nav a:hover{ background:#dc2626; color:#fff }
+#brandbar .nav-info{
+  flex:1; text-align:center; font-size:12px; color:#9ca3af;
+}
+
+/* Layout */
+#app{display:flex;min-height:calc(100vh - 44px)}
+
+/* Sivupalkki oikealla */
+#sidebar{
+  width:clamp(300px, 35vw, 600px);
+  background:#0f172a;
+  border-left:1px solid #1f2937; /* oikea reuna */
+  border-right:none;
+  padding:12px;
+  display:flex;flex-direction:column;gap:10px;overflow:auto
+}
+#sidebar h2{margin:4px 0 8px;font-size:16px;color:#e5e7eb}
+.import-box{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.hint{margin:0;color:#94a3b8;font-size:12px}
+.warn{
+  margin:0;color:#fcd34d;background:#3f2d12;
+  border:1px solid #b45309;padding:6px 8px;border-radius:6px;font-size:12px
+}
+
+/* Kehyslista */
+.thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.frame-item{
+  display:flex;flex-direction:column;gap:4px;padding:6px;
+  border:1px solid #1f2937;border-radius:8px;
+  background:#111827; cursor:pointer; transition:.15s
+}
+.frame-item:hover{box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.frame-item.active{outline:2px solid #dc2626;background:#0b1220}
+.frame-thumb-wrap{ max-width:120px; margin:0 auto; }
+.frame-thumb{width:100%;aspect-ratio:16/9;border-radius:6px;background:#ddd;display:block}
+.frame-caption{text-align:center;font-size:11px;color:#cbd5e1}
+
+/* Main / toolbar */
+#main{flex:1;display:flex;flex-direction:column}
+.toolbar{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  padding:8px 10px;border-bottom:1px solid #1f2937;
+  background:#0f172a; position:sticky; top:0; z-index:2
+}
+
+/* Napit */
+.file-btn{
+  position:relative;overflow:hidden;
+  padding:6px 10px;border-radius:8px;
+  cursor:pointer;font-size:13px;
+}
+.file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+
+button{border:none;border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+
+/* Punaiset yhtenäiset napit */
+.btn-danger, .file-btn.btn-danger{
+  background:#dc2626; color:#fff; border:1px solid #b91c1c;
+}
+.btn-danger:hover, .file-btn.btn-danger:hover{
+  background:#ef4444;
+}
+
+/* Divider */
+.divider{
+  width:1px; height:24px;
+  background:#e5e7eb;
+  margin:0 6px;
+  align-self:center;
+}
+
+/* Canvas */
+#canvasWrap{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px}
+#previewCanvas{
+  width:960px;height:540px;
+  background:#ff1a1a; /* kirkkaan punainen tausta */
+  border-radius:8px;border:1px solid #e5e7eb;touch-action:none
+}
+#hint{margin:0;color:#94a3b8;font-size:12px}
+
+/* Controls */
+.controls{padding:0 12px 12px}
+.panel{
+  background:#0f172a; border:1px solid #1f2937; border-radius:8px; overflow:hidden
+}
+.panel-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 10px;background:#111827;border-bottom:1px solid #1f2937;font-size:13px;color:#e5e7eb
+}
+.panel-header h3{margin:0;font-size:13px}
+.controls-grid{display:grid;grid-template-columns:repeat(4,minmax(180px,1fr));gap:10px;padding:10px}
+.card{
+  border:1px solid #1f2937;border-radius:6px;padding:8px;background:#111827;
+  display:flex;flex-direction:column;gap:4px
+}
+.card-title{font-weight:600;font-size:12px;margin-bottom:2px;color:#e5e7eb}
+label{font-size:12px;color:#cbd5e1}
+input[type=range]{width:100%;height:20px;margin:2px 0}
+select{
+  height:28px;border-radius:6px;border:1px solid #334155;
+  background:#0f172a;color:#e5e7eb;padding:2px 8px;font-size:12px
+}
+.range-readout{font-size:11px;color:#9ca3af}
+.checkbox{display:flex;align-items:center;font-size:12px;gap:6px;color:#e5e7eb}
+.chiprow{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-size:11px;padding:4px 8px;border-radius:999px;
+  border:1px solid #334155;
+  background:#0f172a;color:#e5e7eb;cursor:pointer
+}
+.chip.active{background:#dc2626;color:#fff;border-color:#b91c1c}
+.subhint{font-size:11px;color:#94a3b8}
+
+/* Responsiivisuus */
+@media(max-width:1600px){.controls-grid{grid-template-columns:repeat(3,minmax(180px,1fr))}}
+@media(max-width:1200px){.controls-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}}
+@media(max-width:800px){.controls-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){#previewCanvas{width:100%;height:auto}}

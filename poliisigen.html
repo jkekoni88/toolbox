@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PoliisiGen</title>
+  <link rel="stylesheet" href="poliisigen.css">
+</head>
+<body>
+  <!-- Yläpalkki -->
+  <header id="brandbar">
+    <div class="brand">PoliisiGen</div>
+    <nav class="nav">
+      <a href="grids.html">GridGen</a>
+      <a href="kehysgen.html">KehysGen</a>
+      <a class="active" href="#">PoliisiGen</a>
+      <a href="kuvaeditor.html">KuvaEditor</a>
+    </nav>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai teamssillä</div>
+  </header>
+
+  <main id="pgapp">
+    <!-- Vasen: työalue -->
+    <section class="left">
+      <div class="toolbar">
+        <button id="newImageBtn" class="btn-soft">Uusi kuva</button>
+        <button id="downloadBtn" class="btn-primary">Lataa kuva</button>
+        <div class="spacer"></div>
+      </div>
+
+      <div id="canvasWrap">
+        <canvas id="pgCanvas" width="960" height="540" aria-label="Esikatselu"></canvas>
+        <p class="hint">
+          Vihje: Valitse solu alta tai klikkaa canvasta. Vedä kuvaa hiirellä siirtääksesi sitä. Pudota kuvia suoraan soluihin.
+        </p>
+
+        <!-- Solu-chipit -->
+        <div id="cellsBar" class="cells-bar"></div>
+
+        <!-- Ohjaimet CANVAKSEN ALLA: kaksi panelia vierekkäin -->
+        <div id="underControls" class="under-controls">
+          <!-- Valittu solu -->
+          <div class="panel">
+            <div class="panel-title">Valittu solu</div>
+
+            <div class="file-row">
+              <label class="file-btn-red">
+                <input id="cellFile" type="file" accept="image/png,image/jpeg">
+                Valitse kuva
+              </label>
+              <button id="cellClear" class="btn-small btn-red">Tyhjennä solun kuva</button>
+              <button id="cellCenter" class="btn-small btn-red">Keskitä</button>
+              <button id="resetCell" class="btn-small btn-red">Nollaa säädöt</button>
+            </div>
+
+            <div class="row">
+              <span>Skaalaa</span>
+              <input id="cellScale" type="range" min="10" max="300" value="100">
+              <span id="cellScaleVal" class="val">100%</span>
+            </div>
+
+            <div class="row">
+              <span>Kirkkaus</span>
+              <input id="cellBright" type="range" min="0" max="200" value="100">
+              <span id="cellBrightVal" class="val">100%</span>
+            </div>
+
+            <div class="row">
+              <span>Kontrasti</span>
+              <input id="cellContrast" type="range" min="0" max="200" value="100">
+              <span id="cellContrastVal" class="val">100%</span>
+            </div>
+          </div>
+
+          <!-- Templaten asetukset -->
+          <div class="panel">
+            <div class="panel-title">Templaten asetukset</div>
+
+            <div class="row">
+              <span>Keskialueen leveys (max 1375)</span>
+              <input id="contentWidth" type="range" min="600" max="1375" value="1375">
+              <span id="contentWidthVal" class="val">1375 px</span>
+            </div>
+
+            <div class="row">
+              <span>Yläreunan väli</span>
+              <input id="topPad" type="range" min="0" max="200" value="50">
+              <span id="topPadVal" class="val">50 px</span>
+            </div>
+
+            <div class="row">
+              <span>Alareunan väli</span>
+              <!-- sallitaan negatiiviset, jotta alareunan stroke voidaan piilottaa -->
+              <input id="bottomPad" type="range" min="-80" max="200" value="-16">
+              <span id="bottomPadVal" class="val">-16 px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Oikea: templatet + tekstipalkit -->
+    <section class="right">
+      <!-- 1/2/3 kuvan valinta -->
+      <div class="panel">
+        <div class="panel-title">Templatet</div>
+        <div class="layout-chooser">
+          <button class="layout-btn" data-layout="center1">1 kuva</button>
+          <button class="layout-btn" data-layout="center2">2 kuvaa</button>
+          <button class="layout-btn" data-layout="center3">3 kuvaa</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Valitse teksti kuvaan</div>
+
+        <div class="buttons smallgap">
+          <label class="file-btn-red">
+            <input id="frameFile" type="file" accept="image/png" multiple>
+            Päivitä tekstipalkit
+          </label>
+          <button id="noFrameBtn" class="btn-small btn-red">Ei tekstipalkkia</button>
+        </div>
+
+        <div id="framesList" class="frames-grid"></div>
+        <p id="framesHint" class="hint">Vihje: valitse yksi tai useampi PNG-tiedosto paikalliselta levyltä.</p>
+      </div>
+
+      <div class="panel small">
+        <div class="panel-title">Ohje</div>
+        <ul class="help">
+          <li>Sininen tausta tulee automaattisesti: <code>img/poliisigen_tausta.jpg</code>.</li>
+          <li>Valitse template (1/2/3 kuvaa). Keskialueen maksimi on 1375 px.</li>
+          <li>Kuvilla on 16 px valkoinen reunaviiva. Alareunan väli voi olla negatiivinen piilottaakseen alareunan viivan.</li>
+          <li>Lisää tekstipalkit PNG:nä “Päivitä tekstipalkit”.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="poliisigen.js"></script>
+</body>
+</html>

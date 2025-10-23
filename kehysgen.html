@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KehysGen – Kehysgeneraattori 1920×1080</title>
+  <link rel="stylesheet" href="kehysgen.css">
+</head>
+<body>
+  <!-- Yläpalkki -->
+  <header id="brandbar">
+    <div class="brand">KehysGen</div>
+    <nav class="nav">
+      <a href="grids.html">GridGen</a>
+      <a class="active" href="#">KehysGen</a>
+      <a href="poliisigen.html">PoliisiGen</a>
+      <a href="kuvaeditor.html">KuvaGen</a>
+    </nav>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai teamssillä</div>
+  </header>
+
+  <div id="app">
+    <aside id="sidebar">
+      <h2>Valitse kehys kuvaan</h2>
+
+      <div class="import-box">
+        <button id="refreshFramesBtn" class="btn-danger small">Päivitä kehykset</button>
+        <button id="noFrameBtn" class="btn-danger small">Ei kehystä</button>
+      </div>
+
+      <div id="framesList" class="thumbs" aria-label="Kehysvalinnat"></div>
+      <!-- manifest-ohjeteksti poistettu pyyntösi mukaan -->
+    </aside>
+
+    <main id="main">
+      <header class="toolbar">
+        <label class="file-btn btn-danger">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg" />
+          Valitse kuva (1920×1080)
+        </label>
+        <button id="clearBtn" class="btn-danger" disabled>Tyhjennä kuva</button>
+
+        <div class="divider"></div>
+
+        <button id="downloadBaseBtn" class="btn-danger" disabled>
+          Lataa kuva (ilman kehystä)
+        </button>
+        <button id="downloadBtn" class="btn-danger" disabled>
+          Lataa kuva
+        </button>
+      </header>
+
+      <div id="canvasWrap">
+        <canvas id="previewCanvas" width="960" height="540" aria-label="Esikatselu"></canvas>
+        <p id="hint">Raahaa kuva tähän tai käytä Valitse kuva -nappia. Voit liikutella kuvaa raahaamalla hiirellä.</p>
+        <p id="warn" class="warn" hidden></p>
+      </div>
+
+      <section class="controls">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Presetit</h3>
+            <div class="panel-actions">
+              <button id="resetBtn" class="btn-danger">Nollaa kaikki</button>
+            </div>
+          </div>
+
+          <div class="controls-grid">
+            <!-- Presetit -->
+            <div class="card">
+              <div class="card-title">Presetit</div>
+              <div id="presetsRow" class="chiprow"></div>
+
+              <label class="checkbox">
+                <input id="grayscale" type="checkbox" /> Mustavalkoinen
+              </label>
+
+              <div class="row" style="margin-top:6px;">
+                <button id="flipXBtn" class="btn-danger">↔ Peilaa (vaaka)</button>
+              </div>
+            </div>
+
+            <!-- Koko & sumennus -->
+            <div class="card">
+              <div class="card-title">Koko & Sumennus</div>
+              <label for="scale">Skaalaus</label>
+              <input id="scale" type="range" min="0" max="200" value="100" />
+              <span id="scaleVal" class="range-readout">100%</span>
+
+              <label for="scaleX">Skaalaa leveys</label>
+              <input id="scaleX" type="range" min="0" max="200" value="100" />
+              <span id="scaleXVal" class="range-readout">100%</span>
+
+              <label for="scaleY">Skaalaa korkeus</label>
+              <input id="scaleY" type="range" min="0" max="200" value="100" />
+              <span id="scaleYVal" class="range-readout">100%</span>
+
+              <label for="blur">Sumennus</label>
+              <input id="blur" type="range" min="0" max="30" value="0" />
+              <span id="blurVal" class="range-readout">0 px</span>
+            </div>
+
+            <!-- Sävy & väri -->
+            <div class="card">
+              <div class="card-title">Sävy & Väri</div>
+              <label for="brightness">Kirkkaus</label>
+              <input id="brightness" type="range" min="0" max="200" value="100" />
+              <span id="brightnessVal" class="range-readout">100%</span>
+
+              <label for="contrast">Kontrasti</label>
+              <input id="contrast" type="range" min="0" max="200" value="100" />
+              <span id="contrastVal" class="range-readout">100%</span>
+
+              <label for="saturate">Kylläisyys</label>
+              <input id="saturate" type="range" min="0" max="250" value="100" />
+              <span id="saturateVal" class="range-readout">100%</span>
+
+              <label for="hue">Hue-kierto</label>
+              <input id="hue" type="range" min="-180" max="180" value="0" />
+              <span id="hueVal" class="range-readout">0°</span>
+            </div>
+
+            <!-- Efektit -->
+            <div class="card">
+              <div class="card-title">Efektit</div>
+              <label for="vignette">Vinjetti</label>
+              <input id="vignette" type="range" min="0" max="100" value="0" />
+              <span id="vignetteVal" class="range-readout">0%</span>
+
+              <label for="vignetteShape">Vinjetin muoto</label>
+              <select id="vignetteShape">
+                <option value="round" selected>Pyöreä</option>
+                <option value="square">Neliömäinen</option>
+              </select>
+
+              <label for="grain">Film grain</label>
+              <input id="grain" type="range" min="0" max="100" value="0" />
+              <span id="grainVal" class="range-readout">0%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="kehysgen.js"></script>
+</body>
+</html>

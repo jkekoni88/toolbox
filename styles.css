@@ -1,0 +1,115 @@
+* { box-sizing: border-box; }
+html, body { margin:0; height:100%; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+  background: #111827;
+  color: #f9fafb;
+}
+
+/* Landing layout */
+#landing {
+  max-width:1200px; 
+  margin:40px auto; 
+  padding:50px; 
+  background-color:#162135; 
+  border-radius: 15px;
+}
+#landing h1 {
+  font-size:28px; 
+  margin-bottom:30px; 
+  text-align:center; 
+  color:#fff;
+}
+.section-title {
+  margin: 20px auto 0px;
+  padding: 20px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: #304a86;
+  border-radius: 15px;
+  width: 700px;
+}
+
+.tool-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+/* KORTTI: kiinteä korkeus + flex-sarake, jotta viimeinen lapsi voidaan
+   työntää alareunaan marginaalilla */
+.tool-card {
+  flex: 0 0 300px;
+  max-width: 300px;
+  min-width: 300px;
+  height: 175px;                 /* kiinteä korkeus */
+  background: #304a86;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  padding: 16px;
+
+  display: flex;                 /* <-- tärkeä */
+  flex-direction: column;        /* <-- tärkeä */
+  gap: 20px;
+}
+
+.tool-card h2 { margin:0; font-size:18px; color:#fff; }
+.tool-card p  { margin:0; font-size:14px; color:#d1d5db; }
+
+/* Työnnä VIIMEINEN lapsi (napin wrapper-div) alareunaan */
+.tool-card > :last-child {
+  margin-top: auto;              /* <-- tämä siirtää napin wrapperin alas */
+  display: flex;                 /* jotta napin leveys pysyy luonnollisena */
+  align-items: flex-start;
+}
+
+/* Nappi (värit ennallaan) */
+.btn {
+  display:inline-block; 
+  background:#dc2626; 
+  color:#fff; 
+  border:none;
+  border-radius:8px; 
+  padding:8px 12px; 
+  font-size:14px; 
+  text-decoration:none;
+  font-weight:600;
+}
+.btn:hover { background:#b91c1c; }
+.btn.disabled { opacity:.5; pointer-events:none; }
+
+/* Badge */
+.badge {
+  font-size:11px;
+  background:#1f2937;
+  border:1px solid #374151;
+  color:#cbd5e1;
+  border-radius:999px;
+  padding:2px 8px;
+}
+.badge.warn {
+  background:#3f1d1d;
+  border-color:#7f1d1d;
+  color:#fecaca;
+}
+
+/* Footer */
+footer {
+  margin-top:40px;
+  font-size:12px;
+  color:#94a3b8;
+  text-align:center;
+}
+footer a.inline {
+  color:#60a5fa;
+  text-decoration:none;
+}
+footer a.inline:hover {
+  text-decoration:underline;
+}

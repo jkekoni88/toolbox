@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GridGen</title>
+  <link rel="stylesheet" href="grids.css">
+</head>
+<body>
+  <!-- Yläpalkki (sama tyyli kuin KehysGenissä) -->
+  <header id="brandbar">
+    <div class="brand">GridGen</div>
+    <nav class="nav">
+      <a class="active" href="#">GridGen</a>
+      <a href="kehysgen.html">KehysGen</a>
+      <a href="poliisigen.html">PoliisiGen</a>
+      <a href="kuvagen.html">KuvaGen</a>
+    </nav>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai Teamsissä</div>
+  </header>
+
+  <main id="gridapp">
+    <!-- Vasen puoli: työalue -->
+    <section class="left">
+      <!-- Työkalupalkki (napit vasemmassa reunassa vierekkäin) -->
+      <div class="toolbar">
+        <button id="newImageBtn" class="btn-soft">Uusi kuva</button>
+        <button id="download" class="btn-primary">Lataa kuva</button>
+        <div class="spacer"></div>
+      </div>
+
+      <div id="canvasWrap">
+        <canvas id="gridCanvas" width="960" height="540" aria-label="Esikatselu"></canvas>
+        <p class="hint">
+          Vihje: siirrä jakajia ja muotoja suoraan canvaksella. Klikkaa solua valitaksesi sen. Tiputa kuva soluun tai käytä “Valitse kuva”.
+        </p>
+
+        <!-- Solu 1–n -chipit -->
+        <div id="cellsBar" class="cells-bar"></div>
+
+        <!-- Ohjaimet CANVAKSEN ALLA: kaksi paneelia vierekkäin -->
+        <div id="underControls" class="under-controls">
+          <!-- Valittu solu -->
+          <div class="panel">
+            <div class="panel-title">Valittu solu</div>
+
+            <!-- Sama rivi: valitse/tyhjennä/keskitä/nollaa (punaiset) -->
+            <div class="file-row">
+              <label class="file-btn-red">
+                <input id="cellFile" type="file" accept="image/png,image/jpeg">
+                Valitse kuva
+              </label>
+              <button id="cellClear" class="btn-small btn-red">Tyhjennä solun kuva</button>
+              <button id="cellCenter" class="btn-small btn-red">Keskitä</button>
+              <button id="resetCell" class="btn-small btn-red">Nollaa säädöt</button>
+            </div>
+
+            <div class="row">
+              <span>Skaalaa kuvan kokoa</span>
+              <input id="cellScale" type="range" min="10" max="300" value="100">
+              <span id="cellScaleVal" class="val">100%</span>
+            </div>
+
+            <div class="row">
+              <span>Kirkkaus</span>
+              <input id="cellBright" type="range" min="0" max="200" value="100">
+              <span id="cellBrightVal" class="val">100%</span>
+            </div>
+
+            <div class="row">
+              <span>Kontrasti</span>
+              <input id="cellContrast" type="range" min="0" max="200" value="100">
+              <span id="cellContrastVal" class="val">100%</span>
+            </div>
+
+            <!-- (Tarvittaessa voit halutessasi lisätä blur/MV -säädöt takaisin tänne) -->
+          </div>
+
+          <!-- Jakajan/templaten asetukset -->
+          <div class="panel" id="dividerPanel">
+            <div class="panel-title">Jakajan asetukset</div>
+
+            <!-- Suorat splitit -->
+            <div class="row" id="ctrlSplitVert" style="display:none">
+              <span>Pystyjakaja (vasen–oikea)</span>
+              <input id="splitVertPos" type="range" min="-30" max="30" value="0">
+              <span id="splitVertVal" class="val">0%</span>
+            </div>
+
+            <div class="row" id="ctrlSplitHoriz" style="display:none">
+              <span>Vaakajakaja (ylä–ala)</span>
+              <input id="splitHorizPos" type="range" min="-30" max="30" value="0">
+              <span id="splitHorizVal" class="val">0%</span>
+            </div>
+
+            <div class="row" id="ctrlGrid2x2X" style="display:none">
+              <span>Pystyjakaja (2×2)</span>
+              <input id="grid2x2X" type="range" min="-30" max="30" value="0">
+              <span id="grid2x2XVal" class="val">0%</span>
+            </div>
+
+            <div class="row" id="ctrlGrid2x2Y" style="display:none">
+              <span>Vaakajakaja (2×2)</span>
+              <input id="grid2x2Y" type="range" min="-30" max="30" value="0">
+              <span id="grid2x2YVal" class="val">0%</span>
+            </div>
+
+            <!-- Kaari/Nuoli -->
+            <div class="row" id="ctrlCurve" style="display:none">
+              <span>Jakajan paikka (kaari/nuoli)</span>
+              <input id="curvePos" type="range" min="-30" max="30" value="0">
+              <span id="curvePosVal" class="val">0%</span>
+            </div>
+
+            <!-- Timantti -->
+            <div class="row" id="ctrlDiamondWidth" style="display:none">
+              <span>Timantin leveys</span>
+              <input id="diamondWidth" type="range" min="12" max="35" value="22">
+              <span id="diamondWidthVal" class="val">22%</span>
+            </div>
+
+            <!-- Ympyrä -->
+            <div class="row" id="ctrlCircleX" style="display:none">
+              <span>Ympyrän x-sijainti</span>
+              <input id="circleX" type="range" min="-30" max="30" value="0">
+              <span id="circleXVal" class="val">0%</span>
+            </div>
+
+            <div class="row" id="ctrlCircleSize" style="display:none">
+              <span>Ympyrän koko</span>
+              <input id="circleSize" type="range" min="40" max="200" value="100">
+              <span id="circleSizeVal" class="val">100%</span>
+            </div>
+
+            <!-- Vinopalkit -->
+            <div class="row" id="ctrlSlanted" style="display:none">
+              <span>Vinopalkkien kulma</span>
+              <input id="slantedAngle" type="range" min="-45" max="45" value="3">
+              <span id="slantedAngleVal" class="val">3°</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Oikea puoli: layoutit + ohje -->
+    <section class="right">
+      <div class="panel">
+        <div class="panel-title">Layoutit</div>
+        <div id="layoutGallery" class="layout-gallery"></div>
+      </div>
+
+      <div class="panel small">
+        <div class="panel-title">Ohje</div>
+        <ul class="help">
+          <li>Valitse layout gallerian pikkukuvista (mukana Kaari, Nuoli, Timantti, Ympyrä ja Vinopalkit).</li>
+          <li>Voit siirtää jakajaa/ympyrää/timanttia raahaamalla suoraan canvaksella tai säätimillä.</li>
+          <li>Valitse solu canvasista tai “Solu”-chipeistä canvaksen alta. Raahaa kuvaa siirtääksesi sitä solun sisällä.</li>
+          <li>“Lataa kuva” on työkalupalkissa vasemmalla. “Uusi kuva” nollaa nykyisen layoutin asetukset.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="grids.js"></script>
+</body>
+</html>

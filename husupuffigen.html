@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HusupuffiGen</title>
+  <link rel="stylesheet" href="husupuffigen.css" />
+</head>
+<body>
+ <header id="brandbar">
+  <div class="brand">HusupuffiGen</div>
+  <nav class="nav">
+    <a href="kehysgen.html">KehysGen</a>
+    <a href="grids.html">GridGen</a>
+    <a href="poliisigen.html">PoliisiGen</a>
+    <a href="kuvagen.html">KuvaGen</a>
+    <a class="active" href="husupuffigen.html">HusupuffiGen</a>
+  </nav>
+  <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai teamssillä</div>
+</header>
+
+
+  <main id="app">
+    <!-- Vasen: canvas + lataus -->
+    <section class="col left">
+      <div id="canvasWrap">
+        <canvas id="puffiCanvas" width="1080" height="1920" aria-label="Esikatselu"></canvas>
+      </div>
+      <button id="download" class="btn-primary">Lataa PNG</button>
+    </section>
+
+    <!-- Oikea: ohjaimet -->
+    <aside class="col right">
+      <div class="panel">
+        <div class="panel-title">Otsikko</div>
+        <div class="row">
+          <label for="headline">Ensimmäinen rivi</label>
+          <input id="headline" type="text" value="Aiheitamme" />
+        </div>
+        <div class="row">
+          <label for="weekday">Toinen rivi (päivä)</label>
+          <select id="weekday">
+            <option value="maanantaina">maanantaina</option>
+            <option value="tiistaina">tiistaina</option>
+            <option value="keskiviikkona">keskiviikkona</option>
+            <option value="torstaina">torstaina</option>
+            <option value="perjantaina" selected>perjantaina</option>
+            <option value="lauantaina">lauantaina</option>
+            <option value="sunnuntaina">sunnuntaina</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Täytä aikataulu</div>
+        <textarea id="schedule" rows="12" placeholder="Syötä aikataulu tähän">
+</textarea>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Alateksti</div>
+        <input id="footer" type="text" value="Juontajat kanssasi klo 6.25 alkaen!" />
+      </div>
+    </aside>
+  </main>
+
+  <script src="husupuffigen.js"></script>
+</body>
+</html>

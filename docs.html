@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ToolBox – Dokumentaatio</title>
+  <style>
+    :root{
+      --bg:#111827; --bg2:#0f172a; --ink:#f9fafb; --muted:#cbd5e1; --muter:#94a3b8;
+      --brand:#0b1120; --red:#dc2626; --red2:#b91c1c; --border:#1f2937;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+    #brandbar{
+      position:sticky;top:0;z-index:3;background:var(--brand);color:#fff;
+      display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border)
+    }
+    #brandbar .brand{font-weight:700;letter-spacing:.3px}
+    #brandbar nav{display:flex;gap:10px;margin-left:10px}
+    #brandbar nav a{color:#d1d5db;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
+    #brandbar nav a.active{background:#b91c1c;color:#fff}
+    #brandbar nav a:hover{background:#dc2626;color:#fff}
+    #brandbar .spacer{flex:1}
+    #brandbar .back a{color:#fff;text-decoration:none;font-weight:600}
+    #brandbar .back a:hover{text-decoration:underline}
+
+    main{max-width:1100px;margin:24px auto;padding:0 16px;display:grid;gap:24px}
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;display:grid;gap:12px}
+    h1{font-size:28px;margin:0 0 6px}
+    h2{font-size:18px;margin:8px 0}
+    h3{font-size:15px;margin:8px 0;color:var(--muted)}
+    p,li{color:var(--muted)}
+    code,kbd{background:#0b1220;border:1px solid var(--border);border-radius:6px;padding:.1em .35em}
+    pre{background:#0b1220;border:1px solid var(--border);border-radius:8px;padding:12px;overflow:auto}
+    .list{display:grid;gap:6px;margin:0;padding-left:18px}
+    .note{background:#0b1220;border:1px solid var(--border);border-radius:10px;padding:12px}
+    .ok{color:#86efac}
+    .warn{color:#fcd34d}
+    .btn{display:inline-block;background:var(--red);color:#fff;border:1px solid var(--red2);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+    .btn:hover{background:#ef4444}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <header id="brandbar">
+    <div class="brand">ToolBox Dokumentaatio</div>
+    <nav>
+      <a href="kehysgen.html">KehysGen</a>
+      <a href="grids.html">GridGen</a>
+      <a href="poliisigen.html">PoliisiGen</a>
+      <a href="kuvaeditor.html">KuvaGen</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="back"><a href="index.html">← Takaisin etusivulle</a></div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>Yleistä</h1>
+      <ul class="list">
+        <li>Natiivikoko kaikissa generaattoreissa on <b>1920×1080</b>. Esikatselu (canvas) on skaalattu <b>960×540</b>.</li>
+        <li>“Lataa kuva” tekee aina 1920×1080 PNG:n käyttäen samaa geometriaa kuin esikatselussa.</li>
+      </ul>
+
+      <div class="note">
+        <h3>Miksi “Lataa kuva” voi joskus epäonnistua?</h3>
+        <p><b>Selaimen suojausrajoitus (CORS)</b>: jos canvasille piirretty kuva on ladattu eri verkkotunnuksesta ilman sallivia CORS-otsikoita, selain estää kuvan tallentamisen (esim. <code>toBlob()</code>). Oireena näkyy usein <code>SecurityError</code>.</p>
+        <ul class="list">
+          <li><b>Ratkaisu 1:</b> Pidä kaikki kuvat samalta originilta (sama protokolla, host ja portti).</li>
+          <li><b>Ratkaisu 2:</b> Tarjoa kuvat CORS-otsikolla <code>Access-Control-Allow-Origin</code> ja lataa ne <code>crossorigin="anonymous"</code> -asetuksella.</li>
+          <li><b>Ratkaisu 3:</b> Älä käytä <code>file://</code>-polkuja; aja paikallinen http-palvelin.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>KehysGen</h2>
+      <p>KehysGen lisää kuvan päälle valitun kehyksen ja tarjoaa perussäädöt (skaala, kirkkaus, kontrasti, kylläisyys, hue, vinjetti, film grain, blur, peilaus). Kuvaa voi raahata suoraan esikatselussa.</p>
+
+      <h3>Kehysten lisääminen</h3>
+      <ol class="list">
+        <li>Tallenna 1920×1080 läpinäkyvät kehykset kansioon <code>/frames</code>.</li>
+        <li>Luo/päivitä <code>/frames/manifest.json</code>:
+<pre>{
+  "frames": [
+    { "id": "kehys_esimerkki", "name": "Esimerkki", "file": "kehys_esimerkki.png" },
+    { "id": "kehys_tv", "name": "TV-kehys", "file": "kehys_tv.png" }
+  ]
+}</pre>
+        </li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>GridGen</h2>
+      <p>GridGen tekee monisoluisia layoutteja (2 saraketta, 2 riviä, 2×2, 3 saraketta, kaaret/nuolet, timantti + 4, sekä Ympyrä + tausta).</p>
+    </section>
+
+    <section class="card">
+      <h2>PoliisiGen</h2>
+      <p>PoliisiGen tekee sinisen vakio-taustan päälle keskitetyn sisältöalueen (maksimi leveys 1375 px), johon tiputetaan 1–3 kuvaa. Jokaisen solun ympärillä on 16 px valkoinen stroke. Ylä- ja alareunaan on erilliset väli-sliderit.</p>
+
+      <h3>Tekstipalkkien lisääminen</h3>
+      <ol class="list">
+        <li>Tallenna PNG:t kansioon <code>/poliisiframes</code>:
+          <ul class="list">
+            <li><code>kehys_kadonnut.png</code></li>
+            <li><code>kehys_poliisi_pyytaa_havaintoja.png</code></li>
+            <li><code>kehys_poliisi_pyytaa_vihjeita.png</code></li>
+            <li><code>kehys_soita_112.png</code></li>
+          </ul>
+        </li>
+        <li>Lisää <code>/poliisiframes/manifest.json</code> vastaavilla riveillä.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Vianetsintä</h2>
+      <ul class="list">
+        <li><b>SecurityError toBlob():</b> tarjoa kuvat samalta originilta tai käytä CORS + <code>crossorigin="anonymous"</code>.</li>
+        <li><b>Kehyslistat eivät päivity:</b> varmista <code>manifest.json</code> -polut.</li>
+        <li><b>Esikatselu/vienti eri kohdassa:</b> varmistu, että samat laskennat (offset/scale) ovat sekä preview- että export-koodissa.</li>
+      </ul>
+      <p><a class="btn" href="index.html">← Takaisin etusivulle</a></p>
+    </section>
+  </main>
+</body>
+</html>

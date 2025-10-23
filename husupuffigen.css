@@ -1,0 +1,112 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  color:#f9fafb;
+  background:#111827;
+}
+
+/* === Quattro News Bold webfont ===
+   Laita tiedostot kansioon /fonts:
+   - QuattroNews-Bold.woff2
+   - QuattroNews-Bold.woff
+*/
+@font-face{
+  font-family: 'Quattro News';
+  src:
+    url('fonts/QuattroNews-Bold.woff2') format('woff2'),
+    url('fonts/QuattroNews-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Brand + nav + info — yhtenäinen tyyli */
+#brandbar{
+  position:sticky; 
+  top:0; 
+  z-index:3;
+  background:#0b1120; 
+  color:#fff; 
+  display:flex; 
+  align-items:center; 
+  gap:12px;
+  padding:10px 14px; 
+  border-bottom:1px solid #1f2937;
+}
+#brandbar .brand{ 
+  font-weight:700; 
+  letter-spacing:.3px 
+}
+#brandbar .nav{ 
+  display:flex; 
+  gap:10px; 
+  margin-left:10px 
+}
+#brandbar .nav a{
+  color:#d1d5db; 
+  text-decoration:none; 
+  padding:6px 10px; 
+  border-radius:6px; 
+  font-size:13px;
+}
+#brandbar .nav a.active{ 
+  background:#b91c1c; 
+  color:#fff 
+}
+#brandbar .nav a:hover{ 
+  background:#dc2626; 
+  color:#fff 
+}
+#brandbar .nav-info{ 
+  flex:1; 
+  text-align:center; 
+  font-size:12px; 
+  color:#9ca3af; 
+}
+
+/* Kaksi 500px saraketta keskellä, tiiviit gapit */
+#app{
+  display:flex; gap:16px; padding:16px;
+  justify-content:center;
+}
+.col{ width:500px; min-width:0; display:flex; flex-direction:column; gap:10px; }
+.left #download{ align-self:center; width:100%; }
+
+/* Canvas-kortti */
+#canvasWrap{
+  display:flex; justify-content:center; align-items:center;
+  background:#0f172a; border:1px solid #1f2937; border-radius:10px; padding:10px;
+}
+#puffiCanvas{
+  width:100%; height:auto;  /* 500px leveä esikatselu, 1080x1920 piirto */
+  border-radius:10px; border:1px solid #334155; background:#0b1220;
+}
+
+/* Nappi */
+.btn-primary{
+  background:#dc2626; color:#fff; border:1px solid #b91c1c;
+  border-radius:8px; padding:10px 12px; font-size:14px; cursor:pointer;
+}
+.btn-primary:hover{ background:#ef4444 }
+
+/* Paneelit */
+.panel{
+  background:#0f172a; border:1px solid #1f2937; border-radius:10px; padding:10px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.panel-title{ font-weight:600; font-size:13px; color:#e5e7eb }
+.row{ display:grid; grid-template-columns:160px 1fr; gap:8px; align-items:center }
+input[type=text], select, textarea{
+  background:#111827; color:#e5e7eb; border:1px solid #334155; border-radius:8px;
+  padding:8px; font-size:14px; width:100%;
+}
+textarea{ resize:vertical }
+.help{ margin:0; font-size:12px; color:#9ca3af }
+
+/* Pienillä näytöillä pinotaan */
+@media (max-width: 1100px){
+  #app{ flex-direction:column; align-items:center; }
+  .col{ width:min(500px, 94vw); }
+}
