@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NettinostoGen</title>
+  <link rel="preload" href="nettinostoGen/fonts/QuattroNews-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="nettinostoGen/fonts/QuattroNews-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="stylesheet" href="nettinostoGen/nettinostogen.css" />
+</head>
+<body>
+  <header id="brandbar">
+    <div class="brand">ToolBox</div>
+    <nav class="nav">
+      <a href="index.html">Etusivu</a>
+      <a href="grids.html">GridGen</a>
+      <a href="kehysgen.html">KehysGen</a>
+      <a href="poliisigen.html">PoliisiGen</a>
+      <a href="husupuffigen.html">HusupuffiGen</a>
+  
+      <a class="active" href="#">NettinostoGen</a>
+      <a href="nettinostoGen/luetuimmat.html">LuetuimmatGen</a>
+    </nav>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai Teamsissä</div>
+  </header>
+
+  <main id="app">
+    <section class="left">
+      <div id="previewWrap">
+        <div id="element-to-capture">
+          <div class="article">
+            <img
+              class="image"
+              id="image"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABeSURBVHgBFYw7CgMgEAX3hUVBELQRbDydtxfERvFHNrEbhmGQc/4aY6CUor23jDHAMUaEEERrjTknSinyJKWU6F9T752YGWytJeccvPdSa0VrjT73Xllr0Xs9PufQD8cSLQDI0BbXAAAAAElFTkSuQmCC"
+              alt="Uutiskuva"
+            />
+            <div class="divider">
+              <span id="tag" class="tag" contenteditable="true" spellcheck="false">Tagi</span>
+            </div>
+            <div id="texts" class="texts">
+              <h1 id="heading" contenteditable="true" spellcheck="false">Otsikko</h1>
+            </div>
+          </div>
+        </div>
+        <p class="hint">Tekstiä voi muokata suoraan esikatselussa. Klikkaa kuvaa vaihtaaksesi sen.</p>
+        <div class="preview-controls">
+          <div class="panel">
+            <div class="panel-title">Kuvan skaalaus</div>
+            <div class="slider-row">
+              <label for="nett-scale-all">Skaalaa (kaikki)</label>
+              <input id="nett-scale-all" type="range" min="60" max="150" value="100" />
+              <span id="nett-scale-all-value">100%</span>
+            </div>
+            <div class="slider-row">
+              <label for="nett-scale-x">Skaalaa leveys</label>
+              <input id="nett-scale-x" type="range" min="60" max="150" value="100" />
+              <span id="nett-scale-x-value">100%</span>
+            </div>
+            <div class="slider-row">
+              <label for="nett-scale-y">Skaalaa korkeus</label>
+              <input id="nett-scale-y" type="range" min="60" max="150" value="100" />
+              <span id="nett-scale-y-value">100%</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Fonttikoko</div>
+            <div class="slider-row">
+              <label for="nett-font-scale">Fontin skaalaus</label>
+              <input id="nett-font-scale" type="range" min="80" max="140" value="100" />
+              <span id="nett-font-scale-value">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div class="panel">
+        <div class="panel-title">Hae MTV:n uutinen</div>
+        <form id="ui-form" class="stack">
+          <label for="uutisurl">Anna uutisen URL</label>
+          <input
+            type="text"
+            id="uutisurl"
+            name="uutisurl"
+            placeholder="https://mtvuutiset.fi/artikkeli"
+            autocomplete="off"
+          />
+          <button type="submit" class="btn-primary btn-full">Hae uutinen</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Lahetysvalinta</div>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" id="nett-option-1900" /> 1900</label>
+          <label><input type="checkbox" id="nett-option-2200" /> 2200</label>
+          <label><input type="checkbox" id="nett-option-sport1" /> sport1</label>
+          <label><input type="checkbox" id="nett-option-sport2" /> sport2</label>
+          <label><input type="checkbox" id="nett-option-husu" /> HuSu</label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Vaihda kuva</div>
+        <button type="button" id="chooseImage" class="btn-secondary btn-full">Valitse kuva</button>
+        <button type="button" id="capture" class="btn-primary btn-full">Lataa PNG</button>
+        <p class="help-text">
+          Vaihtoehtoisesti klikkaa esikatselukuvaa vaihtaaksesi sen. Tagi ja otsikko ovat muokattavia
+          ja tukevat näppäimistön oikoteitä (Ctrl+B ym.).
+        </p>
+      </div>
+    </aside>
+
+    <input type="file" id="image-selector" accept="image/*" />
+  </main>
+
+  <script src="nettinostoGen/js/html2canvas.min.js"></script>
+  <script src="nettinostoGen/nettinostogen.js"></script>
+</body>
+</html>
