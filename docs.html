@@ -3,51 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ToolBox – Dokumentaatio (Dev)</title>
+  <title>ToolBox – Tekninen dokumentaatio</title>
   <style>
     :root{
-      --bg:#111827; --bg2:#0f172a; --ink:#f9fafb; --muted:#cbd5e1; --muter:#94a3b8;
-      --brand:#0b1120; --red:#dc2626; --red2:#b91c1c; --border:#1f2937;
+      --bg:#0b1220; --bg2:#0f172a; --ink:#f8fafc; --muted:#cbd5e1; --muter:#94a3b8;
+      --brand:#111827; --accent:#dc2626; --accent2:#b91c1c; --border:#1f2937; --kbd:#0b1220;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
-    #brandbar{
-      position:sticky;top:0;z-index:3;background:var(--brand);color:#fff;
-      display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border)
-    }
-    #brandbar .brand{font-weight:700;letter-spacing:.3px}
-    #brandbar nav{display:flex;gap:10px;margin-left:10px}
+
+    /* Top bar */
+    #brandbar{position:sticky;top:0;z-index:3;background:var(--brand);color:#fff;
+      display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border)}
+    #brandbar .brand{font-weight:800;letter-spacing:.3px}
+    #brandbar nav{display:flex;gap:8px;margin-left:10px;flex-wrap:wrap}
     #brandbar nav a{color:#d1d5db;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
-    #brandbar nav a.active{background:#b91c1c;color:#fff}
-    #brandbar nav a:hover{background:#dc2626;color:#fff}
+    #brandbar nav a.active{background:var(--accent);color:#fff}
+    #brandbar nav a:hover{background:#ef4444;color:#fff}
     #brandbar .spacer{flex:1}
     #brandbar .back a{color:#fff;text-decoration:none;font-weight:600}
     #brandbar .back a:hover{text-decoration:underline}
 
     main{max-width:1100px;margin:24px auto;padding:0 16px;display:grid;gap:24px}
-    .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;display:grid;gap:12px}
-    h1{font-size:28px;margin:0 0 6px}
-    h2{font-size:18px;margin:8px 0}
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;display:grid;gap:12px}
+    h1{font-size:28px;margin:0 0 4px}
+    h2{font-size:20px;margin:8px 0}
     h3{font-size:15px;margin:8px 0;color:var(--muted)}
-    p,li{color:var(--muted)}
-    code,kbd{background:#0b1220;border:1px solid var(--border);border-radius:6px;padding:.1em .35em}
-    pre{background:#0b1220;border:1px solid var(--border);border-radius:8px;padding:12px;overflow:auto}
+    p,li{color:var(--muted);line-height:1.55}
+    code,kbd{background:var(--kbd);border:1px solid var(--border);border-radius:6px;padding:.1em .35em}
+    pre{background:var(--kbd);border:1px solid var(--border);border-radius:10px;padding:12px;overflow:auto}
+    .grid{display:grid;gap:12px}
     .list{display:grid;gap:6px;margin:0;padding-left:18px}
-    .note{background:#0b1220;border:1px solid var(--border);border-radius:10px;padding:12px}
-    .btn{display:inline-block;background:var(--red);color:#fff;border:1px solid var(--red2);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+    .note{background:var(--kbd);border:1px solid var(--border);border-radius:12px;padding:12px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;border:1px solid var(--accent2);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700}
     .btn:hover{background:#ef4444}
     a, a:visited, a:hover, a:active{color:#fff;font-weight:700;text-decoration:underline}
+
+    details{border:1px solid var(--border);border-radius:10px;padding:10px 12px;background:#0b1220}
+    details > summary{cursor:pointer;color:#e5e7eb;font-weight:600}
+    .cols{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width:920px){.cols{grid-template-columns:1fr 1fr}}
+
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:12px}
   </style>
 </head>
 <body>
   <header id="brandbar">
-    <div class="brand">ToolBox Dokumentaatio (Dev)</div>
+    <div class="brand">ToolBox – Tekninen dokumentaatio</div>
     <nav>
-    
-      <a href="kehysgen.html">KehysGen</a>
-      <a href="grids.html">GridGen</a>
-      <a href="poliisigen.html">PoliisiGen</a>
-      <a href="husupuffigen.html">HusupuffiGen</a>
+      <a href="#yleista" class="active">Yleistä</a>
+      <a href="#kehysgen">KehysGen</a>
+      <a href="#gridgen">GridGen</a>
+      <a href="#poliisigen">PoliisiGen</a>
+      <a href="#husupuffigen">HusupuffiGen</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <div class="spacer"></div>
     <div class="back"><a href="index.html">← Takaisin etusivulle</a></div>
@@ -55,129 +65,216 @@
 
   <main>
     <!-- YLEISTÄ -->
-    <section class="card">
+    <section id="yleista" class="card">
       <h1>Yleistä</h1>
       <ul class="list">
-        <li>Natiivikoko vaakageneraattoreissa on <b>1920×1080</b>. Esikatselu (canvas) on <b>960×540</b>. <!-- :contentReference[oaicite:0]{index=0} --></li>
-        <li>HusupuffiGen on pystyformaatti <b>1080×1920</b>. <!-- :contentReference[oaicite:1]{index=1} --></li>
-        <li>“Lataa kuva”/vienti tekee PNG:n käyttäen samaa geometriaa kuin esikatselussa (vain skaala vaihtuu). Esim. HusupuffiGen piirtää ennen <code>toBlob</code>:ia ja tallentaa PNG:n. <!-- :contentReference[oaicite:2]{index=2} --></li>
+        <li><b>Natiivikoot:</b> vaakatyökalut <b>1920×1080</b>, esikatselu (canvas) <b>960×540</b>. Pystyformaatti HusupuffiGen: <b>1080×1920</b>.</li>
+        <li><b>Esikatselu vs. vienti:</b> Esikatselun geometria = viennin geometria; vain skaala vaihtuu. Vienti tuottaa PNG:n.</li>
+        <li><b>Drag & Drop:</b> Kaikissa työkaluissa voit tiputtaa kuvan suoraan canvas-alueelle tai soluun (jos layoutissa on soluja).</li>
+        <li><b>PNG-vienti ja CORS:</b> Jos canvasille piirretään eri originista ladattu kuva ilman sallittuja CORS-otsikoita, <code>toBlob/toDataURL</code> voi epäonnistua. Ratkaisu: palvele kuvat samasta originista tai salli CORS ja lataa kuvat <code>crossorigin="anonymous"</code>.</li>
       </ul>
-
       <div class="note">
-        <h3>Miksi “Lataa kuva” voi joskus epäonnistua?</h3>
-        <p><b>Selaimen suojausrajoitus (CORS)</b>: jos canvasille piirretty kuva on ladattu eri originista ilman sallivia CORS-otsikoita, selain voi estää viennin (esim. <code>toBlob()</code>/<code>toDataURL()</code>). Ratkaisut: sama origin, tai kuville CORS ja <code>crossorigin="anonymous"</code>. <!-- :contentReference[oaicite:3]{index=3} --></p>
+        <h3>Pikatermit</h3>
         <ul class="list">
-          <li><b>Ratkaisu 1:</b> Pidä kuvat samalta originilta.</li>
-          <li><b>Ratkaisu 2:</b> Tarjoa CORS-otsikot ja lataa kuvat <code>crossorigin="anonymous"</code>. <!-- :contentReference[oaicite:4]{index=4} --></li>
-          <li><b>Ratkaisu 3:</b> Älä käytä <code>file://</code>-polkuja; aja paikallinen http-palvelin.</li>
+          <li><b>Preview-canvas:</b> 960×540 (tai 1080×1920 HusupuffiGen). Kaikki laskenta tehdään samoilla kaavoilla kuin viennissä.</li>
+          <li><b>Full-canvas:</b> 1920×1080 (tai 1080×1920). Vienti tehdään täysikokoisella canvasilla.</li>
+          <li><b>Solu:</b> Layoutin sisäinen kuvaruutu, jolla on omat säädöt (skaala, kirkkaus, kontrasti, tms.).</li>
         </ul>
       </div>
     </section>
 
     <!-- KEHYS GEN -->
-    <section class="card">
+    <section id="kehysgen" class="card">
       <h2>KehysGen</h2>
-      <p>KehysGen piirtää käyttäjän kuvan päälle valitun PNG-kehyksen ja tarjoaa perussäädöt/efektit. Kuvaa voi raahata esikatselussa (pointer down → move). <!-- :contentReference[oaicite:5]{index=5} --></p>
+      <p>KehysGen lisää PNG-kehyksen käyttäjän kuvan päälle ja tarjoaa monipuoliset muokkaussäädöt (koko, kirkkaus/kontrasti/saturaatio, hue-kierto, blur, film grain ja vinjetti). Kuvaa voi raahata suoraan esikatselussa; peilaus vaakasuunnassa on tuettu.</p>
 
-      <h3>Keskeinen arkkitehtuuri</h3>
+      <h3>Arkkitehtuuri</h3>
       <ul class="list">
-        <li><b>Canvas-koot:</b> esikatselu <code>PREV_W×PREV_H</code>, vienti 1920×1080. Käyttäjän kuva skaalataan preview’lle ja säilytetään täysikokoisena vientiä varten. <!-- :contentReference[oaicite:6]{index=6} --></li>
-        <li><b>Kehysten lataus:</b> listaus luetaan <code>/frames/manifest.json</code> → kortit sivupalkkiin; ensimmäinen aktivoidaan automaattisesti. <!-- :contentReference[oaicite:7]{index=7} --></li>
-        <li><b>UI-toiminnot:</b> kehyslistan päivitys/tyhjennys, “Ei kehystä”, uudelleen-piirto. <!-- :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9} --></li>
-        <li><b>Drag & Drop:</b> käyttäjä voi pudottaa PNG/JPG:n suoraan. <!-- :contentReference[oaicite:10]{index=10} --></li>
+        <li><b>Canvas-koot:</b> esikatselu 960×540, vienti 1920×1080. Täysikokoinen bitmap pidetään erillään esikatselusta.</li>
+        <li><b>Kehysten haku:</b> Yritetään <code>/frames/manifest.json</code> tai <code>frames/manifest.js</code>. Kehykset tallennetaan IndexedDB:hen (thumb + full) ja listataan sivupalkissa.</li>
+        <li><b>Presetit:</b> joukko valmiita sävytyksiä, jotka asettavat samanaikaisesti useita parametreja.</li>
+        <li><b>DnD & file input:</b> Kuvia voi valita tiedostonvalinnasta tai pudottaa suoraan esikatseluun.</li>
       </ul>
 
-      <h3>Vienti</h3>
-      <ul class="list">
-        <li>Kuva piirretään kehyksen kanssa 1920×1080:aan ja tallennetaan PNG:ksi. (Täysikoon bitmap pidetään erillään esikatselusta.) <!-- :contentReference[oaicite:11]{index=11} --></li>
-      </ul>
-
-      <div class="note">
-        <h3>Vinkit kehysten lisäämiseen</h3>
-        <ol class="list">
-          <li>Lisää kehysten PNG:t kansioon <code>/frames</code> ja päivitä <code>manifest.json</code>.</li>
-          <li>Manifestin luvun jälkeen UI aktivoidaan ja <em>ensureFrameBitmapsLoaded</em> varmistaa bittikartat. <!-- :contentReference[oaicite:12]{index=12} --></li>
-        </ol>
+      <div class="cols">
+        <div>
+          <h3>Käyttäjän kuvan piirto</h3>
+          <pre class="kbd">drawBaseImageTo(ctx, bmp, outW, outH, offsetX, offsetY, flipX, filterStr, scale, scaleX, scaleY)</pre>
+          <ul class="list">
+            <li><b>scale:</b> yhtenäinen skaalaus (0–200 %). <b>scaleX/scaleY:</b> erillisakselien skaalaus.</li>
+            <li><b>flipX:</b> peilaa kuvan vaaka-akselin suhteen.</li>
+            <li><b>filterStr:</b> CSS-filter-yhdistelmä (brightness, contrast, saturate, hue-rotate, grayscale, blur).</li>
+            <li><b>offsetX/offsetY:</b> pikselisiirto täysikokoisen kankaan koordinaateissa.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Vienti</h3>
+          <ul class="list">
+            <li>Luodaan 1920×1080-canvas, piirretään käyttäjän kuva suotimilla, päälle valittu kehys.</li>
+            <li>Vinjetti ja grain piirretään juuri ennen kehystä (soft-light/gradiantti).</li>
+            <li>PNG tallennetaan <code>toBlob</code>illa (fallback: <code>toDataURL</code>).</li>
+          </ul>
+        </div>
       </div>
+
+      <details>
+        <summary>Tyypilliset ongelmat & ratkaisut</summary>
+        <ul class="list">
+          <li><b>"Kehysten haku ei onnistunut"</b>: tarkista että <code>/frames/manifest.json</code> tai <code>frames/manifest.js</code> löytyy ja PNG-polut osoittavat julkiseen sijaintiin.</li>
+          <li><b>Vienti epäonnistuu</b>: varmista, etteivät kehys-PNG:t tai käyttäjän kuva tule CORS-estolla risti-originista.</li>
+        </ul>
+      </details>
     </section>
 
     <!-- GRID GEN -->
-    <section class="card">
+    <section id="gridgen" class="card">
       <h2>GridGen</h2>
-      <p>GridGen rakentaa yhdistelmäkuvia useista soluista; per-solu säädöt (skaala, kirkkaus, kontrasti, harmaasävy, blur) ja useita layoutteja (suorat jaot, kaaret/nuolet, timantti, ympyrä, vinopalkit). <!-- :contentReference[oaicite:13]{index=13} :contentReference[oaicite:14]{index=14} --></p>
+      <p>GridGen kokoaa yhdistelmäkuvan useista soluista. Layoutteja on sekä suoria jakoja (2v/2h/2×2/3 saraketta) että muotopolkuja (Kaari, Nuoli, Timantti, Ympyrä, Vinopalkit). Jokaisella solulla on omat säädöt (skaala, kirkkaus, kontrasti). Jakajia ja muotoja voi raahata suoraan canvaksella.</p>
 
-      <h3>Layoutit & tila</h3>
+      <h3>Keskeiset käsitteet</h3>
       <ul class="list">
-        <li><b>Peruskoot:</b> <code>W=1920</code>, <code>H=1080</code>, esikatselu <code>960×540</code>; jakoviiva 16 px. <!-- :contentReference[oaicite:15]{index=15} --></li>
-        <li><b>Layout-lista:</b> rect2v, rect2h, rect2x2, rect3, curve-left/right, chevron-left/right, diamond-5, circle, slanted-left/right. <!-- :contentReference[oaicite:16]{index=16} --></li>
-        <li><b>Tilaobjekti:</b> valittu layout, valittu solu, ja layout-kohtaiset ohjaimet (esim. <code>curvePosPct</code>, <code>diamondWidthPct</code>, <code>circle.xPct/sizePct</code>, <code>slantedAngleDeg</code>). <!-- :contentReference[oaicite:17]{index=17} --></li>
-        <li><b>Solujen määritys:</b> <code>initCellsForLayout()</code> luo solut layoutin mukaan; ympyrä-layoutissa indeksi 0 = ympyrä, 1 = tausta. <!-- :contentReference[oaicite:18]{index=18} --></li>
+        <li><b>LAZY-tila:</b> <code>state</code> ylläpitää valitun layoutin, solujen määrän sekä layout-kohtaiset parametrit (esim. <code>curvePosPct</code>, <code>diamondWidthPct</code>, <code>circle.xPct/sizePct</code>, <code>slantedAngleDeg</code>).</li>
+        <li><b>Soluindeksit:</b> erikoistapauksessa Ympyrä-layoutissa <code>cells[0]</code> = ympyrä, <code>cells[1]</code> = tausta (UI:ssa tausta on Solu 1).</li>
+        <li><b>Jakajan stroket:</b> esikatselussa piirretään sama geometria kuin viennissä; jakajien paksuus skaalautuu.</li>
       </ul>
 
-      <h3>UI-sidonnat</h3>
-      <ul class="list">
-        <li>Kaikki ohjaimet kerätään <code>els</code>-olioon, mukaan lukien divider-säätimet, 2×2, curve, diamond, circle, slanted ja solupaneeli. <!-- :contentReference[oaicite:19]{index=19} :contentReference[oaicite:20]{index=20} :contentReference[oaicite:21]{index=21} --></li>
-      </ul>
+      <div class="cols">
+        <div>
+          <h3>Layout-kohtaiset polut</h3>
+          <ul class="list">
+            <li><b>Kaari/Nuoli:</b> rakennetaan <code>Path2D</code>-käyrät ja klippaukset; jakajan paikka siirtyy <code>curvePosPct</code>in mukaan.</li>
+            <li><b>Timantti + 4:</b> keskitimantin polku + neljä kulma-aluetta; lisäksi vaakaviivat timantin vasemmalle/oikealle sivulle.</li>
+            <li><b>Ympyrä:</b> tausta ensin, sitten ympyrä klippinä + valkoinen reuna.</li>
+            <li><b>Vinopalkit:</b> diagonaalilinja muodostaa kaksi aluetta; kulma säädettävissä (−45…+45°).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Solukuvan piirto</h3>
+          <pre class="kbd">drawCellImage(cell, rectPreview, rectFull)</pre>
+          <ul class="list">
+            <li>Kuva skaalataan <em>cover</em>-periaatteella solun sisälle, sitten käyttäjän skaala.</li>
+            <li>Offset lasketaan täysikoon → esikatselun suhteessa, jotta raahaus tuntuu luonnolliselta.</li>
+            <li>CSS-filterit: <code>brightness</code>, <code>contrast</code>, valinnainen <code>grayscale/blur</code> jos käytössä.</li>
+          </ul>
+        </div>
+      </div>
 
-      <h3>Piirto & vienti</h3>
+      <h3>Vienti 1920×1080</h3>
       <ul class="list">
-        <li>Esikatselu piirretään <code>PREV_W×PREV_H</code> -canvasille samoilla kaavoilla kuin vienti. <!-- :contentReference[oaicite:22]{index=22} --></li>
-        <li>Vienti 1920×1080: layout-kohtaiset polut (curve/chevron/slanted) klippaavat solut; diamond-5 leikkaa kulmien pathit; circle käyttää ympyräklippiä + reunaviivaa. <!-- :contentReference[oaicite:23]{index=23} --></li>
+        <li>Esikatselu ja vienti käyttävät täsmälleen samoja geometrialaskelmia (<code>computeRects</code> + layoutin polut).</li>
+        <li>Muotopolkujen (kaari/nuoli/timantti/ympyrä/vinot) klippaukset piirretään täysikoolla ja jakajaviivat lisätään lopuksi.</li>
       </ul>
     </section>
 
     <!-- POLIISI GEN -->
-    <section class="card">
+    <section id="poliisigen" class="card">
       <h2>PoliisiGen</h2>
-      <p>PoliisiGen keskittää 1–3 solua siniselle taustalle; jokaisessa solussa on valkoinen stroke ja optionaalinen tekstipalkki (PNG) päälle. <!-- :contentReference[oaicite:24]{index=24} --></p>
+      <p>PoliisiGen keskittyy 1–3 kuvasoluun sinisellä taustalla. Jokaisessa solussa on valkoinen 16 px reunaviiva sekä mahdollinen PNG-tekstipalkki ("frames").</p>
 
-      <h3>Layout, solut ja säätimet</h3>
+      <h3>Layout & mitoitus</h3>
       <ul class="list">
-        <li>Layout valitaan painikkeista; koodissa <code>state.layout</code> päivittyy ja UI synkronoidaan. <!-- :contentReference[oaicite:25]{index=25} --></li>
-        <li>Sisältöalueen leveys, ylä- ja alavälit: <code>contentW</code>, <code>topPad</code>, <code>bottomPad</code>; UI heijastaa arvoja. <!-- :contentReference[oaicite:26]{index=26} --></li>
-        <li>Per-solu ohjaimet: skaala, kirkkaus, kontrasti, keskitys, reset. <!-- :contentReference[oaicite:27]{index=27} :contentReference[oaicite:28]{index=28} --></li>
+        <li><b>Keskialueen leveys:</b> maksimi 1375 px (täysikoko). Ylä- ja alareunan välit säädettävissä; negatiivinen alaväli piilottaa alareunan stroken.</li>
+        <li><b>Layoutit:</b> 1, 2 tai 3 solua; solujen välissä sisäinen <code>gap</code>.</li>
+        <li><b>Tausta:</b> oletuksena sininen <em>cover</em>-tausta tai oma taustakuva.</li>
       </ul>
 
-      <h3>Tekstipalkit (frames)</h3>
+      <div class="cols">
+        <div>
+          <h3>Solujen piirto</h3>
+          <ul class="list">
+            <li><b>Cover-skaalaus:</b> jokainen solu klipataan omaan suorakulmioon; kuva skaalataan kattamaan alue.</li>
+            <li><b>Filtterit:</b> per-solu <code>brightness</code> ja <code>contrast</code>.</li>
+            <li><b>Reunaviiva:</b> 16 px valkoinen stroke skaalautuen esikatselu/vienti -suhteessa.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tekstipalkit</h3>
+          <ul class="list">
+            <li>Palkit voi tuoda paikallisesti (monivalinta) tai manifestista (<code>/poliisiframes/manifest.json</code>).</li>
+            <li>Valinta aktivoi palkin ja piirto tapahtuu viimeiseksi (kuvien päällä).</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Interaktio</h3>
       <ul class="list">
-        <li>PNG:t voi lisätä joko <em>manifestista</em> (JSON fetch) tai <em>paikallisesti</em> tiedostovalinnalla; molemmista muodostetaan thumbnailit ja listaus. <!-- :contentReference[oaicite:29]{index=29} :contentReference[oaicite:30]{index=30} --></li>
-        <li>Aktivointi vaihtaa <code>state.activeFrameIdx</code> ja triggaa <code>drawPreview()</code>. <!-- :contentReference[oaicite:31]{index=31} --></li>
+        <li>Solun valinta canvaksesta tai chipistä.
+        <li>Kuvan raahaus solussa; nollaus/keskitys/tyhjennys painikkeista.
+        <li>DnD suoraan soluun: tiputus kohdistuu siihen soluun jonka päällä drop tapahtuu.</li>
       </ul>
 
       <h3>Vienti</h3>
       <ul class="list">
-        <li>Luodaan uusi 1920×1080-canvas, piirretään tausta coverilla tai yksivärisenä, sitten solurectit klippinä, kuvat ja 16 px stroke, lopuksi tekstipalkki. <!-- :contentReference[oaicite:32]{index=32} :contentReference[oaicite:33]{index=33} --></li>
-        <li>Tallennus <code>toBlob</code> tai fallback <code>toDataURL</code>. <!-- :contentReference[oaicite:34]{index=34} --></li>
+        <li>Uusi 1920×1080-canvas → tausta → solut (clip + image + stroke) → tekstipalkki → <code>toBlob</code> (fallback <code>toDataURL</code>).</li>
       </ul>
     </section>
 
     <!-- HUSUPUFFI GEN -->
-    <section class="card">
+    <section id="husupuffigen" class="card">
       <h2>HusupuffiGen</h2>
-      <p>Pysty 1080×1920; otsikko kahdella rivillä (autofit), aikataululista (kellonaika + otsikko) ja alateksti, kaikki boldina “Quattro News” -fontilla. <!-- :contentReference[oaicite:35]{index=35} :contentReference[oaicite:36]{index=36} --></p>
+      <p>HusupuffiGen tuottaa pystykuvan 1080×1920. Otsikko on kahdella rivillä (autofit), sen jälkeen aikataululista (kellonaika + otsikko), ja lopuksi keskitetty alateksti. Kaikki tekstit piirretään <b>Quattro News</b> -boldilla.</p>
 
-      <h3>Typografia & mitoitus</h3>
-      <ul class="list">
-        <li>HEADLINE_BASE ~72 px (min 42), leipä 44 px, footer 55 px; rivivälit: body 70 px, footer ~1.28×. <!-- :contentReference[oaicite:37]{index=37} --></li>
-        <li>Otsikko auto-skaalataan <code>fitHeadlineSize</code>-funktiolla mahtumaan palstaan. <!-- :contentReference[oaicite:38]{index=38} --></li>
-        <li>Aikakolumni mittaa leveytensä dynaamisesti, otsikko rivitetään oikeaan palstaan. <!-- :contentReference[oaicite:39]{index=39} :contentReference[oaicite:40]{index=40} --></li>
-      </ul>
+      <div class="cols">
+        <div>
+          <h3>Typografia & mitoitus</h3>
+          <ul class="list">
+            <li><b>Fontti:</b> <code>document.fonts.load</code> varmistaa fontin latauksen ennen piirtämistä.</li>
+            <li><b>Otsikko:</b> kaksirivinen; kumpikin rivi mahtuu max-levyyn (autofit pienentää kokoon asti min 42 px).</li>
+            <li><b>Leipä:</b> runko- ja aikataulutekstit piirretään vasemmalta sisennettynä kiinteällä rivivälillä.</li>
+            <li><b>Footer:</b> keskitetään ja työnnetään alas, mutta pysyy sisäreunuksen sisällä (alabufferi ja rivien kokonaiskorkeus huomioidaan).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Piirtovirta</h3>
+          <ol class="list">
+            <li>Tausta coverina (<code>img/husupuffipohja.jpg</code>).</li>
+            <li><code>drawHeadline()</code> → palauttaa Y-arvon, josta aikataulu alkaa.</li>
+            <li><code>drawSchedule()</code> rivittää kellonajat ja otsikot kahteen sarakkeeseen (aika + otsikko).</li>
+            <li><code>drawFooter()</code> keskittää alatekstin ja varmistaa alareunan marginaalin.</li>
+          </ol>
+        </div>
+      </div>
 
-      <h3>Piirtojärjestys & vienti</h3>
-      <ul class="list">
-        <li>Tausta cover → otsikko → aikataulu → footer; vienti tapahtuu suoraan esikatselucanvasista <code>toBlob</code>-kutsulla. <!-- :contentReference[oaicite:41]{index=41} :contentReference[oaicite:42]{index=42} --></li>
-        <li>Fontit varmistetaan ennen piirtämistä <code>document.fonts.load</code>/<code>document.fonts.ready</code>. <!-- :contentReference[oaicite:43]{index=43} --></li>
-      </ul>
+      <details>
+        <summary>Syöteformaatti aikataululle</summary>
+        <p>Jokainen rivi muodossa <code>HH.MM Otsikko</code>. Muut rivit rivitetään koko leveydelle.</p>
+        <pre class="kbd">6.25 Aamun avaus\n7.15 Vieras: esimerkki\n8.05 Teemajuttu</pre>
+      </details>
     </section>
 
-    <!-- VIENTI & VIKATILANTEET -->
-    <section class="card">
-      <h2>Vienti ja vianetsintä</h2>
-      <ul class="list">
-        <li><b>PNG-vienti:</b> kaikissa työkaluissa geometria on sama esikatselun ja viennin välillä (vain canvas-koko vaihtuu). <!-- :contentReference[oaicite:44]{index=44} :contentReference[oaicite:45]{index=45} --></li>
-        <li><b>CORS:</b> jos tausta/kuva on toisesta originista ilman CORS:ia, <code>toBlob</code>/<code>toDataURL</code> voi epäonnistua. Käytä samaa originia tai salli CORS + <code>crossorigin="anonymous"</code>. <!-- :contentReference[oaicite:46]{index=46} :contentReference[oaicite:47]{index=47} --></li>
-      </ul>
-      <p><a class="btn" href="index.html">← Takaisin etusivulle</a></p>
+    <!-- FAQ / HUOLTO -->
+    <section id="faq" class="card">
+      <h2>FAQ & huolto</h2>
+      <details>
+        <summary>PNG-vienti epäonnistuu</summary>
+        <ul class="list">
+          <li>Tarkista CORS-kuvat (sama origin tai anna CORS-otsikot ja käytä <code>crossorigin</code> ladattaessa).</li>
+          <li>Älä käytä <code>file://</code>-polkuja – aja paikallinen http-palvelin (esim. <code>npx serve</code> projektin juuressa).</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Kehykset/tekstipalkit eivät näy</summary>
+        <ul class="list">
+          <li>Varmista <code>manifest.json</code>/ <code>manifest.js</code> -polut ja että PNG:t ovat julkisesti saatavilla.</li>
+          <li>Kehyslistan uudelleenlataus: käytä “Päivitä kehykset”/“Päivitä tekstipalkit”.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Performanssi</summary>
+        <ul class="list">
+          <li>Esikatselun skaalaus 960×540 pienentää renderöintikuormaa.</li>
+          <li>Käytä <code>createImageBitmap</code> ja pidä preview/full -bitmappit välimuistissa.</li>
+          <li>Grain/blur/clip-polut ovat kalliita – piirrä ne vain tarvittaessa.</li>
+        </ul>
+      </details>
+
+      <div class="note">
+        <h3>Pro tip</h3>
+        <ul class="list">
+          <li>Kun lisäät uusia layoutteja GridGeniin, rakenna ensin <code>computeRects(outW,outH)</code> (viennin geometria), sitten esikatselun polut. Peilaa kaikki arvot PREV &rarr; FULL samaan tapaan kuin nykyisissä malleissa.</li>
+          <li>KehysGenissä lisää uudet presetit arvoineen <code>PRESETS</code>-taulukkoon. Nimeä järkevästi ja pidä arvot maltillisina.</li>
+        </ul>
+      </div>
     </section>
   </main>
 </body>
