@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="utf-8" />
@@ -21,7 +21,7 @@
       <a class="active" href="#">NettinostoGen</a>
       <a href="luetuimmat.html">LuetuimmatGen</a>
     </nav>
-    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai Teamsissä</div>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai TeamsissÃ¤</div>
   </header>
 
   <main id="app">
@@ -29,12 +29,14 @@
       <div id="previewWrap">
         <div id="element-to-capture">
           <div class="article">
-            <img
-              class="image"
-              id="image"
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABeSURBVHgBFYw7CgMgEAX3hUVBELQRbDydtxfERvFHNrEbhmGQc/4aY6CUor23jDHAMUaEEERrjTknSinyJKWU6F9T752YGWytJeccvPdSa0VrjT73Xllr0Xs9PufQD8cSLQDI0BbXAAAAAElFTkSuQmCC"
-              alt="Uutiskuva"
-            />
+            <div class="image-frame">
+              <img
+                class="image"
+                id="image"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABeSURBVHgBFYw7CgMgEAX3hUVBELQRbDydtxfERvFHNrEbhmGQc/4aY6CUor23jDHAMUaEEERrjTknSinyJKWU6F9T752YGWytJeccvPdSa0VrjT73Xllr0Xs9PufQD8cSLQDI0BbXAAAAAElFTkSuQmCC"
+                alt="Uutiskuva"
+              />
+            </div>
             <div class="divider">
               <span id="tag" class="tag" contenteditable="true" spellcheck="false">Tagi</span>
             </div>
@@ -43,7 +45,7 @@
             </div>
           </div>
         </div>
-        <p class="hint">Tekstiä voi muokata suoraan esikatselussa. Klikkaa kuvaa vaihtaaksesi sen.</p>
+        <p class="hint">Tekstia voi muokata suoraan esikatselussa. Veda kuvaa raahataksesi sita.</p>
         <div class="preview-controls">
           <div class="panel">
             <div class="panel-title">Kuvan skaalaus</div>
@@ -68,9 +70,13 @@
             <div class="panel-title">Fonttikoko</div>
             <div class="slider-row">
               <label for="nett-font-scale">Fontin skaalaus</label>
-              <input id="nett-font-scale" type="range" min="80" max="140" value="100" />
+              <input id="nett-font-scale" type="range" min="10" max="140" value="100" />
               <span id="nett-font-scale-value">100%</span>
             </div>
+            <label class="toggle-row">
+              <input type="checkbox" id="nett-font-lock" />
+              Lukitse fonttikoko
+            </label>
           </div>
         </div>
       </div>
@@ -106,11 +112,11 @@
       <div class="panel">
         <div class="panel-title">Vaihda kuva</div>
         <button type="button" id="chooseImage" class="btn-secondary btn-full">Valitse kuva</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Lataa PNG</div>
         <button type="button" id="capture" class="btn-primary btn-full">Lataa PNG</button>
-        <p class="help-text">
-          Vaihtoehtoisesti klikkaa esikatselukuvaa vaihtaaksesi sen. Tagi ja otsikko ovat muokattavia
-          ja tukevat näppäimistön oikoteitä (Ctrl+B ym.).
-        </p>
       </div>
     </aside>
 
@@ -121,3 +127,5 @@
   <script src="nettinostoGen/nettinostogen.js"></script>
 </body>
 </html>
+
+
