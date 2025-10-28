@@ -87,13 +87,27 @@ body{display:flex;flex-direction:column;min-height:100%}
   flex-direction:column;
   overflow:hidden;
   box-shadow:0 10px 28px rgba(15,23,42,.45);
+  position:relative;
 }
-#element-to-capture .image{
+#element-to-capture .image-frame{
   width:100%;
   height:250px;
+  overflow:hidden;
+  position:relative;
+  cursor:grab;
+  touch-action:none;
+}
+#element-to-capture .image-frame.dragging{cursor:grabbing}
+#element-to-capture .image{
+  width:100%;
+  height:100%;
+  display:block;
   object-fit:cover;
-  cursor:pointer;
-  transform-origin:center center;
+  transform-origin:center bottom;
+  will-change:transform;
+  position:relative;
+  z-index:0;
+  cursor:inherit;
 }
 #element-to-capture .divider{
   height:4px;
@@ -102,6 +116,8 @@ body{display:flex;flex-direction:column;min-height:100%}
   display:flex;
   justify-content:center;
   align-items:center;
+  position:relative;
+  z-index:2;
 }
 #element-to-capture .tag{
   font-size:14px;
@@ -112,12 +128,16 @@ body{display:flex;flex-direction:column;min-height:100%}
   background-color:#303030;
   color:#fff;
   border-radius:999px;
+  position:relative;
+  z-index:3;
 }
 #element-to-capture .texts{
   margin:15px 10px;
   height:60px;
   display:flex;
   align-items:center;
+  position:relative;
+  z-index:2;
 }
 #element-to-capture h1{
   font-weight:700;
@@ -171,6 +191,20 @@ body{display:flex;flex-direction:column;min-height:100%}
   font-size:12px;
   color:#94a3b8;
   text-align:right;
+}
+
+.panel .toggle-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:#cbd5e1;
+  font-weight:500;
+  cursor:pointer;
+}
+.panel .toggle-row input{
+  accent-color:#dc2626;
+  margin:0;
 }
 
 .hint{
