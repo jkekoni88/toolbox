@@ -35,7 +35,8 @@ body{
   border-left:1px solid #1f2937; /* oikea reuna */
   border-right:none;
   padding:12px;
-  display:flex;flex-direction:column;gap:10px;overflow:auto
+  display:flex;flex-direction:column;gap:10px;overflow:auto;
+  order:2;
 }
 #sidebar h2{margin:4px 0 8px;font-size:16px;color:#e5e7eb}
 .import-box{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
@@ -59,7 +60,7 @@ body{
 .frame-caption{text-align:center;font-size:11px;color:#cbd5e1}
 
 /* Main / toolbar */
-#main{flex:1;display:flex;flex-direction:column}
+#main{flex:1;display:flex;flex-direction:column;order:1}
 .toolbar{
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
   padding:8px 10px;border-bottom:1px solid #1f2937;
@@ -140,3 +141,4 @@ select{
 @media(max-width:1200px){.controls-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}}
 @media(max-width:800px){.controls-grid{grid-template-columns:1fr}}
 @media(max-width:1100px){#previewCanvas{width:100%;height:auto}}
+
