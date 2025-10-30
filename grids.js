@@ -87,6 +87,8 @@ const LAYOUTS = [
   { id:'split-horiz-2', name:'2 riviä (suora)',     type:'rect2h' },
   { id:'grid-2x2',      name:'2 × 2',               type:'rect2x2' },
   { id:'cols-3',        name:'3 saraketta',         type:'rect3'   },
+  { id:'stack-left',    name:'Vasen 2 + oikea',     type:'stack-left' },
+  { id:'stack-right',   name:'Oikea 2 + vasen',     type:'stack-right' },
 
   { id:'curve-left',    name:'Kaari (vasen)',       type:'curve-left'  },
   { id:'curve-right',   name:'Kaari (oikea)',       type:'curve-right' },
@@ -149,9 +151,20 @@ function defaultCell(){
 // HUOM: Circle-layoutissa cells[0] = Ympyrä, cells[1] = Tausta (sisäinen toteutus)
 function initCellsForLayout(){
   const t = type();
-  const count =
-    (t==='rect2v'||t==='rect2h'||isShapedSplit2()||isSlanted()) ? 2 :
-    (t==='rect2x2'?4:(t==='rect3'?3:(isDiamond5()?5:(isCircle()?2:2))));
+  let count;
+  if (t==='rect2v' || t==='rect2h' || isShapedSplit2() || isSlanted()){
+    count = 2;
+  } else if (t==='rect2x2'){
+    count = 4;
+  } else if (t==='rect3' || t==='stack-left' || t==='stack-right'){
+    count = 3;
+  } else if (isDiamond5()){
+    count = 5;
+  } else if (isCircle()){
+    count = 2;
+  } else {
+    count = 2;
+  }
   const old = state.cells;
   state.cells = new Array(count).fill(0).map((_,i)=> old[i] ? { ...defaultCell(), ...old[i] } : defaultCell());
 
@@ -220,6 +233,28 @@ function computeRects(outW, outH){
     const leftW = Math.round(mid - g/2);
     const rightW = outW - leftW - g;
     return [{x:0,y:0,w:leftW,h:outH},{x:leftW+g,y:0,w:rightW,h:outH}];
+  }
+  if (t==='stack-left' || t==='stack-right'){
+    const mid = midXFromPct(outW, state.splitVertPct);
+    const leftW = Math.round(mid - g/2);
+    const rightW = outW - leftW - g;
+    const midY = midYFromPct(outH, state.splitHorizPct);
+    const topH = Math.round(midY - g/2);
+    const botH = outH - topH - g;
+    if (t==='stack-left'){
+      return [
+        {x:0, y:0, w:leftW, h:topH},
+        {x:0, y:topH+g, w:leftW, h:botH},
+        {x:leftW+g, y:0, w:rightW, h:outH}
+      ];
+    } else {
+      const rightX = leftW + g;
+      return [
+        {x:0, y:0, w:leftW, h:outH},
+        {x:rightX, y:0, w:rightW, h:topH},
+        {x:rightX, y:topH+g, w:rightW, h:botH}
+      ];
+    }
   }
   if (t==='rect2h'){
     const mid = midYFromPct(outH, state.splitHorizPct);
@@ -406,6 +441,18 @@ function drawLayoutThumb(canvas, type){
     const x1 = Math.round(TW*(33/100)), x2 = Math.round(TW*(66/100));
     g.fillRect(x1 - gutter/2, 0, gutter, TH);
     g.fillRect(x2 - gutter/2, 0, gutter, TH);
+  } else if (type==='stack-left' || type==='stack-right'){
+    const mid = Math.round(TW/2);
+    g.fillRect(mid - gutter/2, 0, gutter, TH);
+    const y = Math.round(TH/2);
+    if (type==='stack-left'){
+      const span = Math.max(0, mid - Math.round(gutter/2));
+      g.fillRect(0, y - gutter/2, span, gutter);
+    } else {
+      const start = mid + Math.round(gutter/2);
+      const span = Math.max(0, TW - start);
+      g.fillRect(start, y - gutter/2, span, gutter);
+    }
   } else if (type==='curve-left' || type==='curve-right'){
     const mid = Math.round(TW/2);
     const amp = Math.round(TW*0.18);
@@ -576,8 +623,21 @@ function drawRectGutters(outW, outH){
   ctx.fillStyle = DIVIDER_COLOR;
 
   if (t==='rect2v' || isSlanted()){
-    const mid = outW/2;
+    const mid = (t==='rect2v') ? midXFromPct(outW, state.splitVertPct) : outW/2;
     ctx.fillRect(Math.round(mid - d/2), 0, d, outH);
+  } else if (t==='stack-left' || t==='stack-right'){
+    const mid = midXFromPct(outW, state.splitVertPct);
+    const leftW = Math.round(mid - d/2);
+    const rightW = outW - leftW - d;
+    ctx.fillRect(Math.round(mid - d/2), 0, d, outH);
+    const midY = midYFromPct(outH, state.splitHorizPct);
+    const y = Math.round(midY - d/2);
+    if (t==='stack-left'){
+      ctx.fillRect(0, y, leftW, d);
+    } else {
+      const rightX = leftW + d;
+      ctx.fillRect(rightX, y, rightW, d);
+    }
   } else if (t==='rect2h'){
     const mid = midYFromPct(outH, state.splitHorizPct);
     ctx.fillRect(0, Math.round(mid - d/2), outW, d);
@@ -781,6 +841,21 @@ function dividerHitTest(px, py){
     let x2 = posFromPct(PREV_W, state.grid3.b);
     if (Math.abs(px - x1) <= tol) return {kind:'v3a'};
     if (Math.abs(px - x2) <= tol) return {kind:'v3b'};
+  } else if (type()==='stack-left' || type()==='stack-right'){
+    const mid = midXFromPct(PREV_W, state.splitVertPct);
+    if (Math.abs(px - mid) <= tol) return {kind:'v'};
+    const midY = midYFromPct(PREV_H, state.splitHorizPct);
+    if (type()==='stack-left'){
+      const limit = mid - (d/2);
+      if (px >= -tol && px <= limit + tol && Math.abs(py - midY) <= tol){
+        return {kind:'h'};
+      }
+    } else {
+      const start = mid + (d/2);
+      if (px >= start - tol && px <= PREV_W + tol && Math.abs(py - midY) <= tol){
+        return {kind:'h'};
+      }
+    }
   } else if (isCurve()){
     const { strokePath } = buildCurvePaths(PREV_W, PREV_H);
     if (hitStroke(strokePath, px, py, d + 8)) return {kind:'curve'};
@@ -928,8 +1003,10 @@ els.canvas.addEventListener('drop', async (e)=>{
 // --- kontrollit ---
 function updateControlsVisibility(){
   const t = type();
-  if (els.ctrlSplitVert)   els.ctrlSplitVert.style.display = (t==='rect2v') ? '' : 'none';
-  if (els.ctrlSplitHoriz)  els.ctrlSplitHoriz.style.display = (t==='rect2h') ? '' : 'none';
+  const showSplitVert = (t==='rect2v' || t==='stack-left' || t==='stack-right');
+  const showSplitHoriz = (t==='rect2h' || t==='stack-left' || t==='stack-right');
+  if (els.ctrlSplitVert)   els.ctrlSplitVert.style.display = showSplitVert ? '' : 'none';
+  if (els.ctrlSplitHoriz)  els.ctrlSplitHoriz.style.display = showSplitHoriz ? '' : 'none';
   if (els.ctrlGrid2x2X)    els.ctrlGrid2x2X.style.display = (t==='rect2x2') ? '' : 'none';
   if (els.ctrlGrid2x2Y)    els.ctrlGrid2x2Y.style.display = (t==='rect2x2') ? '' : 'none';
   if (els.ctrlCurve)       els.ctrlCurve.style.display = (isShapedSplit2()) ? '' : 'none';
@@ -1095,7 +1172,24 @@ function drawRectGuttersExport(g, outW, outH){
   const t = type();
   const d = DIVIDER_PX;
   g.save(); g.fillStyle=DIVIDER_COLOR;
-  if (t==='rect2v' || isSlanted()){ const mid=outW/2; g.fillRect(Math.round(mid - d/2),0,d,outH); }
+  if (t==='rect2v' || isSlanted()){
+    const mid = (t==='rect2v') ? midXFromPct(outW, state.splitVertPct) : outW/2;
+    g.fillRect(Math.round(mid - d/2),0,d,outH);
+  }
+  else if (t==='stack-left' || t==='stack-right'){
+    const mid = midXFromPct(outW, state.splitVertPct);
+    const leftW = Math.round(mid - d/2);
+    const rightW = outW - leftW - d;
+    g.fillRect(Math.round(mid - d/2),0,d,outH);
+    const midY = midYFromPct(outH, state.splitHorizPct);
+    const y = Math.round(midY - d/2);
+    if (t==='stack-left'){
+      g.fillRect(0,y,leftW,d);
+    } else {
+      const rightX = leftW + d;
+      g.fillRect(rightX,y,rightW,d);
+    }
+  }
   else if (t==='rect2h'){ const mid=midYFromPct(outH, state.splitHorizPct); g.fillRect(0,Math.round(mid - d/2),outW,d); }
   else if (t==='rect2x2'){ const mx=midXFromPct(outW, state.grid2x2.x), my=midYFromPct(outH, state.grid2x2.y); g.fillRect(Math.round(mx - d/2),0,d,outH); g.fillRect(0,Math.round(my - d/2),outW,d); }
   else if (t==='rect3'){
