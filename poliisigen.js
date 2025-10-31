@@ -1,6 +1,6 @@
-﻿// PoliisiGen ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ keskialueen MAKSIMI 1375 px (FULL). Preview skaalattu tÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤smÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤lleen samasta geometriasta.
-  // yritetään hakea manifest.json).
-// YhÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ mahdollista lisÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤tÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ paikallisia PNG:itÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œPÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ivitÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ tekstipalkitÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â -napilla.
+// PoliisiGen – keskialueen MAKSIMI 1375 px (FULL). Preview skaalattu täsmälleen samasta geometriasta.
+// Tekstipalkkien (kehysten) haku: /poliisiframes/manifest.json (tai poliisiframes/manifest.json).
+// Yhä mahdollista lisätä paikallisia PNG:itä “Päivitä tekstipalkit” -napilla.
 
 const W = 1920, H = 1080;
 const PREV_W = 960, PREV_H = 540;
@@ -8,12 +8,6 @@ const PREV_W = 960, PREV_H = 540;
 const MAX_CONTENT_W = 1375;
 const STROKE_PX = 16;
 const STROKE_COLOR = '#ffffff';
-const MIN_SPLIT_RATIO = 0.1;
-const LAYOUTS = [
-  { id:'center1', name:'1 kuva' },
-  { id:'center2', name:'2 kuvaa' },
-  { id:'center3', name:'3 kuvaa' },
-];
 
 const $ = (id) => document.getElementById(id);
 
@@ -44,7 +38,7 @@ const els = {
   topPadVal: $('topPadVal'),
   bottomPad: $('bottomPad'),
   bottomPadVal: $('bottomPadVal'),
-  layoutGallery: $('layoutGallery'),
+  layoutBtns: () => Array.from(document.querySelectorAll('.layout-btn')),
 
   // frames (tekstipalkit)
   frameFile: $('frameFile'),
@@ -65,7 +59,7 @@ const state = {
   contentW: MAX_CONTENT_W,  // FULL px
   topPad: 50,               // FULL px
   bottomPad: -16,           // FULL px (negatiivinen piilottaa alareunan stroken)
-  gap: 0,                   // sisÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½inen oletus
+  gap: 24,                  // sisäinen oletus
 
   selected: 0,
   cells: [defaultCell()],
@@ -75,11 +69,6 @@ const state = {
   // Tekstipalkit
   frames: [],            // { id, name, img, thumb }
   activeFrameIdx: -1,
-
-  splits: {
-    center2: 0.5,
-    center3: { x: 0.5, y: 0.5 },
-  },
 };
 
 // -------- helpers --------
@@ -118,89 +107,9 @@ function renderCellsBar(){
   }
 }
 
-function drawLayoutThumb(canvas, layoutId){
-  if (!canvas) return;
-  const g = canvas.getContext('2d');
-  g.clearRect(0,0,canvas.width,canvas.height);
-  g.fillStyle = '#0b1220';
-  g.fillRect(0,0,canvas.width,canvas.height);
-
-  const pad = 10;
-  const area = { x:pad, y:pad, w:canvas.width - pad*2, h:canvas.height - pad*2 };
-  const stroke = 8;
-  const fills = ['#1d4ed8','#2563eb','#3b82f6'];
-  const cells = [];
-
-  if (layoutId === 'center1'){
-    cells.push({ ...area });
-  } else if (layoutId === 'center2'){
-    const leftW = Math.round(area.w * 0.55);
-    const rightW = area.w - leftW;
-    cells.push(
-      { x:area.x, y:area.y, w:leftW, h:area.h },
-      { x:area.x + leftW, y:area.y, w:rightW, h:area.h }
-    );
-  } else {
-    const leftW = Math.round(area.w * 0.5);
-    const rightW = area.w - leftW;
-    const topH = Math.round(area.h * 0.54);
-    const bottomH = area.h - topH;
-    cells.push(
-      { x:area.x, y:area.y, w:leftW, h:area.h },
-      { x:area.x + leftW, y:area.y, w:rightW, h:topH },
-      { x:area.x + leftW, y:area.y + topH, w:rightW, h:bottomH }
-    );
-  }
-
-  g.lineJoin = 'round';
-  g.lineCap = 'butt';
-  cells.forEach((rect, idx)=>{
-    g.fillStyle = fills[idx % fills.length];
-    g.fillRect(rect.x, rect.y, rect.w, rect.h);
-    g.strokeStyle = '#ffffff';
-    g.lineWidth = stroke;
-    g.strokeRect(rect.x + 0.5, rect.y + 0.5, rect.w, rect.h);
-  });
-}
-
-function renderLayoutGallery(){
-  if (!els.layoutGallery) return;
-  els.layoutGallery.innerHTML = '';
-  LAYOUTS.forEach(layout=>{
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'layout-item';
-    btn.dataset.layout = layout.id;
-
-    const cnv = document.createElement('canvas');
-    cnv.width = 160; cnv.height = 100;
-    cnv.className = 'layout-thumb';
-    drawLayoutThumb(cnv, layout.id);
-
-    const label = document.createElement('div');
-    label.className = 'layout-name';
-    label.textContent = layout.name;
-
-    btn.appendChild(cnv);
-    btn.appendChild(label);
-    btn.addEventListener('click', ()=>{
-      state.layout = layout.id;
-      ensureSplitDefaults();
-      ensureCellCount();
-      syncLayoutButtons();
-      drawPreview();
-    });
-
-    els.layoutGallery.appendChild(btn);
-  });
-  syncLayoutButtons();
-}
-
 function syncLayoutButtons(){
-  if (!els.layoutGallery) return;
-  const items = els.layoutGallery.querySelectorAll('.layout-item');
-  items.forEach(item=>{
-    item.classList.toggle('active', item.dataset.layout === state.layout);
+  els.layoutBtns().forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.layout === state.layout);
   });
 }
 
@@ -223,25 +132,6 @@ function syncCellControls(){
   els.cellContrast.value = c.contrast; els.cellContrastVal.textContent = `${c.contrast}%`;
 }
 
-function clampSplitRatio(value){
-  const num = Number.isFinite(value) ? value : 0.5;
-  return clamp(num, MIN_SPLIT_RATIO, 1 - MIN_SPLIT_RATIO);
-}
-
-function ensureSplitDefaults(){
-  if (!state.splits) state.splits = { center2: 0.5, center3: { x: 0.5, y: 0.5 } };
-  if (typeof state.splits.center2 !== 'number') state.splits.center2 = 0.5;
-  if (!state.splits.center3 || typeof state.splits.center3 !== 'object'){
-    state.splits.center3 = { x: 0.5, y: 0.5 };
-  } else {
-    if (typeof state.splits.center3.x !== 'number') state.splits.center3.x = 0.5;
-    if (typeof state.splits.center3.y !== 'number') state.splits.center3.y = 0.5;
-  }
-  state.splits.center2 = clampSplitRatio(state.splits.center2);
-  state.splits.center3.x = clampSplitRatio(state.splits.center3.x);
-  state.splits.center3.y = clampSplitRatio(state.splits.center3.y);
-}
-
 // -------- geometry (FULL -> scaled) --------
 function computeContentRect(outW, outH){
   const sx = outW / W;
@@ -254,151 +144,33 @@ function computeContentRect(outW, outH){
   const yBottomPad = Math.round(clamp(state.bottomPad, -400, 400) * sy);
 
   const x = Math.round((outW - w)/2);
-  // korkeus: koko alue miinus ylÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤vÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤li ja miinus alareunan vÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤li (negatiivinen kasvattaa)
+  // korkeus: koko alue miinus yläväli ja miinus alareunan väli (negatiivinen kasvattaa)
   const h = outH - yTop - yBottomPad;
 
   return { x, y: yTop, w, h };
 }
 
-function computeLayoutMeta(outW, outH){
-  ensureSplitDefaults();
-
-  const R = computeContentRect(outW, outH);
-  const hitPaddingX = Math.max(Math.round(8 * (outW / W)), 6);
-  const hitPaddingY = Math.max(Math.round(8 * (outH / H)), 6);
-
-  const rects = [];
-  const hitZones = [];
-  const dividers = [];
-
-  if (state.layout === 'center1'){
-    rects.push({ x:R.x, y:R.y, w:R.w, h:R.h });
-  } else if (state.layout === 'center2'){
-    const minW = Math.max(Math.round(R.w * MIN_SPLIT_RATIO), 1);
-    const ratio = clampSplitRatio(state.splits.center2);
-    let leftW = Math.round(R.w * ratio);
-    leftW = clamp(leftW, minW, R.w - minW);
-    const rightW = R.w - leftW;
-    const dividerX = R.x + leftW;
-
-    rects.push(
-      { x:R.x, y:R.y, w:leftW, h:R.h },
-      { x:dividerX, y:R.y, w:rightW, h:R.h }
-    );
-
-    hitZones.push({
-      type: 'center2-x',
-      axis: 'x',
-      x1: dividerX - hitPaddingX,
-      x2: dividerX + hitPaddingX,
-      y1: R.y - hitPaddingY,
-      y2: R.y + R.h + hitPaddingY,
-    });
-    dividers.push({
-      axis: 'x',
-      x: dividerX,
-      y1: R.y,
-      y2: R.y + R.h,
-    });
-  } else {
-    const minW = Math.max(Math.round(R.w * MIN_SPLIT_RATIO), 1);
-    const ratioX = clampSplitRatio(state.splits.center3.x);
-    let leftW = Math.round(R.w * ratioX);
-    leftW = clamp(leftW, minW, R.w - minW);
-    const rightW = R.w - leftW;
-    const dividerX = R.x + leftW;
-
-    const minH = Math.max(Math.round(R.h * MIN_SPLIT_RATIO), 1);
-    const ratioY = clampSplitRatio(state.splits.center3.y);
-    let topH = Math.round(R.h * ratioY);
-    topH = clamp(topH, minH, R.h - minH);
-    const bottomH = R.h - topH;
-    const dividerY = R.y + topH;
-
-    rects.push(
-      { x:R.x, y:R.y, w:leftW, h:R.h },
-      { x:dividerX, y:R.y, w:rightW, h:topH },
-      { x:dividerX, y:dividerY, w:rightW, h:bottomH }
-    );
-
-    hitZones.push({
-      type: 'center3-x',
-      axis: 'x',
-      x1: dividerX - hitPaddingX,
-      x2: dividerX + hitPaddingX,
-      y1: R.y - hitPaddingY,
-      y2: R.y + R.h + hitPaddingY,
-    });
-    hitZones.push({
-      type: 'center3-y',
-      axis: 'y',
-      x1: dividerX - hitPaddingX,
-      x2: dividerX + rightW + hitPaddingX,
-      y1: dividerY - hitPaddingY,
-      y2: dividerY + hitPaddingY,
-    });
-    dividers.push(
-      {
-        axis: 'x',
-        x: dividerX,
-        y1: R.y,
-        y2: R.y + R.h,
-      },
-      {
-        axis: 'y',
-        x1: dividerX,
-        x2: dividerX + rightW,
-        y: dividerY,
-      }
-    );
-  }
-
-  return { rects, hitZones, contentRect: R, dividers };
-}
-
 function computeRects(outW, outH){
-  return computeLayoutMeta(outW, outH).rects;
-}
+  const R = computeContentRect(outW, outH);
+  const g = Math.round(state.gap * (outW / W));
 
-function hitTestDivider(px, py){
-  const meta = computeLayoutMeta(PREV_W, PREV_H);
-  for (const zone of meta.hitZones){
-    if (px >= zone.x1 && px <= zone.x2 && py >= zone.y1 && py <= zone.y2){
-      return zone;
-    }
+  if (state.layout==='center1'){
+    return [{ x:R.x, y:R.y, w:R.w, h:R.h }];
   }
-  return null;
-}
-
-function dividerCursor(type){
-  return type === 'center3-y' ? 'row-resize' : 'col-resize';
-}
-
-function setCanvasCursor(value){
-  if (!els.canvas) return;
-  els.canvas.style.cursor = value || '';
-}
-
-function applyDividerDrag(type, px, py){
-  if (!type) return;
-  if (type === 'center2-x' && state.layout !== 'center2') return;
-  if ((type === 'center3-x' || type === 'center3-y') && state.layout !== 'center3') return;
-
-  const meta = computeLayoutMeta(PREV_W, PREV_H);
-  const R = meta.contentRect;
-
-  if (type === 'center2-x' || type === 'center3-x'){
-    const pointer = clamp(px, R.x, R.x + R.w);
-    const ratio = R.w > 0 ? (pointer - R.x) / R.w : 0.5;
-    if (type === 'center2-x') state.splits.center2 = clampSplitRatio(ratio);
-    else state.splits.center3.x = clampSplitRatio(ratio);
-  } else if (type === 'center3-y'){
-    const pointer = clamp(py, R.y, R.y + R.h);
-    const ratio = R.h > 0 ? (pointer - R.y) / R.h : 0.5;
-    state.splits.center3.y = clampSplitRatio(ratio);
+  if (state.layout==='center2'){
+    const w = Math.round((R.w - g)/2);
+    return [
+      { x:R.x, y:R.y, w, h:R.h },
+      { x:R.x + w + g, y:R.y, w, h:R.h }
+    ];
   }
-
-  drawPreview();
+  // center3
+  const w = Math.round((R.w - 2*g)/3);
+  return [
+    { x:R.x, y:R.y, w, h:R.h },
+    { x:R.x + w + g, y:R.y, w, h:R.h },
+    { x:R.x + 2*(w+g), y:R.y, w, h:R.h },
+  ];
 }
 
 // -------- draw helpers --------
@@ -455,11 +227,8 @@ function drawPreview(){
     ctx.fillRect(0,0,PREV_W,PREV_H);
   }
 
-  const metaPrev = computeLayoutMeta(PREV_W, PREV_H);
-  const metaFull = computeLayoutMeta(W, H);
-  const rectsPrev = metaPrev.rects;
-  const rectsFull = metaFull.rects;
-  const placeholderFills = ['rgba(37,99,235,0.25)','rgba(59,130,246,0.25)','rgba(96,165,250,0.25)'];
+  const rectsPrev = computeRects(PREV_W, PREV_H);
+  const rectsFull = computeRects(W, H);
 
   // solut
   for (let i=0;i<state.cells.length;i++){
@@ -470,10 +239,6 @@ function drawPreview(){
     ctx.save();
     ctx.beginPath(); ctx.rect(rp.x, rp.y, rp.w, rp.h); ctx.clip();
     if (cell?.img) drawCellImage(ctx, cell, rp, rf, true);
-    else if (rp){
-      ctx.fillStyle = placeholderFills[i % placeholderFills.length];
-      ctx.fillRect(rp.x, rp.y, rp.w, rp.h);
-    }
     ctx.restore();
 
     drawStrokeRect(ctx, rp, true);
@@ -497,26 +262,6 @@ function drawPreview(){
     ctx.strokeRect(rpSel.x+1, rpSel.y+1, rpSel.w-2, rpSel.h-2);
     ctx.restore();
   }
-
-  // dividerit
-  metaPrev.dividers.forEach(div=>{
-    ctx.save();
-    ctx.strokeStyle = STROKE_COLOR;
-    ctx.lineWidth = STROKE_PX * (PREV_W / W);
-    ctx.lineCap = 'square';
-    if (div.axis === 'x'){
-      ctx.beginPath();
-      ctx.moveTo(div.x + 0.5, div.y1);
-      ctx.lineTo(div.x + 0.5, div.y2);
-      ctx.stroke();
-    } else {
-      ctx.beginPath();
-      ctx.moveTo(div.x1, div.y + 0.5);
-      ctx.lineTo(div.x2, div.y + 0.5);
-      ctx.stroke();
-    }
-    ctx.restore();
-  });
 }
 
 // -------- export --------
@@ -535,14 +280,14 @@ function downloadCanvasPNG(canvas, filename){
         const url = canvas.toDataURL('image/png');
         const a = document.createElement('a');
         a.download = filename; a.href = url; a.click();
-      }catch(err){ console.error('Tallennus epÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤onnistui:', err); }
+      }catch(err){ console.error('Tallennus epäonnistui:', err); }
     }, 'image/png', 1.0);
   } else {
     try{
       const url = canvas.toDataURL('image/png');
       const a = document.createElement('a');
       a.download = filename; a.href = url; a.click();
-    }catch(err){ console.error('Tallennus epÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤onnistui:', err); }
+    }catch(err){ console.error('Tallennus epäonnistui:', err); }
   }
 }
 
@@ -562,8 +307,7 @@ function exportPNG(){
     g.fillRect(0,0,W,H);
   }
 
-  const meta = computeLayoutMeta(W, H);
-  const rects = meta.rects;
+  const rects = computeRects(W,H);
 
   // solut
   for (let i=0;i<state.cells.length;i++){
@@ -572,10 +316,6 @@ function exportPNG(){
     g.save();
     g.beginPath(); g.rect(r.x, r.y, r.w, r.h); g.clip();
     if (c?.img) drawCellImage(g, c, r /*unused*/, r, false);
-    else if (r){
-      g.fillStyle = '#0b3d91';
-      g.fillRect(r.x, r.y, r.w, r.h);
-    }
     g.restore();
 
     drawStrokeRect(g, r, false);
@@ -587,44 +327,16 @@ function exportPNG(){
     if (fr?.img) g.drawImage(fr.img, 0, 0, W, H);
   }
 
-  meta.dividers.forEach(div=>{
-    g.save();
-    g.strokeStyle = STROKE_COLOR;
-    g.lineWidth = STROKE_PX;
-    g.lineCap = 'square';
-    if (div.axis === 'x'){
-      g.beginPath();
-      g.moveTo(div.x + 0.5, div.y1);
-      g.lineTo(div.x + 0.5, div.y2);
-      g.stroke();
-    } else {
-      g.beginPath();
-      g.moveTo(div.x1, div.y + 0.5);
-      g.lineTo(div.x2, div.y + 0.5);
-      g.stroke();
-    }
-    g.restore();
-  });
-
   downloadCanvasPNG(out, 'poliisigen_kuva.png');
 }
 
 // -------- interactions --------
-let draggingImg = false, draggingDivider = null, lastX=0, lastY=0;
+let draggingImg = false, lastX=0, lastY=0;
 
 els.canvas.addEventListener('pointerdown', (e)=>{
   const rect = els.canvas.getBoundingClientRect();
   const px = e.clientX - rect.left;
   const py = e.clientY - rect.top;
-
-  const dividerZone = hitTestDivider(px, py);
-  if (dividerZone){
-    draggingDivider = dividerZone.type;
-    draggingImg = false;
-    setCanvasCursor(dividerCursor(dividerZone.type));
-    els.canvas.setPointerCapture(e.pointerId);
-    return;
-  }
 
   const rectsPrev = computeRects(PREV_W, PREV_H);
   let hit = -1;
@@ -634,68 +346,26 @@ els.canvas.addEventListener('pointerdown', (e)=>{
   syncCellControls();
   drawPreview();
 
-  const selectedCell = state.cells[state.selected];
-  if (selectedCell?.img){
-    draggingImg = true;
-    draggingDivider = null;
-    lastX = e.clientX; lastY = e.clientY;
-    setCanvasCursor('grabbing');
+  if (state.cells[state.selected]?.img){
+    draggingImg = true; lastX=e.clientX; lastY=e.clientY;
     els.canvas.setPointerCapture(e.pointerId);
-  } else {
-    draggingImg = false;
-    draggingDivider = null;
-    setCanvasCursor('');
   }
 });
 
 els.canvas.addEventListener('pointermove', (e)=>{
-  const rect = els.canvas.getBoundingClientRect();
-  const px = e.clientX - rect.left;
-  const py = e.clientY - rect.top;
-
-  if (draggingDivider){
-    applyDividerDrag(draggingDivider, px, py);
-    setCanvasCursor(dividerCursor(draggingDivider));
-    return;
-  }
-
-  if (draggingImg){
-    const dxp = e.clientX - lastX;
-    const dyp = e.clientY - lastY;
-    lastX = e.clientX; lastY = e.clientY;
-    const c = state.cells[state.selected];
-    if (c){
-      c.offX += Math.round(dxp * (W/PREV_W));
-      c.offY += Math.round(dyp * (H/PREV_H));
-      drawPreview();
-    }
-    setCanvasCursor('grabbing');
-    return;
-  }
-
-  const hoverZone = hitTestDivider(px, py);
-  if (hoverZone){
-    setCanvasCursor(dividerCursor(hoverZone.type));
-  } else {
-    setCanvasCursor('');
-  }
+  if (!draggingImg) return;
+  const dxp = e.clientX - lastX, dyp = e.clientY - lastY;
+  lastX = e.clientX; lastY = e.clientY;
+  const c = state.cells[state.selected]; if(!c) return;
+  c.offX += Math.round(dxp * (W/PREV_W));
+  c.offY += Math.round(dyp * (H/PREV_H));
+  drawPreview();
 });
 
 ['pointerup','pointercancel'].forEach(t=>{
   els.canvas.addEventListener(t, (e)=>{
     draggingImg = false;
-    draggingDivider = null;
     try{ els.canvas.releasePointerCapture(e.pointerId);}catch{}
-
-    const rect = els.canvas.getBoundingClientRect();
-    const px = e.clientX - rect.left;
-    const py = e.clientY - rect.top;
-    const zone = hitTestDivider(px, py);
-    if (zone){
-      setCanvasCursor(dividerCursor(zone.type));
-    } else {
-      setCanvasCursor('');
-    }
   });
 });
 
@@ -757,6 +427,13 @@ els.cellContrast.addEventListener('input', ()=>{
 });
 
 // --- layout
+els.layoutBtns().forEach(b=>{
+  b.addEventListener('click', ()=>{
+    state.layout = b.dataset.layout;
+    syncLayoutButtons();
+    ensureCellCount();
+    drawPreview();
+  });
 });
 
 // --- settings
@@ -776,7 +453,7 @@ els.bottomPad.addEventListener('input', ()=>{
   drawPreview();
 });
 
-// --- frames (tekstipalkit) ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ MANIFEST + paikallinen lisÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ys
+// --- frames (tekstipalkit) – MANIFEST + paikallinen lisäys
 function renderFramesList(){
   els.framesList.innerHTML = '';
   if (!state.frames.length){
@@ -836,7 +513,7 @@ els.noFrameBtn.addEventListener('click', ()=>{
   renderFramesList(); drawPreview();
 });
 
-  // yritetään hakea manifest-lataus ---
+// --- manifest-lataus ---
 async function tryFetchManifestJSON(){
   const candidates = ['/poliisiframes/manifest.json', 'poliisiframes/manifest.json'];
   for (const url of candidates){
@@ -877,7 +554,7 @@ async function populateFramesFromList(entries){
 async function loadFramesFromManifest(){
   if (!els.framesHint) return;
   els.framesHint.style.display = '';
-  els.framesHint.textContent = 'Haetaan tekstipalkkejaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦';
+  els.framesHint.textContent = 'Haetaan tekstipalkkeja…';
 
   const list = await tryFetchManifestJSON();
   if (!list){
@@ -917,22 +594,20 @@ async function loadFileToCell(file, index){
   try{
     const bmp = await createImageBitmap(file);
     state.cells[index] = { ...defaultCell(), img:bmp, iw:bmp.width, ih:bmp.height };
-  }catch(err){ console.error('Kuvan lataus epÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤onnistui:', err); }
+  }catch(err){ console.error('Kuvan lataus epäonnistui:', err); }
 }
 
 // --- start
 async function start(){
-  ensureSplitDefaults();
-  renderLayoutGallery();
   ensureCellCount();
+  syncLayoutButtons();
   syncLayoutControls();
   renderFramesList();
   renderCellsBar();
   syncCellControls();
   drawPreview();
-  // yritetään hakea manifest
+
+  // yritä hakea manifest
   await loadFramesFromManifest();
 }
-window.addEventListener('DOMContentLoaded', start);
-
-
+start();

@@ -15,11 +15,11 @@
       <a href="grids.html">GridGen</a>
       <a href="kehysgen.html">KehysGen</a>
       <a class="active" href="#">PoliisiGen</a>
-         <a href="husupuffigen.html">HusupuffiGen</a>
+      <a href="husupuffigen.html">HusupuffiGen</a>
       <a href="nettinostogen.html">NettinostoGen</a>
       <a href="luetuimmat.html">LuetuimmatGen</a>
     </nav>
-    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai teamssillä</div>
+    <div class="nav-info">Kehitysehdotukset ja kysymykset: juha.kekoni@mtv.fi tai Teamsissä</div>
   </header>
 
   <main id="pgapp">
@@ -27,8 +27,8 @@
     <section class="left">
       <div class="toolbar">
         <button id="newImageBtn" class="btn-soft">Uusi kuva</button>
+        <button id="downloadBtn" class="btn-primary">Lataa kuva</button>
         <div class="spacer"></div>
-        <button id="downloadBtn" class="btn-primary">Tallenna kuva koneelle</button>
       </div>
 
       <div id="canvasWrap">
@@ -104,10 +104,13 @@
 
     <!-- Oikea: templatet + tekstipalkit -->
     <section class="right">
-      <!-- 1/2/3 kuvan valinta -->
       <div class="panel">
         <div class="panel-title">Templatet</div>
-        <div id="layoutGallery" class="layout-gallery"></div>
+        <div class="layout-chooser">
+          <button class="layout-btn" data-layout="center1">1 kuva</button>
+          <button class="layout-btn" data-layout="center2">2 kuvaa</button>
+          <button class="layout-btn" data-layout="center3">3 kuvaa</button>
+        </div>
       </div>
 
       <div class="panel">
@@ -123,16 +126,6 @@
 
         <div id="framesList" class="frames-grid"></div>
         <p id="framesHint" class="hint">Vihje: valitse yksi tai useampi PNG-tiedosto paikalliselta levyltä.</p>
-      </div>
-
-      <div class="panel small">
-        <div class="panel-title">Ohje</div>
-        <ul class="help">
-          <li>Sininen tausta tulee automaattisesti: <code>img/poliisigen_tausta.jpg</code>.</li>
-          <li>Valitse template (1/2/3 kuvaa). Keskialueen maksimi on 1375 px.</li>
-          <li>Kuvilla on 16 px valkoinen reunaviiva. Alareunan väli voi olla negatiivinen piilottaakseen alareunan viivan.</li>
-          <li>Lisää tekstipalkit PNG:nä “Päivitä tekstipalkit”.</li>
-        </ul>
       </div>
     </section>
   </main>
