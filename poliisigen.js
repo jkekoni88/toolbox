@@ -1,4 +1,4 @@
-// PoliisiGen – keskialueen MAKSIMI 1375 px (FULL). Preview skaalattu täsmälleen samasta geometriasta.
+﻿// PoliisiGen – keskialueen MAKSIMI 1375 px (FULL). Preview skaalattu täsmälleen samasta geometriasta.
 // Tekstipalkkien (kehysten) haku: /poliisiframes/manifest.json (tai poliisiframes/manifest.json).
 // Yhä mahdollista lisätä paikallisia PNG:itä “Päivitä tekstipalkit” -napilla.
 
@@ -8,6 +8,7 @@ const PREV_W = 960, PREV_H = 540;
 const MAX_CONTENT_W = 1375;
 const STROKE_PX = 16;
 const STROKE_COLOR = '#ffffff';
+const MIN_SPLIT_RATIO = 0.15;
 
 const $ = (id) => document.getElementById(id);
 
@@ -69,6 +70,11 @@ const state = {
   // Tekstipalkit
   frames: [],            // { id, name, img, thumb }
   activeFrameIdx: -1,
+
+  splits: {
+    center2: 0.5,
+    center3: { x: 0.33, y: 0.5 },
+  },
 };
 
 // -------- helpers --------
@@ -77,6 +83,24 @@ function filterString(c){
   const b = clamp(c.bright ?? 100, 0, 200);
   const k = clamp(c.contrast ?? 100, 0, 200);
   return `brightness(${b}%) contrast(${k}%)`;
+}
+
+function ensureSplitDefaults(){
+  if (!state.splits) state.splits = { center2: 0.5, center3: { x: 0.33, y: 0.5 } };
+  if (typeof state.splits.center2 !== 'number' || Number.isNaN(state.splits.center2)){
+    state.splits.center2 = 0.5;
+  }
+  if (!state.splits.center3) state.splits.center3 = { x: 0.33, y: 0.5 };
+  if (typeof state.splits.center3.x !== 'number' || Number.isNaN(state.splits.center3.x)){
+    state.splits.center3.x = 0.33;
+  }
+  if (typeof state.splits.center3.y !== 'number' || Number.isNaN(state.splits.center3.y)){
+    state.splits.center3.y = 0.5;
+  }
+
+  state.splits.center2 = clamp(state.splits.center2, MIN_SPLIT_RATIO, 1 - MIN_SPLIT_RATIO);
+  state.splits.center3.x = clamp(state.splits.center3.x, MIN_SPLIT_RATIO, 1 - MIN_SPLIT_RATIO);
+  state.splits.center3.y = clamp(state.splits.center3.y, MIN_SPLIT_RATIO, 1 - MIN_SPLIT_RATIO);
 }
 
 function ensureCellCount(){
@@ -152,24 +176,64 @@ function computeContentRect(outW, outH){
 
 function computeRects(outW, outH){
   const R = computeContentRect(outW, outH);
-  const g = Math.round(state.gap * (outW / W));
+  ensureSplitDefaults();
+
+  const rawGapX = Math.round(state.gap * (outW / W));
+  const rawGapY = Math.round(state.gap * (outH / H));
+  const gapX = state.layout === 'center3' ? 0 : rawGapX;
+  const gapY = state.layout === 'center3' ? 0 : rawGapY;
 
   if (state.layout==='center1'){
     return [{ x:R.x, y:R.y, w:R.w, h:R.h }];
   }
+
   if (state.layout==='center2'){
-    const w = Math.round((R.w - g)/2);
+    const availableW = Math.max(R.w - gapX, 0);
+    const minW = Math.round(availableW * MIN_SPLIT_RATIO);
+    const maxW = availableW - minW;
+    let leftW = Math.round(availableW * state.splits.center2);
+    if (maxW <= minW){
+      leftW = Math.round(availableW / 2);
+    } else {
+      leftW = clamp(leftW, minW, maxW);
+    }
+    const rightW = Math.max(0, availableW - leftW);
+
     return [
-      { x:R.x, y:R.y, w, h:R.h },
-      { x:R.x + w + g, y:R.y, w, h:R.h }
+      { x:R.x, y:R.y, w:leftW, h:R.h },
+      { x:R.x + leftW + gapX, y:R.y, w:rightW, h:R.h }
     ];
   }
+
   // center3
-  const w = Math.round((R.w - 2*g)/3);
+  const availableW = Math.max(R.w - gapX, 0);
+  const minW = Math.round(availableW * MIN_SPLIT_RATIO);
+  const maxW = availableW - minW;
+  let leftW = Math.round(availableW * state.splits.center3.x);
+  if (maxW <= minW){
+    leftW = Math.round(availableW / 2);
+  } else {
+    leftW = clamp(leftW, minW, maxW);
+  }
+  const rightW = Math.max(0, availableW - leftW);
+
+  const availableH = Math.max(R.h - gapY, 0);
+  const minH = Math.round(availableH * MIN_SPLIT_RATIO);
+  const maxH = availableH - minH;
+  let topH = Math.round(availableH * state.splits.center3.y);
+  if (maxH <= minH){
+    topH = Math.round(availableH / 2);
+  } else {
+    topH = clamp(topH, minH, maxH);
+  }
+  const bottomH = Math.max(0, availableH - topH);
+
+  const rightX = R.x + leftW + gapX;
+
   return [
-    { x:R.x, y:R.y, w, h:R.h },
-    { x:R.x + w + g, y:R.y, w, h:R.h },
-    { x:R.x + 2*(w+g), y:R.y, w, h:R.h },
+    { x:R.x, y:R.y, w:leftW, h:R.h },
+    { x:rightX, y:R.y, w:rightW, h:topH },
+    { x:rightX, y:R.y + topH + gapY, w:rightW, h:bottomH },
   ];
 }
 
@@ -212,6 +276,136 @@ function drawStrokeRect(g, r, isPreview){
   g.restore();
 }
 
+function drawCenter3Lines(g, rects, isPreview){
+  if (!rects || rects.length < 3) return;
+
+  const contentRect = computeContentRect(isPreview ? PREV_W : W, isPreview ? PREV_H : H);
+  const scale = isPreview ? (PREV_W / W) : 1;
+  const lineWidth = STROKE_PX * scale;
+  const half = lineWidth / 2;
+  const topEdge = contentRect.y + half;
+  const bottomEdge = contentRect.y + contentRect.h - half;
+  const rightEdge = contentRect.x + contentRect.w - half;
+  const dividerX = rects[1].x;
+  const dividerY = rects[1].y + rects[1].h;
+
+  drawStrokeRect(g, contentRect, isPreview);
+
+  g.save();
+  g.strokeStyle = STROKE_COLOR;
+  g.lineWidth = lineWidth;
+
+  g.beginPath();
+  g.moveTo(dividerX, topEdge);
+  g.lineTo(dividerX, bottomEdge);
+  g.stroke();
+
+  g.beginPath();
+  g.moveTo(dividerX + half, dividerY);
+  g.lineTo(rightEdge, dividerY);
+  g.stroke();
+
+  g.restore();
+}
+
+function cursorForDivider(type){
+  if (type === 'center3-y') return 'row-resize';
+  return 'col-resize';
+}
+
+function setCanvasCursor(value){
+  if (!els.canvas) return;
+  els.canvas.style.cursor = value || '';
+}
+
+function hitDivider(px, py){
+  if (state.layout !== 'center2' && state.layout !== 'center3') return null;
+
+  const rects = computeRects(PREV_W, PREV_H);
+  if (!rects.length) return null;
+
+  const content = computeContentRect(PREV_W, PREV_H);
+  const tolerance = 8 * (PREV_W / W);
+
+  const leftRect = rects[0];
+  const rightRect = rects[1];
+
+  if (leftRect && rightRect){
+    const gap = rightRect.x - (leftRect.x + leftRect.w);
+    const dividerX = leftRect.x + leftRect.w + gap / 2;
+    if (py >= content.y && py <= content.y + content.h && Math.abs(px - dividerX) <= tolerance){
+      return { type: state.layout === 'center2' ? 'center2-x' : 'center3-x' };
+    }
+  }
+
+  if (state.layout === 'center3'){
+    const topRect = rects[1];
+    const bottomRect = rects[2];
+    if (topRect && bottomRect){
+      const gapY = bottomRect.y - (topRect.y + topRect.h);
+      const dividerY = topRect.y + topRect.h + gapY / 2;
+      const rightLimit = topRect.x + topRect.w;
+      if (px >= topRect.x && px <= rightLimit && Math.abs(py - dividerY) <= tolerance){
+        return { type: 'center3-y' };
+      }
+    }
+  }
+
+  return null;
+}
+
+function handleDividerDrag(type, px, py){
+  const content = computeContentRect(PREV_W, PREV_H);
+
+  if (type === 'center2-x'){
+    const gapX = Math.round(state.gap * (PREV_W / W));
+    const available = Math.max(content.w - gapX, 0);
+    if (available <= 0) return;
+    const min = available * MIN_SPLIT_RATIO;
+    const max = available - min;
+    let left = px - content.x - gapX/2;
+    if (max <= min){
+      left = available / 2;
+    } else {
+      left = clamp(left, min, max);
+    }
+    state.splits.center2 = available > 0 ? left / available : state.splits.center2;
+    ensureSplitDefaults();
+    return;
+  }
+
+  if (type === 'center3-x'){
+    const available = Math.max(content.w, 0);
+    if (available <= 0) return;
+    const min = available * MIN_SPLIT_RATIO;
+    const max = available - min;
+    let left = px - content.x;
+    if (max <= min){
+      left = available / 2;
+    } else {
+      left = clamp(left, min, max);
+    }
+    state.splits.center3.x = available > 0 ? left / available : state.splits.center3.x;
+    ensureSplitDefaults();
+    return;
+  }
+
+  if (type === 'center3-y'){
+    const available = Math.max(content.h, 0);
+    if (available <= 0) return;
+    const min = available * MIN_SPLIT_RATIO;
+    const max = available - min;
+    let top = py - content.y;
+    if (max <= min){
+      top = available / 2;
+    } else {
+      top = clamp(top, min, max);
+    }
+    state.splits.center3.y = available > 0 ? top / available : state.splits.center3.y;
+    ensureSplitDefaults();
+  }
+}
+
 // -------- preview --------
 function drawPreview(){
   ctx.clearRect(0,0,PREV_W,PREV_H);
@@ -241,8 +435,10 @@ function drawPreview(){
     if (cell?.img) drawCellImage(ctx, cell, rp, rf, true);
     ctx.restore();
 
-    drawStrokeRect(ctx, rp, true);
+    if (state.layout !== 'center3') drawStrokeRect(ctx, rp, true);
   }
+
+  if (state.layout === 'center3') drawCenter3Lines(ctx, rectsPrev, true);
 
   // tekstipalkki
   if (state.activeFrameIdx >= 0){
@@ -318,8 +514,10 @@ function exportPNG(){
     if (c?.img) drawCellImage(g, c, r /*unused*/, r, false);
     g.restore();
 
-    drawStrokeRect(g, r, false);
+    if (state.layout !== 'center3') drawStrokeRect(g, r, false);
   }
+
+  if (state.layout === 'center3') drawCenter3Lines(g, rects, false);
 
   // tekstipalkki
   if (state.activeFrameIdx >= 0){
@@ -331,12 +529,20 @@ function exportPNG(){
 }
 
 // -------- interactions --------
-let draggingImg = false, lastX=0, lastY=0;
+let draggingImg = false, draggingDivider = null, lastX=0, lastY=0;
 
 els.canvas.addEventListener('pointerdown', (e)=>{
   const rect = els.canvas.getBoundingClientRect();
   const px = e.clientX - rect.left;
   const py = e.clientY - rect.top;
+
+  const dividerHit = hitDivider(px, py);
+  if (dividerHit){
+    draggingDivider = dividerHit;
+    setCanvasCursor(cursorForDivider(dividerHit.type));
+    els.canvas.setPointerCapture(e.pointerId);
+    return;
+  }
 
   const rectsPrev = computeRects(PREV_W, PREV_H);
   let hit = -1;
@@ -348,24 +554,55 @@ els.canvas.addEventListener('pointerdown', (e)=>{
 
   if (state.cells[state.selected]?.img){
     draggingImg = true; lastX=e.clientX; lastY=e.clientY;
+    setCanvasCursor('grabbing');
     els.canvas.setPointerCapture(e.pointerId);
+  } else {
+    setCanvasCursor('');
   }
 });
 
 els.canvas.addEventListener('pointermove', (e)=>{
-  if (!draggingImg) return;
-  const dxp = e.clientX - lastX, dyp = e.clientY - lastY;
-  lastX = e.clientX; lastY = e.clientY;
-  const c = state.cells[state.selected]; if(!c) return;
-  c.offX += Math.round(dxp * (W/PREV_W));
-  c.offY += Math.round(dyp * (H/PREV_H));
-  drawPreview();
+  const rect = els.canvas.getBoundingClientRect();
+  const px = e.clientX - rect.left;
+  const py = e.clientY - rect.top;
+
+  if (draggingDivider){
+    handleDividerDrag(draggingDivider.type, px, py);
+    drawPreview();
+    setCanvasCursor(cursorForDivider(draggingDivider.type));
+    return;
+  }
+
+  if (draggingImg){
+    const dxp = e.clientX - lastX, dyp = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    const c = state.cells[state.selected]; if(!c) return;
+    c.offX += Math.round(dxp * (W/PREV_W));
+    c.offY += Math.round(dyp * (H/PREV_H));
+    drawPreview();
+    setCanvasCursor('grabbing');
+    return;
+  }
+
+  const hover = hitDivider(px, py);
+  if (hover){
+    setCanvasCursor(cursorForDivider(hover.type));
+  } else {
+    setCanvasCursor('');
+  }
 });
 
 ['pointerup','pointercancel'].forEach(t=>{
   els.canvas.addEventListener(t, (e)=>{
     draggingImg = false;
+    draggingDivider = null;
     try{ els.canvas.releasePointerCapture(e.pointerId);}catch{}
+
+    const rect = els.canvas.getBoundingClientRect();
+    const px = e.clientX - rect.left;
+    const py = e.clientY - rect.top;
+    const hover = hitDivider(px, py);
+    setCanvasCursor(hover ? cursorForDivider(hover.type) : '');
   });
 });
 
@@ -430,8 +667,13 @@ els.cellContrast.addEventListener('input', ()=>{
 els.layoutBtns().forEach(b=>{
   b.addEventListener('click', ()=>{
     state.layout = b.dataset.layout;
+    if (state.layout === 'center3'){
+      state.bottomPad = 120;
+    }
+    ensureSplitDefaults();
     syncLayoutButtons();
     ensureCellCount();
+    syncLayoutControls();
     drawPreview();
   });
 });
@@ -457,10 +699,12 @@ els.bottomPad.addEventListener('input', ()=>{
 function renderFramesList(){
   els.framesList.innerHTML = '';
   if (!state.frames.length){
-    els.framesHint.style.display = '';
+    if (els.framesHint){
+      els.framesHint.style.display = els.framesHint.textContent ? '' : 'none';
+    }
     return;
   }
-  els.framesHint.style.display = 'none';
+  if (els.framesHint) els.framesHint.style.display = 'none';
   state.frames.forEach((f, idx)=>{
     const item = document.createElement('button');
     item.type = 'button';
@@ -599,6 +843,7 @@ async function loadFileToCell(file, index){
 
 // --- start
 async function start(){
+  ensureSplitDefaults();
   ensureCellCount();
   syncLayoutButtons();
   syncLayoutControls();
@@ -611,3 +856,5 @@ async function start(){
   await loadFramesFromManifest();
 }
 start();
+
+
