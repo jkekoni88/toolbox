@@ -6,20 +6,79 @@
   <title>ToolBox - Tekninen dokumentaatio</title>
   <style>
     :root{
-      --bg:#0b1220; --bg2:#0f172a; --ink:#f8fafc; --muted:#cbd5e1; --muter:#94a3b8;
-      --brand:#111827; --accent:#dc2626; --accent2:#b91c1c; --border:#1f2937; --kbd:#0b1220;
+      --bg:#111827;
+      --bg2:rgba(15,23,42,0.75);
+      --ink:#f8fafc;
+      --muted:#cbd5e1;
+      --muter:#94a3b8;
+      --brand:#0b1120;
+      --accent:#1d4ed8;
+      --accent2:#3b82f6;
+      --border:#1f2937;
+      --kbd:rgba(11,18,32,0.9);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      position:relative;
+      overflow-x:hidden;
+    }
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:0.45;
+      pointer-events:none;
+      z-index:0;
+    }
+    body::before{
+      top:-140px;
+      left:-160px;
+      background:radial-gradient(circle at center, rgba(59,130,246,0.55) 0%, rgba(67,56,202,0.22) 48%, rgba(17,24,39,0) 85%);
+    }
+    body::after{
+      bottom:-160px;
+      right:-120px;
+      background:radial-gradient(circle at center, rgba(14,165,233,0.45) 0%, rgba(59,130,246,0.18) 52%, rgba(17,24,39,0) 90%);
+    }
+    body>*{
+      position:relative;
+      z-index:1;
+    }
 
     #brandbar{position:sticky;top:0;z-index:3;background:var(--brand);color:#fff;
       display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border)}
     #brandbar .brand{font-weight:800;letter-spacing:.3px}
     #brandbar nav{display:flex;gap:8px;margin-left:10px;flex-wrap:wrap}
-    #brandbar nav a{color:#d1d5db;text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px;border:1px solid transparent}
-    #brandbar nav a.active{background:var(--accent);color:#fff;border-color:var(--accent2)}
-    #brandbar nav a:hover{background:#ef4444;color:#fff}
+    #brandbar nav a{
+      color:#d1d5db;
+      text-decoration:none;
+      padding:6px 10px;
+      font-size:13px;
+      border:none;
+      background:none;
+      box-shadow:none;
+      border-radius:0;
+      transition:color .2s ease;
+    }
+    #brandbar nav a:hover{
+      color:#f8fafc;
+    }
+    #brandbar nav a.active{
+      color:#f8fafc;
+      border:1px solid rgba(148,163,184,0.35);
+      border-radius:10px;
+      background:linear-gradient(150deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.92) 55%, rgba(17,24,39,0.9) 100%);
+      box-shadow:0 22px 48px -30px rgba(15,23,42,0.95);
+    }
     #brandbar .spacer{flex:1}
     #brandbar .back a{color:#fff;text-decoration:none;font-weight:600}
     #brandbar .back a:hover{text-decoration:underline}
@@ -32,14 +91,14 @@
     p,li{color:var(--muted);line-height:1.55}
     ul{margin:0;padding-left:18px}
     code,kbd{background:var(--kbd);border:1px solid var(--border);border-radius:6px;padding:.1em .35em;font-size:.95em}
-    pre{background:var(--kbd);border:1px solid var(--border);border-radius:10px;padding:12px;overflow:auto}
+    pre{background:var(--kbd);border:1px solid var(--border);border-radius:6px;padding:12px;overflow:auto}
     .grid{display:grid;gap:12px}
     .cols{display:grid;gap:12px}
     .cols.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
     .note{background:var(--kbd);border:1px solid var(--border);border-radius:12px;padding:12px}
     .tagrow{display:flex;flex-wrap:wrap;gap:6px}
     .tag{background:#1f2937;color:#f1f5f9;border-radius:999px;padding:4px 10px;font-size:12px}
-    details{border:1px solid var(--border);border-radius:10px;padding:10px 12px;background:#0b1220}
+    details{border:1px solid var(--border);border-radius:6px;padding:10px 12px;background:#0b1220}
     details>summary{cursor:pointer;color:#e5e7eb;font-weight:600}
     a,a:visited,a:hover,a:active{color:#fff;font-weight:700;text-decoration:underline}
     table{border-collapse:collapse;width:100%}
@@ -364,3 +423,4 @@
   </main>
 </body>
 </html>
+

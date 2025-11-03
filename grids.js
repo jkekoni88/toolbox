@@ -8,7 +8,7 @@ const PREV_W = 960, PREV_H = 540;
 
 const DIVIDER_PX = 16;
 const DIVIDER_COLOR = '#ffffff';
-const CURVE_EXTRA = 5; // vain curve/chevronille
+const CURVE_EXTRA = 2; // vain curve/chevronille
 
 const $ = (id) => document.getElementById(id);
 

@@ -4,6 +4,38 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
   background: #111827;
   color: #f9fafb;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: -140px;
+  left: -160px;
+  background: radial-gradient(circle at center, rgba(88, 180, 255, 0.58) 0%, rgba(67, 56, 202, 0.25) 45%, rgba(17, 24, 39, 0) 85%);
+}
+
+body::after {
+  bottom: -160px;
+  right: -120px;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.5) 0%, rgba(37, 99, 235, 0.25) 50%, rgba(17, 24, 39, 0) 90%);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Landing layout */
@@ -31,13 +63,7 @@ body {
   justify-content: space-between;
   padding: 20px 40px;
   margin-bottom: 40px;
-
-
-  /* Sama gradientti ja varjo kuin korteissa */
-  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  box-shadow: 0px -1px 5px rgba(0,0,0,0.75);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3); box-shadow: none;
 }
 
 .site-logo {
@@ -69,48 +95,77 @@ a:active {
 }
 
 .nav-btn {
-  display: inline-block;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
   font-weight: 600;
   font-size: 14px;
-  color: #fff;
+  color: #f8fafc;
   text-decoration: none;
-  border-radius: 13px;
-  border: 1px solid #f8fafc;
-  
-  /* Sama gradientti ja varjo kuin korteissa */
-  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: linear-gradient(150deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 55%, rgba(15, 23, 42, 0.9) 100%);
+  box-shadow: 0 16px 32px -24px rgba(15, 23, 42, 0.9);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
 
-  transition: background 0.2s ease, transform 0.1s ease;
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  inset: -60% -20%;
+  background: radial-gradient(circle at 35% 35%, rgba(59, 130, 246, 0.28) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(15, 23, 42, 0) 80%);
+  opacity: 0.55;
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .nav-btn:hover {
-  background-color: #1f2937;
-  transform: scale(1.03);
+  transform: translateY(-3px);
+  border-color: rgba(148, 163, 184, 0.55);
+  box-shadow: 0 22px 48px -30px rgba(15, 23, 42, 0.95);
+  background: linear-gradient(150deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.96) 55%, rgba(17, 24, 39, 0.92) 100%);
 }
 
 /* Otsikkopalkit (Generaattorit / Editorit) */
 .section-title {
-  margin: 20px auto 0;
-  padding: 20px;
-  font-size: 13px;
+  margin: 40px auto 0;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(320px, 90vw);
+  font-size: 14px;
   text-align: center;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 700;
+  color: #f8fafc;
   text-transform: uppercase;
-  letter-spacing: .08em;
-  border-radius: 13px;
-  width: 300px;
-  border: 3px solid #f8fafc;
+  letter-spacing: 0.05em;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: linear-gradient(160deg, rgba(30, 41, 59, 0.74) 0%, rgba(15, 23, 42, 0.78) 55%, rgba(30, 41, 59, 0.65) 100%);
+  box-shadow: 0 32px 55px -32px rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
 
-  /* Gradientti + varjo */
-  background-image: -moz-linear-gradient(90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -webkit-linear-gradient(90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -ms-linear-gradient(90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
+.section-title::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 25% 30%, rgba(59, 130, 246, 0.3) 0%, rgba(14, 165, 233, 0.22) 42%, rgba(17, 24, 39, 0) 70%);
+  opacity: 0.75;
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Kortit – 4 vierekkäin leveällä ruudulla (CSS Grid) */
@@ -123,61 +178,116 @@ a:active {
 }
 
 .tool-card {
-  flex: 0 0 300px;         /* säilytetään kortin perusleveys */
+  flex: 0 0 300px;
   max-width: 300px;
   min-width: 300px;
-  height: 260px;           /* kiinteä korttikorkeus */
-  border-radius: 13px;
-  background-image: -moz-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -webkit-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  background-image: -ms-linear-gradient(-90deg, rgba(255,255,255,0) 0%, rgb(56,63,75) 100%);
-  box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
-  border: 1px solid #f8fafc;
-
+  height: 260px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(32, 48, 68, 0.85) 0%, rgba(20, 30, 46, 0.88) 50%, rgba(32, 48, 68, 0.8) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 32px 55px -32px rgba(15, 23, 42, 0.9);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* nappi pysyy alareunassa */
-  padding: 16px;
+  justify-content: space-between;
+  padding: 18px;
   text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: -35% -40%;
+  background: radial-gradient(circle at 18% 22%, rgba(56, 82, 110, 0.5) 0%, rgba(28, 42, 60, 0.38) 45%, rgba(17, 24, 39, 0) 75%);
+  opacity: 0.9;
+  pointer-events: none;
+  filter: blur(22px);
+  z-index: -1;
+}
+
+.tool-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 45px 90px -50px rgba(15, 23, 42, 1);
+  border-color: rgba(148, 163, 184, 0.45);
 }
 
 .tool-card img {
   display: block;
   max-height: 110px;
   width: auto;
-  margin: 0 0 10px 0;      /* pieni väli alareunaan */
-  border-radius: 8px;
+  margin: 0 0 10px 0;
+  border-radius: 12px;
   object-fit: contain;
-  align-self: flex-start;  /* vasempaan laitaan, sama linja kuin tekstit ja nappi */
+  align-self: flex-start;
+  box-shadow: 0 18px 36px -24px rgba(148, 163, 184, 0.85);
 }
 
-.tool-card h2 { 
-  margin:0; 
-  font-size:18px; 
-  color:#fff; 
+.tool-card h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #f8fafc;
+  letter-spacing: 0.04em;
 }
-.tool-card p { 
-  margin:0 0 16px; 
-  font-size:14px; 
-  color:#d1d5db; 
-  flex-grow:1; 
+
+.tool-card p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #cbd5f5;
+  flex-grow: 1;
+  line-height: 1.5;
 }
 
 /* Korttien sisäiset napit */
 .btn {
-  display:inline-block; 
-  background:#dc2626; 
-  color:#fff; 
-  border:none;
-  border-radius:8px; 
-  padding:8px 12px; 
-  font-size:14px; 
-  text-decoration:none;
-  font-weight:600;
-  align-self:flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #f8fafc;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: linear-gradient(150deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 55%, rgba(15, 23, 42, 0.9) 100%);
+  box-shadow: 0 16px 32px -24px rgba(15, 23, 42, 0.9);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  align-self: flex-end;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
-.btn:hover { background:#b91c1c; }
-.btn.disabled { opacity:.5; pointer-events:none; }
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -60% -20%;
+  background: radial-gradient(circle at 65% 35%, rgba(59, 130, 246, 0.28) 0%, rgba(14, 165, 233, 0.18) 48%, rgba(15, 23, 42, 0) 82%);
+  opacity: 0.5;
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(148, 163, 184, 0.55);
+  box-shadow: 0 22px 48px -30px rgba(15, 23, 42, 0.95);
+  background: linear-gradient(150deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.96) 55%, rgba(17, 24, 39, 0.92) 100%);
+}
+
+.btn.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: saturate(0.6);
+}
 
 /* Badge */
 .badge {
@@ -208,3 +318,10 @@ footer a.inline {
 footer a.inline:hover {
   text-decoration:underline;
 }
+
+
+
+
+
+
+
