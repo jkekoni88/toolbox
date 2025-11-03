@@ -1,53 +1,65 @@
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-  color:#f9fafb;
-  background:#111827; /* tumma teema kuten KehysGen */
-  position:relative;
-  overflow-x:hidden;
+* { box-sizing: border-box; }
+html, body { margin:0; height:100%; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+  background: #111827;
+  color: #f9fafb;
+  position: relative;
+  overflow-x: hidden;
 }
 
 body::before,
-body::after{
-  content:"";
-  position:fixed;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:0.45;
-  pointer-events:none;
-  z-index:0;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-body::before{
-  top:-140px;
-  left:-160px;
-  background:radial-gradient(circle at center, rgba(59,130,246,0.55) 0%, rgba(67,56,202,0.22) 48%, rgba(17,24,39,0) 85%);
+body::before {
+  background:
+    radial-gradient(circle at top left, rgba(170, 10, 10, 0.96) 0%, rgba(140, 5, 5, 0.88) 18%, rgba(45, 0, 0, 0.5) 40%, rgba(30, 0, 0, 0) 65%),
+    radial-gradient(circle at bottom right, rgba(14, 24, 120, 0.85) 0%, rgba(30, 0, 0, 0.65) 32%, rgba(30, 0, 0, 0) 62%);
+  filter: blur(90px);
+  opacity: 0.9;
 }
 
-body::after{
-  bottom:-160px;
-  right:-120px;
-  background:radial-gradient(circle at center, rgba(14,165,233,0.45) 0%, rgba(59,130,246,0.18) 52%, rgba(17,24,39,0) 90%);
+body::after {
+  background:
+    radial-gradient(circle at center, rgba(30, 0, 0, 0.8) 0%, rgba(30, 0, 0, 0.7) 55%, rgba(17, 24, 39, 0.4) 75%);
+  filter: blur(200px);
+  opacity: 0.85;
 }
 
-body>*{
-  position:relative;
-  z-index:1;
+body > * {
+  position: relative;
+  z-index: 1;
 }
-
-/* Brand + nav + info — sama kuin KehysGen */
 #brandbar{
-  position:sticky; top:0; z-index:3;
-  background:#0b1120; color:#fff; /* tummempi kuin sivu */
-  display:flex; align-items:center; gap:12px;
-  padding:10px 14px; border-bottom:1px solid #1f2937;
+  position:sticky;
+  top:0;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px;
+  color:#fff;
+  border-bottom:1px solid rgba(148,163,184,0.25);
 }
-#brandbar .brand{ font-weight:700; letter-spacing:.3px }
-#brandbar .nav{ display:flex; gap:10px; margin-left:10px }
+#brandbar .brand{
+  font-weight:700;
+  letter-spacing:.3px;
+  display:flex;
+  align-items:center;
+}
+#brandbar .nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-left:10px;
+  flex-wrap:wrap;
+}
 #brandbar .nav a{
   color:#d1d5db;
   text-decoration:none;
@@ -55,7 +67,7 @@ body>*{
   font-size:13px;
   border:none;
   background:none;
-  box-shadow:none;
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
   border-radius:0;
   transition:color .2s ease;
 }
@@ -64,12 +76,18 @@ body>*{
 }
 #brandbar .nav a.active{
   color:#f8fafc;
-  border:1px solid rgba(148,163,184,0.35);
+  border:1px solid rgba(248,113,113,0.6);
   border-radius:10px;
-  background:linear-gradient(150deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.92) 55%, rgba(17,24,39,0.9) 100%);
-  box-shadow:0 22px 48px -30px rgba(15,23,42,0.95);
+  background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
 }
-#brandbar .nav-info{ flex:1; text-align:center; font-size:12px; color:#9ca3af; }
+#brandbar .nav-info{
+  margin-left:auto;
+  font-size:12px;
+  color:#9ca3af;
+  text-align:right;
+  line-height:1.4;
+}
 
 /* Page layout */
 #gridapp{display:flex;gap:14px;padding:14px}
@@ -80,44 +98,56 @@ body>*{
 .toolbar{
   display:flex; gap:8px; align-items:center;
   margin:0 0 10px 0;
-  background:#0f172a; border:1px solid #1f2937; border-radius:10px; padding:10px;
+  border:1px solid rgba(148,163,184,0.25);
+  border-radius:12px;
+  padding:12px;
+  background:rgba(34,34,34,0.4);
+  box-shadow:0 26px 60px -40px rgba(15,23,42,0.95);
 }
 .spacer{ flex:1; }
 
 /* Punaiset napit kuten KehysGenissä */
-.btn-primary{
-  background:#dc2626;
-  color:#fff;
-  border:1px solid #b91c1c;
-  border-radius:8px;
-  padding:8px 12px;
-  font-size:13px;
+.btn-primary,
+.btn-soft,
+.btn-red {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 20px;
   font-weight:600;
-  cursor:pointer;
-  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  font-size:14px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  border-radius:12px;
+  border:1px solid rgba(248,113,113,0.6);
+  background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
-.btn-primary:hover{
-  background:#ef4444;
-  border-color:#dc2626;
-  transform:translateY(-1px);
-}
-
-.btn-soft{ /* hieman vaaleampi Uusi kuva -napille */
-  background:#273449; color:#f8fafc; border:1px solid #3b475c;
-  border-radius:8px; padding:8px 12px; font-size:13px; cursor:pointer;
-}
-.btn-soft:hover{ background:#2f3f55; }
+.btn-primary:hover,
+.btn-soft:hover,
+.btn-red:hover {
+  transform:translateY(-2px);
+  box-shadow:0 30px 58px -32px rgba(220,38,38,0.68);
+  filter:brightness(1.05);
 }
 
 /* Canvas + sections */
 #canvasWrap{
   display:flex;flex-direction:column;align-items:center;gap:10px;
-  background:#0f172a;border:1px solid #1f2937;border-radius:10px;padding:12px
+  border:1px solid rgba(148,163,184,0.25);
+  border-radius:14px;
+  padding:16px;
+  background:rgba(34,34,34,0.4);
+  box-shadow:0 30px 70px -42px rgba(15,23,42,0.9);
 }
 #gridCanvas{
   width:960px;height:540px;
-  background:#ff1a1a; /* kirkkaan punainen tausta previewille */
-  border:1px solid #334155;border-radius:8px;touch-action:none
+   /* kirkkaan punainen tausta previewille */
+  border:1px solid rgba(248,113,113,0.3);border-radius:8px;touch-action:none
 }
 .hint{margin:0;color:#94a3b8;font-size:12px}
 
@@ -132,13 +162,13 @@ body>*{
   border:1px solid #475569;               /* tummempi reuna */
   border-radius:10px;
   padding:10px;
-  background:#0f172a;                     /* aiempaa selkeämpi kontrasti */
+                       /* aiempaa selkeämpi kontrasti */
   display:flex; justify-content:center; align-items:center; min-height:44px;
   font-weight:700; color:#e5e7eb; cursor:pointer; transition:.15s ease;
-  box-shadow:0 1px 0 rgba(0,0,0,.25) inset;
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
 }
-.cellchip:hover{ background:#1e293b; }
-.cellchip.active{ background:#dc2626; color:#fff; border-color:#b91c1c; }
+.cellchip:hover{  }
+.cellchip.active{  color:#fff; border-color:#b91c1c; }
 
 /* Controls under canvas */
 .under-controls{
@@ -154,8 +184,14 @@ body>*{
 
 /* Panels */
 .panel{
-  background:#0f172a;border:1px solid #1f2937;border-radius:10px;
-  padding:10px;display:flex;flex-direction:column;gap:10px
+  border:1px solid rgba(148,163,184,0.25);
+  border-radius:12px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:rgba(34,34,34,0.4);
+  box-shadow:0 26px 60px -40px rgba(15,23,42,0.9);
 }
 .panel.small{font-size:13px}
 .panel-title{font-weight:600;font-size:13px;color:#e5e7eb}
@@ -170,27 +206,38 @@ button{border:none;border-radius:8px;padding:8px 10px;font-size:13px;cursor:poin
 .file-btn-red{
   position:relative;
   overflow:hidden;
-  background:#1f2937;
-  color:#f8fafc;
-  border:1px solid #334155;
-  padding:8px 12px;
-  border-radius:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 20px;
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:#fff;
+  border-radius:12px;
+  border:1px solid rgba(248,113,113,0.6);
+  background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
   cursor:pointer;
-  font-size:13px;
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
-.file-btn-red:hover{ background:#273449; }
+.file-btn-red:hover{
+  transform:translateY(-2px);
+  box-shadow:0 30px 58px -32px rgba(220,38,38,0.68);
+  filter:brightness(1.05);
+}
 .file-btn-red input{ position:absolute; inset:0; opacity:0; cursor:pointer }
 
-.btn-small{ padding:6px 10px; font-size:12px; border-radius:8px; }
-.btn-red{ background:#1f2937; color:#f8fafc; border:1px solid #334155; }
-.btn-red:hover{ background:#273449; }
+.btn-small{ padding:6px 12px; font-size:12px; border-radius:10px; }
 
 /* Ghost-painikkeita ei käytetä Valittu solu -rivin napeissa enää,
    mutta jätetään yleiseen käyttöön jos muualla tarvitaan */
 button.ghost{
   background:transparent;color:#e5e7eb;border:1px solid #475569
 }
-button.ghost:hover{ background:#1e293b; }
+button.ghost:hover{  }
 
 .buttons{display:flex;gap:8px;flex-wrap:wrap}
 .buttons.smallgap{gap:6px}
@@ -201,17 +248,49 @@ button.ghost:hover{ background:#1e293b; }
   display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;
 }
 .layout-item{
-  display:flex; flex-direction:column; gap:6px; align-items:center;
-  border:1px solid #1f2937; border-radius:10px; padding:8px; background:#111827; cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:center;
+  border:none;
+  border-radius:10px;
+  padding:8px;
+  cursor:pointer;
   transition:.15s ease;
+  background:transparent;
 }
-.layout-item:hover{ box-shadow:0 3px 10px rgba(0,0,0,.35) }
-.layout-item.active{ outline:2px solid #2563eb; background:#0f172a }
-.layout-thumb{ width:200px; height:100px; border-radius:8px; border:1px solid #334155; display:block; background:#0b1220 }
+.layout-item:hover{
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
+  background:transparent;
+}
+.layout-thumb{
+  width:200px;
+  height:100px;
+  border-radius:8px;
+  display:block;
+  background:transparent;
+}
 .layout-name{ font-size:12px; color:#e5e7eb }
 
 /* Checkbox inline */
 .checkbox{ display:flex; align-items:center; gap:8px; color:#e5e7eb; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

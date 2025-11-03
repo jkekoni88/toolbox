@@ -425,8 +425,7 @@ function buildSlantedPaths(outW, outH, angleDeg){
 function drawLayoutThumb(canvas, type){
   const c = canvas, g = c.getContext('2d');
   const TW = c.width, TH = c.height;
-  g.fillStyle = '#ff1a1a'; g.fillRect(0,0,TW,TH);
-  g.fillStyle = 'rgba(255,255,255,.15)'; g.fillRect(0,0,TW,TH);
+  g.fillStyle = '#c62026'; g.fillRect(0,0,TW,TH);
 
   const gutter = Math.max(2, Math.round(DIVIDER_PX * (TW / W)));
   g.fillStyle = '#ffffff';
@@ -592,10 +591,10 @@ function filterString(c){
   return `brightness(${b}%) contrast(${k}%) grayscale(${gray}%) blur(${bl}px)`;
 }
 const SHADES = [
-  'rgba(255,255,255,0.20)',
-  'rgba(0,0,0,0.08)',
-  'rgba(255,255,255,0.12)',
-  'rgba(0,0,0,0.06)'
+  '#c62026',
+  '#c62026',
+  '#c62026',
+  '#c62026'
 ];
 function drawCellImage(cell, rp, rf){
   const iw = cell.iw, ih = cell.ih;

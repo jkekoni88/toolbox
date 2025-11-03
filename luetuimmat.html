@@ -8,7 +8,7 @@
   <link rel="preload" href="fonts/QuattroNews-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
   <link rel="stylesheet" href="luetuimmat.css" />
 </head>
-<body>
+<body id="root">
   <header id="brandbar">
     <div class="brand">ToolBox</div>
     <nav class="nav">
@@ -25,7 +25,8 @@
     </div>
   </header>
 
-  <main id="app">
+  <main>
+    <div id="app">
     <section class="left">
       <div id="previewBlock">
         <div id="articles-frame">
@@ -84,9 +85,11 @@
         </p>
       </div>
     </aside>
+    </div>
   </main>
 
   <script src="html2canvas.min.js"></script>
   <script src="luetuimmat.js"></script>
 </body>
 </html>
+
