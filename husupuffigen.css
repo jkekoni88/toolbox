@@ -1,65 +1,59 @@
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-  color:#f9fafb;
-  background:#111827;
-  position:relative;
-  overflow-x:hidden;
+* { box-sizing: border-box; }
+html, body { margin:0; height:100%; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+  background: #111827;
+  color: #f9fafb;
+  position: relative;
+  overflow-x: hidden;
 }
 
 body::before,
-body::after{
-  content:"";
-  position:fixed;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  filter:blur(120px);
-  opacity:0.45;
-  pointer-events:none;
-  z-index:0;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-body::before{
-  top:-140px;
-  left:-160px;
-  background:radial-gradient(circle at center, rgba(59,130,246,0.55) 0%, rgba(67,56,202,0.22) 48%, rgba(17,24,39,0) 85%);
+body::before {
+  background:
+    radial-gradient(circle at top left, rgba(170, 10, 10, 0.96) 0%, rgba(140, 5, 5, 0.88) 18%, rgba(45, 0, 0, 0.5) 40%, rgba(30, 0, 0, 0) 65%),
+    radial-gradient(circle at bottom right, rgba(14, 24, 120, 0.85) 0%, rgba(30, 0, 0, 0.65) 32%, rgba(30, 0, 0, 0) 62%);
+  filter: blur(90px);
+  opacity: 0.9;
 }
 
-body::after{
-  bottom:-160px;
-  right:-120px;
-  background:radial-gradient(circle at center, rgba(14,165,233,0.45) 0%, rgba(59,130,246,0.18) 52%, rgba(17,24,39,0) 90%);
+body::after {
+  background:
+    radial-gradient(circle at center, rgba(30, 0, 0, 0.8) 0%, rgba(30, 0, 0, 0.7) 55%, rgba(17, 24, 39, 0.4) 75%);
+  filter: blur(200px);
+  opacity: 0.85;
 }
 
-body>*{
-  position:relative;
-  z-index:1;
+body > * {
+  position: relative;
+  z-index: 1;
+}
+#root{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+main{
+  flex:1 0 auto;
+  width:100%;
+  display:block;
 }
 
-/* === Quattro News Bold webfont ===
-   Laita tiedostot kansioon /fonts:
-   - QuattroNews-Bold.woff2
-   - QuattroNews-Bold.woff
-*/
-@font-face{
-  font-family: 'Quattro News';
-  src:
-    url('fonts/QuattroNews-Bold.woff2') format('woff2'),
-    url('fonts/QuattroNews-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* Brand + nav + info — yhtenäinen tyyli */
 #brandbar{
   position:sticky; 
   top:0; 
   z-index:3;
-  background:#0b1120; 
+   
   color:#fff; 
   display:flex; 
   align-items:center; 
@@ -72,9 +66,11 @@ body>*{
   letter-spacing:.3px 
 }
 #brandbar .nav{ 
-  display:flex; 
+  display:flex;
+  align-items:center;
   gap:10px; 
-  margin-left:10px 
+  margin-left:10px;
+  flex-wrap:wrap;
 }
 #brandbar .nav a{
   color:#d1d5db; 
@@ -83,7 +79,7 @@ body>*{
   font-size:13px;
   border:none;
   background:none;
-  box-shadow:none;
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
   border-radius:0;
   transition:color .2s ease;
 }
@@ -92,22 +88,29 @@ body>*{
 }
 #brandbar .nav a.active{ 
   color:#f8fafc;
-  border:1px solid rgba(148,163,184,0.35);
+  border:1px solid rgba(248,113,113,0.6);
   border-radius:10px;
-  background:linear-gradient(150deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.92) 55%, rgba(17,24,39,0.9) 100%);
-  box-shadow:0 22px 48px -30px rgba(15,23,42,0.95);
+  background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
 }
 #brandbar .nav-info{ 
-  flex:1; 
-  text-align:center; 
+  margin-left:auto;
   font-size:12px; 
   color:#9ca3af; 
+  text-align:right;
+  line-height:1.4;
 }
 
 /* Kaksi 500px saraketta keskellä, tiiviit gapit */
 #app{
-  display:flex; gap:16px; padding:16px;
+  display:flex;
+  gap:20px;
+  padding:24px;
+  align-items:flex-start;
   justify-content:center;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
 }
 .col{ width:500px; min-width:0; display:flex; flex-direction:column; gap:10px; }
 .download-panel{ align-items:stretch; }
@@ -116,40 +119,47 @@ body>*{
 /* Canvas-kortti */
 #canvasWrap{
   display:flex; justify-content:center; align-items:center;
-  background:#0f172a; border:1px solid #1f2937; border-radius:10px; padding:10px;
+   border:1px solid #1f2937; border-radius:10px; padding:10px;
 }
 #puffiCanvas{
   width:100%; height:auto;  /* 500px leveä esikatselu, 1080x1920 piirto */
-  border-radius:10px; border:1px solid #334155; background:#0b1220;
+  border-radius:10px; border:1px solid rgba(248,113,113,0.3); 
 }
 
 /* Nappi */
 .btn-primary{
-  background:#dc2626;
-  color:#fff;
-  border:1px solid #b91c1c;
-  border-radius:8px;
-  padding:10px 12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 20px;
+  font-weight:600;
   font-size:14px;
-  cursor:pointer;
-  transition:background .2s ease, border-color .2s ease, transform .2s ease;
-  box-shadow:none;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  border-radius:12px;
+  border:1px solid rgba(248,113,113,0.6);
+  background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
+  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
 .btn-primary:hover{
-  background:#ef4444;
-  border-color:#dc2626;
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+  box-shadow:0 30px 58px -32px rgba(220,38,38,0.68);
+  filter:brightness(1.05);
 }
 
 /* Paneelit */
 .panel{
-  background:#0f172a; border:1px solid #1f2937; border-radius:10px; padding:10px;
+   border:1px solid #1f2937; border-radius:10px; padding:10px;
   display:flex; flex-direction:column; gap:8px;
 }
 .panel-title{ font-weight:600; font-size:13px; color:#e5e7eb }
 .row{ display:grid; grid-template-columns:160px 1fr; gap:8px; align-items:center }
 input[type=text], select, textarea{
-  background:#111827; color:#e5e7eb; border:1px solid #334155; border-radius:8px;
+   color:#e5e7eb; border:1px solid rgba(248,113,113,0.3); border-radius:8px;
   padding:8px; font-size:14px; width:100%;
 }
 textarea{ resize:vertical }
@@ -160,6 +170,25 @@ textarea{ resize:vertical }
   #app{ flex-direction:column; align-items:center; }
   .col{ width:min(500px, 94vw); }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

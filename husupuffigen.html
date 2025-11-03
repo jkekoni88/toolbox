@@ -6,13 +6,13 @@
   <title>HusupuffiGen</title>
   <link rel="stylesheet" href="husupuffigen.css" />
 </head>
-<body>
+<body id="root">
  <header id="brandbar">
   <div class="brand">ToolBox</div>
   <nav class="nav">
     <a href="index.html">Etusivu</a>
+        <a href="grids.html">GridGen</a>
     <a href="kehysgen.html">KehysGen</a>
-    <a href="grids.html">GridGen</a>
     <a href="poliisigen.html">PoliisiGen</a>
 
     <a class="active" href="husupuffigen.html">HusupuffiGen</a>
@@ -23,7 +23,8 @@
 </header>
 
 
-  <main id="app">
+  <main>
+    <div id="app">
     <!-- Vasen: canvas + lataus -->
     <section class="col left">
       <div id="canvasWrap">
@@ -68,11 +69,13 @@
         <button id="download" class="btn-primary">Tallenna kuva koneelle</button>
       </div>
     </aside>
+      </div>
   </main>
 
   <script src="husupuffigen.js"></script>
 </body>
 </html>
+
 
 
 
