@@ -5,6 +5,38 @@ body{
   font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
   color:#f9fafb;
   background:#111827;
+  position:relative;
+  overflow-x:hidden;
+}
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.45;
+  pointer-events:none;
+  z-index:0;
+}
+
+body::before{
+  top:-140px;
+  left:-160px;
+  background:radial-gradient(circle at center, rgba(59,130,246,0.55) 0%, rgba(67,56,202,0.22) 48%, rgba(17,24,39,0) 85%);
+}
+
+body::after{
+  bottom:-160px;
+  right:-120px;
+  background:radial-gradient(circle at center, rgba(14,165,233,0.45) 0%, rgba(59,130,246,0.18) 52%, rgba(17,24,39,0) 90%);
+}
+
+body>*{
+  position:relative;
+  z-index:1;
 }
 
 /* === Quattro News Bold webfont ===
@@ -48,16 +80,22 @@ body{
   color:#d1d5db; 
   text-decoration:none; 
   padding:6px 10px; 
-  border-radius:6px; 
   font-size:13px;
-}
-#brandbar .nav a.active{ 
-  background:#b91c1c; 
-  color:#fff 
+  border:none;
+  background:none;
+  box-shadow:none;
+  border-radius:0;
+  transition:color .2s ease;
 }
 #brandbar .nav a:hover{ 
-  background:#dc2626; 
-  color:#fff 
+  color:#f8fafc;
+}
+#brandbar .nav a.active{ 
+  color:#f8fafc;
+  border:1px solid rgba(148,163,184,0.35);
+  border-radius:10px;
+  background:linear-gradient(150deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.92) 55%, rgba(17,24,39,0.9) 100%);
+  box-shadow:0 22px 48px -30px rgba(15,23,42,0.95);
 }
 #brandbar .nav-info{ 
   flex:1; 
@@ -72,7 +110,8 @@ body{
   justify-content:center;
 }
 .col{ width:500px; min-width:0; display:flex; flex-direction:column; gap:10px; }
-.left #download{ align-self:center; width:100%; }
+.download-panel{ align-items:stretch; }
+.download-panel #download{ width:100%; }
 
 /* Canvas-kortti */
 #canvasWrap{
@@ -86,10 +125,21 @@ body{
 
 /* Nappi */
 .btn-primary{
-  background:#dc2626; color:#fff; border:1px solid #b91c1c;
-  border-radius:8px; padding:10px 12px; font-size:14px; cursor:pointer;
+  background:#dc2626;
+  color:#fff;
+  border:1px solid #b91c1c;
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:14px;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  box-shadow:none;
 }
-.btn-primary:hover{ background:#ef4444 }
+.btn-primary:hover{
+  background:#ef4444;
+  border-color:#dc2626;
+  transform:translateY(-1px);
+}
 
 /* Paneelit */
 .panel{
@@ -110,3 +160,6 @@ textarea{ resize:vertical }
   #app{ flex-direction:column; align-items:center; }
   .col{ width:min(500px, 94vw); }
 }
+
+
+

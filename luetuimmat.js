@@ -26,14 +26,19 @@
   let textChanged = false;
   let lastBlob = null;
 
-  const badgeEl = els.apiStatus?.parentElement && els.apiStatus.parentElement.classList.contains('badge')
-    ? els.apiStatus.parentElement
-    : null;
+  const statusWrapper = (() => {
+    const parent = els.apiStatus?.parentElement;
+    if (!parent) return null;
+    if (parent.classList.contains('badge') || parent.classList.contains('api-status-pill')){
+      return parent;
+    }
+    return null;
+  })();
 
   function setApiStatus(ok){
     if (!els.apiStatus) return;
     els.apiStatus.textContent = ok ? 'API toimii!' : 'API ei ole saavutettavissa!';
-    const target = badgeEl || els.apiStatus;
+    const target = statusWrapper || els.apiStatus;
     target.classList.toggle('ok', ok);
     target.classList.toggle('fail', !ok);
   }
@@ -74,13 +79,13 @@
   }
 
   function highlightUpdateButton(active){
-    els.updateBtn.classList.toggle('changed', active);
     els.updateBtn.classList.toggle('needs-update', active);
   }
 
   function setDownloadState(enabled){
     els.downloadBtn.disabled = !enabled;
     els.downloadBtn.classList.toggle('btn-disabled', !enabled);
+    els.downloadBtn.classList.toggle('ready', enabled);
     if (!enabled){
       lastBlob = null;
     }
