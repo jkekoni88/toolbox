@@ -1,4 +1,4 @@
-name: Deploy Static Files to Azure SWA
+name: Deploy to Azure
 
 on:
   push:
@@ -7,19 +7,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build_and_deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: 1. Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy to Azure Static Web Apps
+      - name: 2. Setup Node.js and Build Application
+        run: |
+          npm install
+          npm run build
+
+      - name: 3. Deploy to Azure
+        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Specifies the action to perform. "upload" will deploy your app.
           action: "upload"
-          skip_app_build: true
-          app_location: "/"
+
+          # --- App Configuration ---
+          # Location of the BUILT application code. This should point to the
+          # folder created by the "npm run build" command, which is usually "dist".
+          app_location: "dist"
+
+          # Location of your Azure Functions API code, if you have one.
+          api_location: ""
+
+          # This is empty because we are providing the built app in app_location.
           output_location: ""
