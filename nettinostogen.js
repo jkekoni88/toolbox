@@ -26,6 +26,7 @@
   const scaleYValue = document.getElementById('nett-scale-y-value');
   const fontScaleValue = document.getElementById('nett-font-scale-value');
   const fontLockToggle = document.getElementById('nett-font-lock');
+  const rangeInputs = [scaleAll, scaleX, scaleY, fontScale].filter(Boolean);
 
   let fontScaleMultiplier = 1;
   let currentScaleX = 1;
@@ -43,6 +44,18 @@
   const BASE_FONT_SIZE = 30;
   const MAX_FONT_SIZE = 60;
   const MIN_FONT_SIZE = 12;
+
+  function clamp(value, min, max){
+    return Math.min(Math.max(value, min), max);
+  }
+  function updateRangeFill(el){
+    if (!el) return;
+    const min = Number(el.min ?? 0);
+    const max = Number(el.max ?? 100);
+    const value = Number(el.value ?? min);
+    const percent = max === min ? 0 : ((value - min) / (max - min)) * 100;
+    el.style.setProperty('--ng-range-value', `${clamp(percent, 0, 100)}%`);
+  }
 
   if (!form || !urlInput || !captureBtn || !imageSelector || !previewImage || !textsContainer) {
     console.warn('NettinostoGen: pakollisia elementtejä puuttuu.');
@@ -152,6 +165,8 @@
     const horizontal = Number(scaleX?.value || 100);
     const vertical = Number(scaleY?.value || 100);
     const font = Number(fontScale?.value || 100);
+
+    rangeInputs.forEach(updateRangeFill);
 
     if (scaleAllValue){
       scaleAllValue.textContent = `${uniform}%`;

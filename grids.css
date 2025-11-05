@@ -98,11 +98,11 @@ body > * {
 .toolbar{
   display:flex; gap:8px; align-items:center;
   margin:0 0 10px 0;
-  border:1px solid rgba(148,163,184,0.25);
+  border:none;
   border-radius:12px;
   padding:12px;
-  background:rgba(34,34,34,0.4);
-  box-shadow:0 26px 60px -40px rgba(15,23,42,0.95);
+  background:transparent;
+  box-shadow:none;
 }
 .spacer{ flex:1; }
 
@@ -158,17 +158,29 @@ body > * {
   grid-template-columns:repeat(4, minmax(0,1fr));
   gap:8px;
 }
-.cellchip{
-  border:1px solid #475569;               /* tummempi reuna */
+#gridapp .cellchip{
+  border:1px solid rgba(248,113,113,0.3);
   border-radius:10px;
   padding:10px;
-                       /* aiempaa selkeämpi kontrasti */
   display:flex; justify-content:center; align-items:center; min-height:44px;
-  font-weight:700; color:#e5e7eb; cursor:pointer; transition:.15s ease;
-  box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
+  font-weight:700; color:#e2e8f0; cursor:pointer; transition:transform .18s ease, box-shadow .18s ease, filter .18s ease, border-color .18s ease;
+  background:linear-gradient(180deg, rgba(28, 23, 36, 0.96) 0%, rgba(18, 14, 24, 0.92) 100%);
+  box-shadow:0 18px 40px -28px rgba(15,23,42,0.9);
+  filter:brightness(0.92);
 }
-.cellchip:hover{  }
-.cellchip.active{  color:#fff; border-color:#b91c1c; }
+#gridapp .cellchip:hover{
+  transform:translateY(-1px);
+  filter:brightness(1);
+  border-color:rgba(248,113,113,0.55);
+  box-shadow:0 24px 52px -30px rgba(220,38,38,0.55);
+}
+#gridapp .cellchip.active{
+  background:linear-gradient(0deg, rgba(120, 10, 16, 0.98) 0%, rgba(203, 24, 35, 0.96) 70%, rgba(244, 63, 94, 0.9) 100%);
+  color:#f8fafc;
+  border-color:rgba(248,113,113,0.78);
+  box-shadow:0 30px 60px -28px rgba(220,38,38,0.68);
+  filter:brightness(1.05);
+}
 
 /* Controls under canvas */
 .under-controls{
@@ -184,14 +196,14 @@ body > * {
 
 /* Panels */
 .panel{
-  border:1px solid rgba(148,163,184,0.25);
+  border:none;
   border-radius:12px;
   padding:14px;
   display:flex;
   flex-direction:column;
   gap:10px;
-  background:rgba(34,34,34,0.4);
-  box-shadow:0 26px 60px -40px rgba(15,23,42,0.9);
+  background:transparent;
+  box-shadow:none;
 }
 .panel.small{font-size:13px}
 .panel-title{font-weight:600;font-size:13px;color:#e5e7eb}
