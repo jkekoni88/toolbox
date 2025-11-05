@@ -37,8 +37,8 @@ body > * {
   z-index: 1;
 }
 #brandbar{
-  position:sticky;
-  top:0;
+  position:relative;
+  top:auto;
   z-index:3;
   display:flex;
   align-items:center;
@@ -104,6 +104,12 @@ body > * {
   background:transparent;
   box-shadow:none;
 }
+.toolbar .btn-primary,
+.toolbar .btn-soft,
+.toolbar .btn-red{
+  padding:6px 12px;
+  font-size:11px;
+}
 .spacer{ flex:1; }
 
 /* Punaiset napit kuten KehysGenissä */
@@ -137,10 +143,16 @@ body > * {
 
 /* Canvas + sections */
 #canvasWrap{
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  border:1px solid rgba(148,163,184,0.25);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  border:none;
   border-radius:14px;
   padding:16px;
+  background:transparent;
+  box-shadow:none;
+}
   background:rgba(34,34,34,0.4);
   box-shadow:0 30px 70px -42px rgba(15,23,42,0.9);
 }
@@ -210,7 +222,77 @@ body > * {
 .row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
 .row.static{grid-template-columns:1fr}
 .val{font-size:12px;color:#9ca3af}
-input[type=range]{width:200px}
+input[type=range]{
+  width:200px;
+  --gg-range-track-height:8px;
+  --gg-range-thumb-size:18px;
+  --gg-range-fill:rgba(211, 29, 45, 0.85);
+  --gg-range-track:rgba(71, 85, 105, 0.55);
+  --gg-range-thumb:#f97373;
+  --gg-range-value:50%;
+  accent-color:#ef4444;
+  height:var(--gg-range-track-height);
+  border-radius:999px;
+  border:none;
+  outline:none;
+  background:linear-gradient(
+    to right,
+    var(--gg-range-fill) 0,
+    var(--gg-range-fill) var(--gg-range-value),
+    var(--gg-range-track) var(--gg-range-value),
+    var(--gg-range-track) 100%
+  );
+  cursor:pointer;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:background 0.15s ease;
+}
+input[type=range]:focus-visible{
+  box-shadow:0 0 0 2px rgba(248,113,113,0.35);
+}
+input[type=range]::-webkit-slider-runnable-track{
+  height:100%;
+  background:transparent;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:var(--gg-range-thumb-size);
+  height:var(--gg-range-thumb-size);
+  border-radius:50%;
+  border:2px solid rgba(248, 113, 113, 0.75);
+  background:radial-gradient(circle at 30% 30%, #fca5a5 0%, #f87171 45%, #dc2626 100%);
+  box-shadow:0 2px 6px rgba(220,38,38,0.45), 0 0 0 1px rgba(120,10,10,0.5);
+  margin-top:calc((var(--gg-range-thumb-size) - var(--gg-range-track-height))/-2);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+input[type=range]:active::-webkit-slider-thumb{
+  transform:scale(1.05);
+  box-shadow:0 4px 10px rgba(220,38,38,0.6), 0 0 0 1px rgba(120,10,10,0.65);
+}
+input[type=range]::-moz-range-track{
+  height:var(--gg-range-track-height);
+  border-radius:999px;
+  background:var(--gg-range-track);
+}
+input[type=range]::-moz-range-progress{
+  height:var(--gg-range-track-height);
+  border-radius:999px;
+  background:var(--gg-range-fill);
+}
+input[type=range]::-moz-range-thumb{
+  width:var(--gg-range-thumb-size);
+  height:var(--gg-range-thumb-size);
+  border-radius:50%;
+  border:2px solid rgba(248, 113, 113, 0.75);
+  background:radial-gradient(circle at 30% 30%, #fca5a5 0%, #f87171 45%, #dc2626 100%);
+  box-shadow:0 2px 6px rgba(220,38,38,0.45), 0 0 0 1px rgba(120,10,10,0.5);
+  cursor:pointer;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+input[type=range]:active::-moz-range-thumb{
+  transform:scale(1.05);
+  box-shadow:0 4px 10px rgba(220,38,38,0.6), 0 0 0 1px rgba(120,10,10,0.65);
+}
 button{border:none;border-radius:8px;padding:8px 10px;font-size:13px;cursor:pointer}
 
 /* Yhtenäiset punaiset napit Valittu solu -osioon */

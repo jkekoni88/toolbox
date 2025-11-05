@@ -58,8 +58,8 @@ main{
 *{box-sizing:border-box}
 
 #brandbar{
-  position:sticky;
-  top:0;
+  position:relative;
+  top:auto;
   z-index:3;
   color:#fff;
   display:flex;

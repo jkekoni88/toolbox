@@ -37,8 +37,8 @@ body > * {
   z-index: 1;
 }
 #brandbar{
-  position:sticky;
-  top:0;
+  position:relative;
+  top:auto;
   z-index:3;
   display:flex;
   align-items:center;
@@ -92,8 +92,7 @@ body > * {
 /* Sivupalkki oikealla */
 #sidebar{
   width:clamp(300px, 35vw, 600px);
-  
-  border-left:1px solid #1f2937; /* oikea reuna */
+  border-left:none;
   border-right:none;
   padding:12px;
   display:flex;flex-direction:column;gap:10px;overflow:auto;
@@ -111,8 +110,8 @@ body > * {
 .thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .frame-item{
   display:flex;flex-direction:column;gap:4px;padding:6px;
-  border:1px solid #1f2937;border-radius:8px;
-   cursor:pointer; transition:.15s
+  border:none;border-radius:8px;
+  cursor:pointer; transition:.15s
 }
 .frame-item:hover{box-shadow:0 22px 48px -30px rgba(220,38,38,0.55);
   background: linear-gradient(0deg, rgba(91, 4, 4, 0.92) 0%, rgba(169, 1, 17, 0.9) 68%, rgba(211, 0, 25, 0.85) 100%);
@@ -126,8 +125,14 @@ body > * {
 #main{flex:1;display:flex;flex-direction:column;order:1}
 .toolbar{
   display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-  padding:8px 10px;border-bottom:1px solid #1f2937;
+  padding:8px 10px;border-bottom:none;
    position:sticky; top:0; z-index:2
+}
+.toolbar .btn-danger,
+.toolbar .btn-primary,
+.toolbar .btn-secondary{
+  padding:6px 12px;
+  font-size:11px;
 }
 
 /* Napit */
@@ -198,14 +203,14 @@ button:disabled{opacity:.5;cursor:not-allowed}
 #previewCanvas{
   width:960px;height:540px;
    /* kirkkaan punainen tausta */
-  border-radius:8px;border:1px solid #e5e7eb;touch-action:none
+  border-radius:8px;border:1px solid rgba(248,113,113,0.4);touch-action:none
 }
 #hint{margin:0;color:#94a3b8;font-size:12px}
 
 /* Controls */
 .controls{padding:0 12px 12px}
 .panel{
-   border:1px solid #1f2937; border-radius:8px; overflow:hidden
+   border:none; border-radius:8px; overflow:hidden
 }
 .panel-header{
   display:flex;justify-content:space-between;align-items:center;
@@ -214,7 +219,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .panel-header h3{margin:0;font-size:13px}
 .controls-grid{display:grid;grid-template-columns:repeat(4,minmax(180px,1fr));gap:10px;padding:10px}
 .card{
-  border:1px solid #1f2937;border-radius:6px;padding:8px;
+  border:none;border-radius:6px;padding:8px;
   display:flex;flex-direction:column;gap:4px
 }
 .card-title{font-weight:600;font-size:12px;margin-bottom:2px;color:#e5e7eb}
@@ -225,7 +230,7 @@ input[type=range]{
   --kg-range-track-height:8px;
   --kg-range-thumb-size:18px;
   --kg-range-fill:rgba(211, 29, 45, 0.85);
-  --kg-range-track:rgba(15, 23, 42, 0.85);
+  --kg-range-track:rgba(71, 85, 105, 0.55);
   --kg-range-thumb:#f97373;
   --kg-range-value:50%;
   accent-color:#ef4444;
