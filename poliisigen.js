@@ -79,6 +79,15 @@ const state = {
 
 // -------- helpers --------
 function clamp(v,lo,hi){ return Math.min(hi, Math.max(lo, v)); }
+function updateRangeFill(el){
+  if (!el) return;
+  const min = Number(el.min ?? 0);
+  const max = Number(el.max ?? 100);
+  const value = Number(el.value ?? min);
+  const percent = max === min ? 0 : ((value - min) / (max - min)) * 100;
+  const safePercent = clamp(percent, 0, 100);
+  el.style.setProperty('--pg-range-value', `${safePercent}%`);
+}
 function filterString(c){
   const b = clamp(c.bright ?? 100, 0, 200);
   const k = clamp(c.contrast ?? 100, 0, 200);
@@ -141,19 +150,30 @@ function syncLayoutControls(){
   state.contentW = clamp(state.contentW, 0, MAX_CONTENT_W);
   els.contentWidth.value = state.contentW;
   els.contentWidthVal.textContent = `${state.contentW} px`;
+  updateRangeFill(els.contentWidth);
 
   els.topPad.value = state.topPad;
   els.topPadVal.textContent = `${state.topPad} px`;
+  updateRangeFill(els.topPad);
 
   els.bottomPad.value = state.bottomPad;
   els.bottomPadVal.textContent = `${state.bottomPad} px`;
+  updateRangeFill(els.bottomPad);
 }
 
 function syncCellControls(){
   const c = state.cells[state.selected] || defaultCell();
-  els.cellScale.value = c.scale; els.cellScaleVal.textContent = `${c.scale}%`;
-  els.cellBright.value = c.bright; els.cellBrightVal.textContent = `${c.bright}%`;
-  els.cellContrast.value = c.contrast; els.cellContrastVal.textContent = `${c.contrast}%`;
+  els.cellScale.value = c.scale;
+  els.cellScaleVal.textContent = `${c.scale}%`;
+  updateRangeFill(els.cellScale);
+
+  els.cellBright.value = c.bright;
+  els.cellBrightVal.textContent = `${c.bright}%`;
+  updateRangeFill(els.cellBright);
+
+  els.cellContrast.value = c.contrast;
+  els.cellContrastVal.textContent = `${c.contrast}%`;
+  updateRangeFill(els.cellContrast);
 }
 
 // -------- geometry (FULL -> scaled) --------
@@ -652,15 +672,24 @@ els.resetCell.addEventListener('click', ()=>{
 
 els.cellScale.addEventListener('input', ()=>{
   const c = state.cells[state.selected]; if(!c) return;
-  c.scale = +els.cellScale.value; els.cellScaleVal.textContent = `${c.scale}%`; drawPreview();
+  c.scale = +els.cellScale.value;
+  els.cellScaleVal.textContent = `${c.scale}%`;
+  updateRangeFill(els.cellScale);
+  drawPreview();
 });
 els.cellBright.addEventListener('input', ()=>{
   const c = state.cells[state.selected]; if(!c) return;
-  c.bright = +els.cellBright.value; els.cellBrightVal.textContent = `${c.bright}%`; drawPreview();
+  c.bright = +els.cellBright.value;
+  els.cellBrightVal.textContent = `${c.bright}%`;
+  updateRangeFill(els.cellBright);
+  drawPreview();
 });
 els.cellContrast.addEventListener('input', ()=>{
   const c = state.cells[state.selected]; if(!c) return;
-  c.contrast = +els.cellContrast.value; els.cellContrastVal.textContent = `${c.contrast}%`; drawPreview();
+  c.contrast = +els.cellContrast.value;
+  els.cellContrastVal.textContent = `${c.contrast}%`;
+  updateRangeFill(els.cellContrast);
+  drawPreview();
 });
 
 // --- layout
@@ -682,16 +711,19 @@ els.layoutBtns().forEach(b=>{
 els.contentWidth.addEventListener('input', ()=>{
   state.contentW = clamp(+els.contentWidth.value, 0, MAX_CONTENT_W);
   els.contentWidthVal.textContent = `${state.contentW} px`;
+  updateRangeFill(els.contentWidth);
   drawPreview();
 });
 els.topPad.addEventListener('input', ()=>{
   state.topPad = +els.topPad.value;
   els.topPadVal.textContent = `${state.topPad} px`;
+  updateRangeFill(els.topPad);
   drawPreview();
 });
 els.bottomPad.addEventListener('input', ()=>{
   state.bottomPad = +els.bottomPad.value;
   els.bottomPadVal.textContent = `${state.bottomPad} px`;
+  updateRangeFill(els.bottomPad);
   drawPreview();
 });
 

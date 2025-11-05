@@ -1,4 +1,4 @@
-// KehysGen – kehysten lataus ja muokkaustyökalut
+﻿// KehysGen â€“ kehysten lataus ja muokkaustyÃ¶kalut
 
 const W = 1920, H = 1080;
 const PREV_W = 960, PREV_H = 540;
@@ -53,7 +53,7 @@ const els = {
   grain: document.getElementById('grain'),
   grainVal: document.getElementById('grainVal'),
 
-  // (Mahdolliset nuolipainikkeet, jos ne ovat vielä HTML:ssä)
+  // (Mahdolliset nuolipainikkeet, jos ne ovat vielÃ¤ HTML:ssÃ¤)
   moveLeft: document.getElementById('moveLeft'),
   moveRight: document.getElementById('moveRight'),
   moveUp: document.getElementById('moveUp'),
@@ -121,6 +121,17 @@ function showWarn(msg) {
 function clearWarn() {
   els.warn.hidden = true;
   els.warn.textContent = '';
+}
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+function updateRangeFill(el) {
+  if (!el) return;
+  const min = Number(el.min ?? 0);
+  const max = Number(el.max ?? 100);
+  const value = Number(el.value ?? min);
+  const percent = max === min ? 0 : ((value - min) / (max - min)) * 100;
+  el.style.setProperty('--kg-range-value', `${clamp(percent, 0, 100)}%`);
 }
 
 async function bitmapFromBlob(blob) {
@@ -395,7 +406,7 @@ async function tryLoadManifestJS() {
           if (Array.isArray(window.FRAMES_MANIFEST)) resolve(window.FRAMES_MANIFEST);
           else reject(new Error('FRAMES_MANIFEST puuttuu'));
         };
-        s.onerror = () => reject(new Error('manifest.js lataus epäonnistui'));
+        s.onerror = () => reject(new Error('manifest.js lataus epÃ¤onnistui'));
         document.head.appendChild(s);
       });
       if (Array.isArray(arr)) return arr;
@@ -455,7 +466,7 @@ async function loadFramesListToSidebar() {
   const list = await dbGetAll();
 
   if (!list.length) {
-    // Ei kehyksiä tallessa
+    // Ei kehyksiÃ¤ tallessa
     showWarn('Kehysten haku ei onnistunut');
     return;
   }
@@ -475,7 +486,7 @@ async function loadFramesListToSidebar() {
 // ===== UI toiminnot =====
 if (els.refreshFramesBtn) {
   els.refreshFramesBtn.addEventListener('click', async () => {
-    showWarn('Haetaan kehyksiä…');
+    showWarn('Haetaan kehyksiÃ¤â€¦');
     const ok = await loadFramesFromManifest();
     if (!ok) {
       showWarn('Kehysten haku ei onnistunut');
@@ -526,7 +537,7 @@ async function loadUserImage(file) {
   clearWarn();
   const bmpFull = await createImageBitmap(file);
   if (bmpFull.width !== W || bmpFull.height !== H) {
-    // Info: kuva skaalataan vientiin 1920×1080 (ei varoitus, vain informaatio -> jätetään warn piiloon)
+    // Info: kuva skaalataan vientiin 1920Ã—1080 (ei varoitus, vain informaatio -> jÃ¤tetÃ¤Ã¤n warn piiloon)
   }
   baseImageFull = bmpFull;
   baseImagePrev = await scaleBitmap(bmpFull, PREV_W, PREV_H);
@@ -573,6 +584,18 @@ function syncControlsUI() {
   els.vignette.value = String(edit.vignette);
   els.vignetteShape.value = edit.vignetteShape;
   els.grain.value = String(edit.grain);
+  [
+    els.brightness,
+    els.contrast,
+    els.saturate,
+    els.hue,
+    els.blur,
+    els.scale,
+    els.scaleX,
+    els.scaleY,
+    els.vignette,
+    els.grain
+  ].forEach(updateRangeFill);
 
   els.brightnessVal.textContent = `${edit.brightness}%`;
   els.contrastVal.textContent = `${edit.contrast}%`;
@@ -598,22 +621,29 @@ function resetAllEdits() {
 if (els.flipXBtn) els.flipXBtn.addEventListener('click', () => { edit.flipX = !edit.flipX; drawPreview(); });
 if (els.resetBtn) els.resetBtn.addEventListener('click', resetAllEdits);
 
-if (els.brightness) els.brightness.addEventListener('input', () => { edit.brightness = +els.brightness.value; els.brightnessVal.textContent = `${edit.brightness}%`; drawPreview(); });
-if (els.contrast)  els.contrast .addEventListener('input', () => { edit.contrast   = +els.contrast.value;   els.contrastVal.textContent = `${edit.contrast}%`;   drawPreview(); });
-if (els.saturate)  els.saturate .addEventListener('input', () => { edit.saturate   = +els.saturate.value;   els.saturateVal.textContent = `${edit.saturate}%`;   drawPreview(); });
-if (els.hue)       els.hue      .addEventListener('input', () => { edit.hue        = +els.hue.value;        els.hueVal.textContent = `${edit.hue}°`;            drawPreview(); });
+if (els.brightness) els.brightness.addEventListener('input', () => { edit.brightness = +els.brightness.value; els.brightnessVal.textContent = `${edit.brightness}%`; updateRangeFill(els.brightness); drawPreview(); });
+if (els.contrast)  els.contrast .addEventListener('input', () => { edit.contrast   = +els.contrast.value;   els.contrastVal.textContent = `${edit.contrast}%`;   updateRangeFill(els.contrast);   drawPreview(); });
+if (els.saturate)  els.saturate .addEventListener('input', () => { edit.saturate   = +els.saturate.value;   els.saturateVal.textContent = `${edit.saturate}%`;   updateRangeFill(els.saturate);   drawPreview(); });
+if (els.hue) {
+  els.hue.addEventListener('input', () => {
+    edit.hue = +els.hue.value;
+    els.hueVal.textContent = `${edit.hue}°`;
+    updateRangeFill(els.hue);
+    drawPreview();
+  });
+}
 if (els.grayscale) els.grayscale.addEventListener('change',()=> { edit.grayscale   =  els.grayscale.checked;                                   drawPreview(); });
 
-if (els.blur)   els.blur  .addEventListener('input', () => { edit.blur  = +els.blur.value;  els.blurVal.textContent  = `${edit.blur} px`;  drawPreview(); });
-if (els.scale)  els.scale .addEventListener('input', () => { edit.scale = +els.scale.value; els.scaleVal.textContent = `${edit.scale}%`;  drawPreview(); });
-if (els.scaleX) els.scaleX.addEventListener('input', () => { edit.scaleX= +els.scaleX.value;els.scaleXVal.textContent= `${edit.scaleX}%`; drawPreview(); });
-if (els.scaleY) els.scaleY.addEventListener('input', () => { edit.scaleY= +els.scaleY.value;els.scaleYVal.textContent= `${edit.scaleY}%`; drawPreview(); });
+if (els.blur)   els.blur  .addEventListener('input', () => { edit.blur  = +els.blur.value;  els.blurVal.textContent  = `${edit.blur} px`;  updateRangeFill(els.blur);  drawPreview(); });
+if (els.scale)  els.scale .addEventListener('input', () => { edit.scale = +els.scale.value; els.scaleVal.textContent = `${edit.scale}%`;  updateRangeFill(els.scale);  drawPreview(); });
+if (els.scaleX) els.scaleX.addEventListener('input', () => { edit.scaleX= +els.scaleX.value;els.scaleXVal.textContent= `${edit.scaleX}%`; updateRangeFill(els.scaleX); drawPreview(); });
+if (els.scaleY) els.scaleY.addEventListener('input', () => { edit.scaleY= +els.scaleY.value;els.scaleYVal.textContent= `${edit.scaleY}%`; updateRangeFill(els.scaleY); drawPreview(); });
 
-if (els.vignette)      els.vignette     .addEventListener('input', () => { edit.vignette      = +els.vignette.value;      els.vignetteVal.textContent = `${edit.vignette}%`; drawPreview(); });
+if (els.vignette)      els.vignette     .addEventListener('input', () => { edit.vignette      = +els.vignette.value;      els.vignetteVal.textContent = `${edit.vignette}%`; updateRangeFill(els.vignette); drawPreview(); });
 if (els.vignetteShape) els.vignetteShape.addEventListener('change',() => { edit.vignetteShape =  els.vignetteShape.value;                            drawPreview(); });
-if (els.grain)         els.grain        .addEventListener('input', () => { edit.grain         = +els.grain.value;         els.grainVal.textContent    = `${edit.grain}%`;    drawPreview(); });
+if (els.grain)         els.grain        .addEventListener('input', () => { edit.grain         = +els.grain.value;         els.grainVal.textContent    = `${edit.grain}%`;    updateRangeFill(els.grain);    drawPreview(); });
 
-// (Mahd. nuolipainikkeet jos ovat HTML:ssä)
+// (Mahd. nuolipainikkeet jos ovat HTML:ssÃ¤)
 function nudge(dx, dy, step = 10) { edit.offsetX += dx * step; edit.offsetY += dy * step; drawPreview(); }
 if (els.moveLeft)  els.moveLeft .addEventListener('click', (e)=> nudge(-1, 0, e.altKey ? 1 : 10));
 if (els.moveRight) els.moveRight.addEventListener('click', (e)=> nudge( 1, 0, e.altKey ? 1 : 10));
@@ -694,7 +724,7 @@ renderPresets();
 syncControlsUI();
 
 (async () => {
-  showWarn('Haetaan kehyksiä…');
+  showWarn('Haetaan kehyksiÃ¤â€¦');
   const ok = await loadFramesFromManifest();
   if (!ok) {
     showWarn('Kehysten haku ei onnistunut');

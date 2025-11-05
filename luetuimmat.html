@@ -36,20 +36,20 @@
           <div id="articles-container">
             <div class="header">LUETUIMMAT T&Auml;N&Auml;&Auml;N</div>
             <div class="body">
-              <p data-index="1" contenteditable="true" spellcheck="false">Otsikko yksi tahan - kayta Enter jakamaan rivit jarkevasti.</p>
+              <p data-index="1" contenteditable="true" spellcheck="false">1. Otsikko tähän</p>
               <hr />
-              <p data-index="2" contenteditable="true" spellcheck="false">Otsikko kaksi tahan - pida tekstit kahdella rivilla.</p>
+              <p data-index="2" contenteditable="true" spellcheck="false">2. Otsikko tähän</p>
               <hr />
-              <p data-index="3" contenteditable="true" spellcheck="false">Otsikko kolme tahan - valta liian pitkia lauseita.</p>
+              <p data-index="3" contenteditable="true" spellcheck="false">3. Otsikko tähän</p>
               <hr />
-              <p data-index="4" contenteditable="true" spellcheck="false">Otsikko nelja tahan - tee rivinvaihto tarvittaessa.</p>
+              <p data-index="4" contenteditable="true" spellcheck="false">4. Otsikko tähän</p>
             </div>
             <div class="footer" contenteditable="true" spellcheck="false">
               LUE LIS&Auml;&Auml;: mtvuutiset.fi tai lataa sovellus
             </div>
           </div>
           <p class="hint">
-            Generoi uutiset napista tai editoi otsikoita kasin. Muutosten jalkeen paina "Paivita kuvapohja".
+            Generoi uutiset napista tai editoi otsikoita käsin. Muutosten jälkeen paina "Päivitä kuvapohja".
           </p>
         </div>
 
@@ -63,12 +63,10 @@
           <button id="generate-button" class="btn-action btn-full">Generoi Luetuimmat (Uutiset)</button>
           <button id="fetch-sports-button" class="btn-action btn-full">Generoi Luetuimmat (Sport)</button>
         </div>
-        <button id="update-button" class="btn-action btn-full">Paivita kuvapohja</button>
-        <button id="download-button" class="btn-action btn-full" disabled>Tallenna kuva</button>
       </div>
 
       <div class="panel">
-        <div class="panel-title">Lahetysvalinta</div>
+        <div class="panel-title">L&auml;hetysvalinta</div>
         <div class="checkbox-grid">
           <label><input type="checkbox" id="option-1900" /> 1900</label>
           <label><input type="checkbox" id="option-2200" /> 2200</label>
@@ -76,14 +74,13 @@
           <label><input type="checkbox" id="option-sport2" /> sport2</label>
           <label><input type="checkbox" id="option-husu" /> HuSu</label>
         </div>
+        <div class="panel-actions">
+          <button id="update-button" class="btn-action btn-full">P&auml;ivit&auml; kuvapohja</button>
+          <button id="download-button" class="btn-action btn-full" disabled>Tallenna kuva</button>
+        </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-title">Ohje</div>
-        <p class="help-text" contenteditable="true" spellcheck="false">
-          Kun painat generoi, otsikot haetaan API:n kautta. Jos muokkaat otsikoita, muista paivittaa kuvapohja. Rivita otsikot kahdelle riville ja varmista, etta sininen footer jaa nakyviin.
-        </p>
-      </div>
+      
     </aside>
     </div>
   </main>
@@ -92,4 +89,5 @@
   <script src="luetuimmat.js"></script>
 </body>
 </html>
+
 
