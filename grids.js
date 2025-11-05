@@ -142,6 +142,14 @@ function isSlanted(){ const t=type(); return t==='slanted-left'||t==='slanted-ri
 
 function clamp(v,min,max){ return Math.min(max, Math.max(min, v)); }
 function clampRange(v, lo, hi){ return Math.min(hi, Math.max(lo, v)); }
+function updateRangeFill(el){
+  if (!el) return;
+  const min = Number(el.min ?? 0);
+  const max = Number(el.max ?? 100);
+  const value = Number(el.value ?? min);
+  const pct = max === min ? 0 : clampRange(((value - min) / (max - min)) * 100, 0, 100);
+  el.style.setProperty('--gg-range-value', `${pct}%`);
+}
 
 // solun oletus
 function defaultCell(){
@@ -1017,26 +1025,78 @@ function updateControlsVisibility(){
 
   if (els.ctrlSlanted)    els.ctrlSlanted.style.display = isSlanted() ? '' : 'none';
 
-  if (els.splitVertPos) { els.splitVertPos.value = state.splitVertPct; if (els.splitVertVal) els.splitVertVal.textContent = `${Math.round(state.splitVertPct)}%`; }
-  if (els.splitHorizPos){ els.splitHorizPos.value = state.splitHorizPct; if (els.splitHorizVal) els.splitHorizVal.textContent = `${Math.round(state.splitHorizPct)}%`; }
-  if (els.grid2x2X){ els.grid2x2X.value = state.grid2x2.x; if (els.grid2x2XVal) els.grid2x2XVal.textContent = `${Math.round(state.grid2x2.x)}%`; }
-  if (els.grid2x2Y){ els.grid2x2Y.value = state.grid2x2.y; if (els.grid2x2YVal) els.grid2x2YVal.textContent = `${Math.round(state.grid2x2.y)}%`; }
+  if (els.splitVertPos) {
+    els.splitVertPos.value = state.splitVertPct;
+    if (els.splitVertVal) els.splitVertVal.textContent = `${Math.round(state.splitVertPct)}%`;
+    updateRangeFill(els.splitVertPos);
+  }
+  if (els.splitHorizPos){
+    els.splitHorizPos.value = state.splitHorizPct;
+    if (els.splitHorizVal) els.splitHorizVal.textContent = `${Math.round(state.splitHorizPct)}%`;
+    updateRangeFill(els.splitHorizPos);
+  }
+  if (els.grid2x2X){
+    els.grid2x2X.value = state.grid2x2.x;
+    if (els.grid2x2XVal) els.grid2x2XVal.textContent = `${Math.round(state.grid2x2.x)}%`;
+    updateRangeFill(els.grid2x2X);
+  }
+  if (els.grid2x2Y){
+    els.grid2x2Y.value = state.grid2x2.y;
+    if (els.grid2x2YVal) els.grid2x2YVal.textContent = `${Math.round(state.grid2x2.y)}%`;
+    updateRangeFill(els.grid2x2Y);
+  }
 
-  if (els.curvePos){ els.curvePos.value = state.curvePosPct; if (els.curvePosVal) els.curvePosVal.textContent = `${Math.round(state.curvePosPct)}%`; }
-  if (els.diamondWidth){ els.diamondWidth.value = state.diamondWidthPct; if (els.diamondWidthVal) els.diamondWidthVal.textContent = `${Math.round(state.diamondWidthPct)}%`; }
+  if (els.curvePos){
+    els.curvePos.value = state.curvePosPct;
+    if (els.curvePosVal) els.curvePosVal.textContent = `${Math.round(state.curvePosPct)}%`;
+    updateRangeFill(els.curvePos);
+  }
+  if (els.diamondWidth){
+    els.diamondWidth.value = state.diamondWidthPct;
+    if (els.diamondWidthVal) els.diamondWidthVal.textContent = `${Math.round(state.diamondWidthPct)}%`;
+    updateRangeFill(els.diamondWidth);
+  }
 
-  if (els.circleX){ els.circleX.value = state.circle.xPct; if (els.circleXVal) els.circleXVal.textContent = `${Math.round(state.circle.xPct)}%`; }
-  if (els.circleSize){ els.circleSize.value = state.circle.sizePct; if (els.circleSizeVal) els.circleSizeVal.textContent = `${Math.round(state.circle.sizePct)}%`; }
+  if (els.circleX){
+    els.circleX.value = state.circle.xPct;
+    if (els.circleXVal) els.circleXVal.textContent = `${Math.round(state.circle.xPct)}%`;
+    updateRangeFill(els.circleX);
+  }
+  if (els.circleSize){
+    els.circleSize.value = state.circle.sizePct;
+    if (els.circleSizeVal) els.circleSizeVal.textContent = `${Math.round(state.circle.sizePct)}%`;
+    updateRangeFill(els.circleSize);
+  }
 
-  if (els.slantedAngle){ els.slantedAngle.value = state.slantedAngleDeg; if (els.slantedAngleVal) els.slantedAngleVal.textContent = `${Math.round(state.slantedAngleDeg)}°`; }
+  if (els.slantedAngle){
+    els.slantedAngle.value = state.slantedAngleDeg;
+    if (els.slantedAngleVal) els.slantedAngleVal.textContent = `${Math.round(state.slantedAngleDeg)}°`;
+    updateRangeFill(els.slantedAngle);
+  }
 }
 
 function syncCellControls(){
   const c = state.cells[state.selected] || defaultCell();
-  if (els.cellScale){ els.cellScale.value = c.scale; if (els.cellScaleVal) els.cellScaleVal.textContent = `${c.scale}%`; }
-  if (els.cellBright){ els.cellBright.value = c.bright; if (els.cellBrightVal) els.cellBrightVal.textContent = `${c.bright}%`; }
-  if (els.cellContrast){ els.cellContrast.value = c.contrast; if (els.cellContrastVal) els.cellContrastVal.textContent = `${c.contrast}%`; }
-  if (els.cellBlur){ els.cellBlur.value = c.blur; if (els.cellBlurVal) els.cellBlurVal.textContent = `${c.blur} px`; }
+  if (els.cellScale){
+    els.cellScale.value = c.scale;
+    if (els.cellScaleVal) els.cellScaleVal.textContent = `${c.scale}%`;
+    updateRangeFill(els.cellScale);
+  }
+  if (els.cellBright){
+    els.cellBright.value = c.bright;
+    if (els.cellBrightVal) els.cellBrightVal.textContent = `${c.bright}%`;
+    updateRangeFill(els.cellBright);
+  }
+  if (els.cellContrast){
+    els.cellContrast.value = c.contrast;
+    if (els.cellContrastVal) els.cellContrastVal.textContent = `${c.contrast}%`;
+    updateRangeFill(els.cellContrast);
+  }
+  if (els.cellBlur){
+    els.cellBlur.value = c.blur;
+    if (els.cellBlurVal) els.cellBlurVal.textContent = `${c.blur} px`;
+    updateRangeFill(els.cellBlur);
+  }
   if (els.cellGray) els.cellGray.checked = !!c.gray;
 }
 
@@ -1046,15 +1106,60 @@ if (els.cellFile) els.cellFile.addEventListener('change', async (e)=>{
   syncCellControls(); drawPreview();
 });
 
-function onSplitVert(){ state.splitVertPct=+els.splitVertPos.value; if (els.splitVertVal) els.splitVertVal.textContent=`${Math.round(state.splitVertPct)}%`; drawPreview(); }
-function onSplitHoriz(){ state.splitHorizPct=+els.splitHorizPos.value; if (els.splitHorizVal) els.splitHorizVal.textContent=`${Math.round(state.splitHorizPct)}%`; drawPreview(); }
-function onGrid2x2X(){ state.grid2x2.x=+els.grid2x2X.value; if (els.grid2x2XVal) els.grid2x2XVal.textContent=`${Math.round(state.grid2x2.x)}%`; drawPreview(); }
-function onGrid2x2Y(){ state.grid2x2.y=+els.grid2x2Y.value; if (els.grid2x2YVal) els.grid2x2YVal.textContent=`${Math.round(state.grid2x2.y)}%`; drawPreview(); }
-function onCurvePos(){ state.curvePosPct=+els.curvePos.value; if (els.curvePosVal) els.curvePosVal.textContent=`${Math.round(state.curvePosPct)}%`; drawPreview(); }
-function onDiamondWidth(){ state.diamondWidthPct=+els.diamondWidth.value; if (els.diamondWidthVal) els.diamondWidthVal.textContent=`${Math.round(state.diamondWidthPct)}%`; drawPreview(); }
-function onCircleX(){ state.circle.xPct = +els.circleX.value; if (els.circleXVal) els.circleXVal.textContent = `${Math.round(state.circle.xPct)}%`; drawPreview(); }
-function onCircleSize(){ state.circle.sizePct = +els.circleSize.value; if (els.circleSizeVal) els.circleSizeVal.textContent = `${Math.round(state.circle.sizePct)}%`; drawPreview(); }
-function onSlantedAngle(){ state.slantedAngleDeg = clamp(+els.slantedAngle.value, -45, 45); if (els.slantedAngleVal) els.slantedAngleVal.textContent = `${Math.round(state.slantedAngleDeg)}°`; drawPreview(); }
+function onSplitVert(){
+  state.splitVertPct=+els.splitVertPos.value;
+  if (els.splitVertVal) els.splitVertVal.textContent=`${Math.round(state.splitVertPct)}%`;
+  updateRangeFill(els.splitVertPos);
+  drawPreview();
+}
+function onSplitHoriz(){
+  state.splitHorizPct=+els.splitHorizPos.value;
+  if (els.splitHorizVal) els.splitHorizVal.textContent=`${Math.round(state.splitHorizPct)}%`;
+  updateRangeFill(els.splitHorizPos);
+  drawPreview();
+}
+function onGrid2x2X(){
+  state.grid2x2.x=+els.grid2x2X.value;
+  if (els.grid2x2XVal) els.grid2x2XVal.textContent=`${Math.round(state.grid2x2.x)}%`;
+  updateRangeFill(els.grid2x2X);
+  drawPreview();
+}
+function onGrid2x2Y(){
+  state.grid2x2.y=+els.grid2x2Y.value;
+  if (els.grid2x2YVal) els.grid2x2YVal.textContent=`${Math.round(state.grid2x2.y)}%`;
+  updateRangeFill(els.grid2x2Y);
+  drawPreview();
+}
+function onCurvePos(){
+  state.curvePosPct=+els.curvePos.value;
+  if (els.curvePosVal) els.curvePosVal.textContent=`${Math.round(state.curvePosPct)}%`;
+  updateRangeFill(els.curvePos);
+  drawPreview();
+}
+function onDiamondWidth(){
+  state.diamondWidthPct=+els.diamondWidth.value;
+  if (els.diamondWidthVal) els.diamondWidthVal.textContent=`${Math.round(state.diamondWidthPct)}%`;
+  updateRangeFill(els.diamondWidth);
+  drawPreview();
+}
+function onCircleX(){
+  state.circle.xPct = +els.circleX.value;
+  if (els.circleXVal) els.circleXVal.textContent = `${Math.round(state.circle.xPct)}%`;
+  updateRangeFill(els.circleX);
+  drawPreview();
+}
+function onCircleSize(){
+  state.circle.sizePct = +els.circleSize.value;
+  if (els.circleSizeVal) els.circleSizeVal.textContent = `${Math.round(state.circle.sizePct)}%`;
+  updateRangeFill(els.circleSize);
+  drawPreview();
+}
+function onSlantedAngle(){
+  state.slantedAngleDeg = clamp(+els.slantedAngle.value, -45, 45);
+  if (els.slantedAngleVal) els.slantedAngleVal.textContent = `${Math.round(state.slantedAngleDeg)}°`;
+  updateRangeFill(els.slantedAngle);
+  drawPreview();
+}
 
 ;['input','change'].forEach(ev=>{
   if (els.splitVertPos) els.splitVertPos.addEventListener(ev, onSplitVert);
@@ -1070,10 +1175,34 @@ function onSlantedAngle(){ state.slantedAngleDeg = clamp(+els.slantedAngle.value
   if (els.slantedAngle) els.slantedAngle.addEventListener(ev, onSlantedAngle);
 });
 
-if (els.cellScale) els.cellScale.addEventListener('input', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.scale = +els.cellScale.value; if (els.cellScaleVal) els.cellScaleVal.textContent = `${c.scale}%`; drawPreview(); });
-if (els.cellBright) els.cellBright.addEventListener('input', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.bright = +els.cellBright.value; if (els.cellBrightVal) els.cellBrightVal.textContent = `${c.bright}%`; drawPreview(); });
-if (els.cellContrast) els.cellContrast.addEventListener('input', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.contrast = +els.cellContrast.value; if (els.cellContrastVal) els.cellContrastVal.textContent = `${c.contrast}%`; drawPreview(); });
-if (els.cellBlur) els.cellBlur.addEventListener('input', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.blur = +els.cellBlur.value; if (els.cellBlurVal) els.cellBlurVal.textContent = `${c.blur} px`; drawPreview(); });
+if (els.cellScale) els.cellScale.addEventListener('input', ()=>{
+  const c = state.cells[state.selected]; if(!c) return;
+  c.scale = +els.cellScale.value;
+  if (els.cellScaleVal) els.cellScaleVal.textContent = `${c.scale}%`;
+  updateRangeFill(els.cellScale);
+  drawPreview();
+});
+if (els.cellBright) els.cellBright.addEventListener('input', ()=>{
+  const c = state.cells[state.selected]; if(!c) return;
+  c.bright = +els.cellBright.value;
+  if (els.cellBrightVal) els.cellBrightVal.textContent = `${c.bright}%`;
+  updateRangeFill(els.cellBright);
+  drawPreview();
+});
+if (els.cellContrast) els.cellContrast.addEventListener('input', ()=>{
+  const c = state.cells[state.selected]; if(!c) return;
+  c.contrast = +els.cellContrast.value;
+  if (els.cellContrastVal) els.cellContrastVal.textContent = `${c.contrast}%`;
+  updateRangeFill(els.cellContrast);
+  drawPreview();
+});
+if (els.cellBlur) els.cellBlur.addEventListener('input', ()=>{
+  const c = state.cells[state.selected]; if(!c) return;
+  c.blur = +els.cellBlur.value;
+  if (els.cellBlurVal) els.cellBlurVal.textContent = `${c.blur} px`;
+  updateRangeFill(els.cellBlur);
+  drawPreview();
+});
 if (els.cellGray) els.cellGray.addEventListener('change', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.gray = !!els.cellGray.checked; drawPreview(); });
 
 if (els.cellCenter) els.cellCenter.addEventListener('click', ()=>{ const c = state.cells[state.selected]; if(!c) return; c.offX = 0; c.offY = 0; drawPreview(); });

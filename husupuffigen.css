@@ -50,8 +50,8 @@ main{
 
 /* Brand + nav + info — yhtenäinen tyyli */
 #brandbar{
-  position:sticky; 
-  top:0; 
+  position:relative; 
+  top:auto; 
   z-index:3;
    
   color:#fff; 
